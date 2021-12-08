@@ -1,0 +1,22 @@
+@startuml
+
+class プレイヤー{}
+class 駒{
+    String name
+    移動する()
+    成る()
+}
+class 持ち駒{
+    String name
+    打つ()
+}
+
+class 盤面{}
+class マス{}
+
+プレイヤー "1"--"0..40" 駒
+プレイヤー "1"--"0..40" 持ち駒
+盤面 "1"--"81" マス
+マス "1"--"1" 駒
+
+@enduml
