@@ -1,3 +1,4 @@
+import 'package:flutter_shogi/domain/entity/piece.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'board.freezed.dart';
@@ -11,5 +12,7 @@ class Board with _$Board {
 
 @freezed
 class Cell with _$Cell {
-  const factory Cell() = _Cell;
+  const factory Cell({
+    required Piece? piece,
+  }) = _Cell;
 }
