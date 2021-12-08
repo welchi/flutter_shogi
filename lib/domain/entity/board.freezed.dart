@@ -138,8 +138,10 @@ abstract class _Board implements Board {
 class _$CellTearOff {
   const _$CellTearOff();
 
-  _Cell call() {
-    return const _Cell();
+  _Cell call({required Piece? piece}) {
+    return _Cell(
+      piece: piece,
+    );
   }
 }
 
@@ -147,12 +149,20 @@ class _$CellTearOff {
 const $Cell = _$CellTearOff();
 
 /// @nodoc
-mixin _$Cell {}
+mixin _$Cell {
+  Piece? get piece => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CellCopyWith<Cell> get copyWith => throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $CellCopyWith<$Res> {
   factory $CellCopyWith(Cell value, $Res Function(Cell) then) =
       _$CellCopyWithImpl<$Res>;
+  $Res call({Piece? piece});
+
+  $PieceCopyWith<$Res>? get piece;
 }
 
 /// @nodoc
@@ -162,12 +172,40 @@ class _$CellCopyWithImpl<$Res> implements $CellCopyWith<$Res> {
   final Cell _value;
   // ignore: unused_field
   final $Res Function(Cell) _then;
+
+  @override
+  $Res call({
+    Object? piece = freezed,
+  }) {
+    return _then(_value.copyWith(
+      piece: piece == freezed
+          ? _value.piece
+          : piece // ignore: cast_nullable_to_non_nullable
+              as Piece?,
+    ));
+  }
+
+  @override
+  $PieceCopyWith<$Res>? get piece {
+    if (_value.piece == null) {
+      return null;
+    }
+
+    return $PieceCopyWith<$Res>(_value.piece!, (value) {
+      return _then(_value.copyWith(piece: value));
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$CellCopyWith<$Res> {
+abstract class _$CellCopyWith<$Res> implements $CellCopyWith<$Res> {
   factory _$CellCopyWith(_Cell value, $Res Function(_Cell) then) =
       __$CellCopyWithImpl<$Res>;
+  @override
+  $Res call({Piece? piece});
+
+  @override
+  $PieceCopyWith<$Res>? get piece;
 }
 
 /// @nodoc
@@ -178,28 +216,57 @@ class __$CellCopyWithImpl<$Res> extends _$CellCopyWithImpl<$Res>
 
   @override
   _Cell get _value => super._value as _Cell;
+
+  @override
+  $Res call({
+    Object? piece = freezed,
+  }) {
+    return _then(_Cell(
+      piece: piece == freezed
+          ? _value.piece
+          : piece // ignore: cast_nullable_to_non_nullable
+              as Piece?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Cell implements _Cell {
-  const _$_Cell();
+  const _$_Cell({required this.piece});
+
+  @override
+  final Piece? piece;
 
   @override
   String toString() {
-    return 'Cell()';
+    return 'Cell(piece: $piece)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Cell);
+        (other.runtimeType == runtimeType &&
+            other is _Cell &&
+            const DeepCollectionEquality().equals(other.piece, piece));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(piece));
+
+  @JsonKey(ignore: true)
+  @override
+  _$CellCopyWith<_Cell> get copyWith =>
+      __$CellCopyWithImpl<_Cell>(this, _$identity);
 }
 
 abstract class _Cell implements Cell {
-  const factory _Cell() = _$_Cell;
+  const factory _Cell({required Piece? piece}) = _$_Cell;
+
+  @override
+  Piece? get piece;
+  @override
+  @JsonKey(ignore: true)
+  _$CellCopyWith<_Cell> get copyWith => throw _privateConstructorUsedError;
 }
