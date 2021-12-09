@@ -10,15 +10,42 @@ class ShogiGame {
 
   /// ゲームを初期化
   void initGame() {
-    final senkoPieces = List.generate(
-      9,
+    // 先攻で歩兵を並べる
+  }
+
+  List<Piece> getInitialPieces({
+    bool isSenko = true,
+  }) {
+    final huhyoRowY = isSenko ? 2 : Board.colSize - 1 - 2;
+    final hisyakakuRowY = isSenko ? 1 : Board.colSize - 1 - 1;
+    final oushoRowY = isSenko ? 0 : Board.colSize - 1 - 0;
+
+    final huhyoRow = List.generate(
+      Board.rowSize,
       (x) => Piece.huhyo(
         Vector2(
           x.toDouble(),
-          3,
+          huhyoRowY.toDouble(),
         ),
       ),
-    );
+    ).toList();
+
+    // final kakuX = isSenko ? 1 : 7;
+    // final hisyaX = isSenko ? 7 : 1;
+    final hisyakakuRow = [
+      Piece.kakugyo(
+        Vector2(
+          isSenko ? 1 : 7,
+          hisyakakuRowY.toDouble(),
+        ),
+      ),
+      Piece.hisha(
+        Vector2(
+          isSenko ? 7 : 1,
+          hisyakakuRowY.toDouble(),
+        ),
+      ),
+    ];
   }
 
   // ターンごとの判定

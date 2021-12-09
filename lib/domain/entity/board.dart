@@ -8,6 +8,8 @@ class Board with _$Board {
   const factory Board({
     required List<Tile> tiles,
   }) = _Board;
+  static const colSize = 9;
+  static const rowSize = 9;
 }
 
 @freezed
