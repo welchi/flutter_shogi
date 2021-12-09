@@ -11,13 +11,15 @@ class GamePage extends ConsumerWidget {
       body: Column(
         children: [
           // 相手の持ち駒
-          GridView.count(
-            crossAxisCount: 9,
-            children: tiles
-                .map(
-                  (tile) => const Text('a'),
-                )
-                .toList(),
+          Flexible(
+            child: GridView.count(
+              crossAxisCount: 9,
+              children: tiles
+                  .map(
+                    (tile) => const Text('a'),
+                  )
+                  .toList(),
+            ),
           ),
           // 自分の持ち駒
         ],
