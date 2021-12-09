@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class ShogiGame {
   const ShogiGame(this._read);
   final Reader _read;
-  // 駒などを初期化
+
+  /// ゲームを初期化
   void init() {}
 
   // ターンごとの判定
