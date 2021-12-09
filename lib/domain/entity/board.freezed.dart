@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$BoardTearOff {
   const _$BoardTearOff();
 
-  _Board call({required List<List<Tile>> tiles}) {
+  _Board call({required List<Tile> tiles}) {
     return _Board(
       tiles: tiles,
     );
@@ -29,7 +29,7 @@ const $Board = _$BoardTearOff();
 
 /// @nodoc
 mixin _$Board {
-  List<List<Tile>> get tiles => throw _privateConstructorUsedError;
+  List<Tile> get tiles => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BoardCopyWith<Board> get copyWith => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ mixin _$Board {
 abstract class $BoardCopyWith<$Res> {
   factory $BoardCopyWith(Board value, $Res Function(Board) then) =
       _$BoardCopyWithImpl<$Res>;
-  $Res call({List<List<Tile>> tiles});
+  $Res call({List<Tile> tiles});
 }
 
 /// @nodoc
@@ -58,7 +58,7 @@ class _$BoardCopyWithImpl<$Res> implements $BoardCopyWith<$Res> {
       tiles: tiles == freezed
           ? _value.tiles
           : tiles // ignore: cast_nullable_to_non_nullable
-              as List<List<Tile>>,
+              as List<Tile>,
     ));
   }
 }
@@ -68,7 +68,7 @@ abstract class _$BoardCopyWith<$Res> implements $BoardCopyWith<$Res> {
   factory _$BoardCopyWith(_Board value, $Res Function(_Board) then) =
       __$BoardCopyWithImpl<$Res>;
   @override
-  $Res call({List<List<Tile>> tiles});
+  $Res call({List<Tile> tiles});
 }
 
 /// @nodoc
@@ -88,7 +88,7 @@ class __$BoardCopyWithImpl<$Res> extends _$BoardCopyWithImpl<$Res>
       tiles: tiles == freezed
           ? _value.tiles
           : tiles // ignore: cast_nullable_to_non_nullable
-              as List<List<Tile>>,
+              as List<Tile>,
     ));
   }
 }
@@ -99,7 +99,7 @@ class _$_Board implements _Board {
   const _$_Board({required this.tiles});
 
   @override
-  final List<List<Tile>> tiles;
+  final List<Tile> tiles;
 
   @override
   String toString() {
@@ -125,10 +125,10 @@ class _$_Board implements _Board {
 }
 
 abstract class _Board implements Board {
-  const factory _Board({required List<List<Tile>> tiles}) = _$_Board;
+  const factory _Board({required List<Tile> tiles}) = _$_Board;
 
   @override
-  List<List<Tile>> get tiles;
+  List<Tile> get tiles;
   @override
   @JsonKey(ignore: true)
   _$BoardCopyWith<_Board> get copyWith => throw _privateConstructorUsedError;

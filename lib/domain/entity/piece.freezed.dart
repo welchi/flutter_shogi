@@ -17,10 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PieceTearOff {
   const _$PieceTearOff();
 
-  _Piece call({required String name, required Direction movableDirection}) {
+  _Piece call(
+      {required String name, required List<Vector2> movableDirections}) {
     return _Piece(
       name: name,
-      movableDirection: movableDirection,
+      movableDirections: movableDirections,
     );
   }
 }
@@ -31,7 +32,7 @@ const $Piece = _$PieceTearOff();
 /// @nodoc
 mixin _$Piece {
   String get name => throw _privateConstructorUsedError;
-  Direction get movableDirection => throw _privateConstructorUsedError;
+  List<Vector2> get movableDirections => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PieceCopyWith<Piece> get copyWith => throw _privateConstructorUsedError;
@@ -41,9 +42,7 @@ mixin _$Piece {
 abstract class $PieceCopyWith<$Res> {
   factory $PieceCopyWith(Piece value, $Res Function(Piece) then) =
       _$PieceCopyWithImpl<$Res>;
-  $Res call({String name, Direction movableDirection});
-
-  $DirectionCopyWith<$Res> get movableDirection;
+  $Res call({String name, List<Vector2> movableDirections});
 }
 
 /// @nodoc
@@ -57,25 +56,18 @@ class _$PieceCopyWithImpl<$Res> implements $PieceCopyWith<$Res> {
   @override
   $Res call({
     Object? name = freezed,
-    Object? movableDirection = freezed,
+    Object? movableDirections = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      movableDirection: movableDirection == freezed
-          ? _value.movableDirection
-          : movableDirection // ignore: cast_nullable_to_non_nullable
-              as Direction,
+      movableDirections: movableDirections == freezed
+          ? _value.movableDirections
+          : movableDirections // ignore: cast_nullable_to_non_nullable
+              as List<Vector2>,
     ));
-  }
-
-  @override
-  $DirectionCopyWith<$Res> get movableDirection {
-    return $DirectionCopyWith<$Res>(_value.movableDirection, (value) {
-      return _then(_value.copyWith(movableDirection: value));
-    });
   }
 }
 
@@ -84,10 +76,7 @@ abstract class _$PieceCopyWith<$Res> implements $PieceCopyWith<$Res> {
   factory _$PieceCopyWith(_Piece value, $Res Function(_Piece) then) =
       __$PieceCopyWithImpl<$Res>;
   @override
-  $Res call({String name, Direction movableDirection});
-
-  @override
-  $DirectionCopyWith<$Res> get movableDirection;
+  $Res call({String name, List<Vector2> movableDirections});
 }
 
 /// @nodoc
@@ -102,17 +91,17 @@ class __$PieceCopyWithImpl<$Res> extends _$PieceCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
-    Object? movableDirection = freezed,
+    Object? movableDirections = freezed,
   }) {
     return _then(_Piece(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      movableDirection: movableDirection == freezed
-          ? _value.movableDirection
-          : movableDirection // ignore: cast_nullable_to_non_nullable
-              as Direction,
+      movableDirections: movableDirections == freezed
+          ? _value.movableDirections
+          : movableDirections // ignore: cast_nullable_to_non_nullable
+              as List<Vector2>,
     ));
   }
 }
@@ -120,16 +109,16 @@ class __$PieceCopyWithImpl<$Res> extends _$PieceCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Piece implements _Piece {
-  const _$_Piece({required this.name, required this.movableDirection});
+  const _$_Piece({required this.name, required this.movableDirections});
 
   @override
   final String name;
   @override
-  final Direction movableDirection;
+  final List<Vector2> movableDirections;
 
   @override
   String toString() {
-    return 'Piece(name: $name, movableDirection: $movableDirection)';
+    return 'Piece(name: $name, movableDirections: $movableDirections)';
   }
 
   @override
@@ -139,14 +128,14 @@ class _$_Piece implements _Piece {
             other is _Piece &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
-                .equals(other.movableDirection, movableDirection));
+                .equals(other.movableDirections, movableDirections));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(movableDirection));
+      const DeepCollectionEquality().hash(movableDirections));
 
   @JsonKey(ignore: true)
   @override
@@ -156,12 +145,13 @@ class _$_Piece implements _Piece {
 
 abstract class _Piece implements Piece {
   const factory _Piece(
-      {required String name, required Direction movableDirection}) = _$_Piece;
+      {required String name,
+      required List<Vector2> movableDirections}) = _$_Piece;
 
   @override
   String get name;
   @override
-  Direction get movableDirection;
+  List<Vector2> get movableDirections;
   @override
   @JsonKey(ignore: true)
   _$PieceCopyWith<_Piece> get copyWith => throw _privateConstructorUsedError;

@@ -6,7 +6,7 @@ part 'board.freezed.dart';
 @freezed
 class Board with _$Board {
   const factory Board({
-    required List<List<Tile>> tiles,
+    required List<Tile> tiles,
   }) = _Board;
 }
 

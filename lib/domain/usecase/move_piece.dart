@@ -3,6 +3,8 @@ import 'package:flutter_shogi/domain/entity/direction.dart';
 import 'package:flutter_shogi/domain/entity/piece.dart';
 import 'package:vector_math/vector_math.dart';
 
+// この前に、移動可能なタイルをハイライト？
+// 斜め、横と、
 class MovePiece {
   const MovePiece(this._read);
   final Reader _read;
