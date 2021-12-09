@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/direction.dart';
 import 'package:flutter_shogi/domain/entity/piece.dart';
-import 'package:quiver/iterables.dart';
 
 class MovePiece {
   const MovePiece(this._read);
@@ -27,8 +26,17 @@ class MovePiece {
 
   bool _canMove({
     required Piece piece,
-    required Direction movingDirection,
+    required Vector vector,
   }) {
-    // final zippedDirection = zip(iterables)
+    // pieceのセルを取得
+    // 移動先のセルとの、
+    // セル間の距離を算出
+    // pieceのmovableが距離を移動可能か計算
+    //
+    //
+    final movableDirection = piece.movableDirection;
+    // final zippedDirection =
+    //     zip<List<Direction>>([piece.movableDirection, movingDirection])
+    //         .toList();
   }
 }
