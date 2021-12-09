@@ -62,7 +62,7 @@ class BoardView extends StatelessWidget {
 
 final tiles = List.generate(
   81,
-  (index) => Tile(
-    piece: Piece.hisya(),
+  (index) => const Tile(
+    piece: Piece.kakugyo(),
   ),
 );
