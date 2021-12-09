@@ -17,10 +17,21 @@ class GamePage extends ConsumerWidget {
               crossAxisCount: 9,
               children: tiles
                   .map(
-                    (tile) => Center(
-                      child: tile.piece != null
-                          ? Text(tile.piece!.name)
-                          : const SizedBox(),
+                    (tile) => Material(
+                      color: Colors.yellow,
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                          ),
+                          child: Center(
+                            child: tile.piece != null
+                                ? Text(tile.piece!.name)
+                                : const SizedBox(),
+                          ),
+                        ),
+                      ),
                     ),
                   )
                   .toList(),
