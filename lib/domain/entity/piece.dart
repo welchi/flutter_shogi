@@ -19,24 +19,130 @@ class Piece with _$Piece {
   const factory Piece({
     required String name,
     required List<Vector2> movableDirections,
+    Vector2? position,
     // required Direction movableDirection,
   }) = _Piece;
   const Piece._();
-  factory Piece.huhyo() => Piece(name: '歩', movableDirections: []);
-  factory Piece.tokin() => Piece(name: 'と', movableDirections: []);
-  factory Piece.kyosha() => Piece(name: '香', movableDirections: []);
-  factory Piece.narikyo() => Piece(name: '杏', movableDirections: []);
-  factory Piece.keima() => Piece(name: '桂', movableDirections: []);
-  factory Piece.narikei() => Piece(name: '圭', movableDirections: []);
-  factory Piece.ginsho() => Piece(name: '銀', movableDirections: []);
-  factory Piece.narigin() => Piece(name: '全', movableDirections: []);
-  factory Piece.hisha() => Piece(name: '飛', movableDirections: []);
-  factory Piece.ryuo() => Piece(name: '龍', movableDirections: []);
-  factory Piece.kakugyo() => Piece(name: '角', movableDirections: []);
-  factory Piece.ryuma() => Piece(name: '馬', movableDirections: []);
-  factory Piece.kinsho() => Piece(name: '金', movableDirections: []);
-  factory Piece.ousho() => Piece(name: '王', movableDirections: []);
-  factory Piece.gyokusho() => Piece(name: '玉', movableDirections: []);
+  factory Piece.huhyo(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '歩',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.tokin(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: 'と',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.kyosha(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '香',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.narikyo(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '杏',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.keima(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '桂',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.narikei(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '圭',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.ginsho(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '銀',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.narigin(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '全',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.hisha(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '飛',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.ryuo(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '龍',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.kakugyo(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '角',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.ryuma(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '馬',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.kinsho(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '金',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.ousho(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '王',
+        movableDirections: [],
+        position: position,
+      );
+  factory Piece.gyokusho(
+    Vector2 position,
+  ) =>
+      Piece(
+        name: '玉',
+        movableDirections: [],
+        position: position,
+      );
   // const factory Piece.huhyo() = Huhyo;
   // const factory Piece.tokin() = Tokin;
   // const factory Piece.kyosha() = Kyosha;

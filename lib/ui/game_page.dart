@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/board.dart';
 import 'package:flutter_shogi/domain/entity/piece.dart';
+import 'package:vector_math/vector_math.dart' as vm;
 
 class GamePage extends ConsumerWidget {
   const GamePage({Key? key}) : super(key: key);
@@ -63,6 +64,8 @@ class BoardView extends StatelessWidget {
 final tiles = List.generate(
   81,
   (index) => Tile(
-    piece: Piece.kakugyo(),
+    piece: Piece.kakugyo(
+      vm.Vector2(0, 0),
+    ),
   ),
 );

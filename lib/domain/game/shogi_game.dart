@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/game/shogi_game_output.dart';
+import 'package:vector_math/vector_math.dart';
 
 class ShogiGame {
   ShogiGame(this._read);
@@ -7,7 +9,17 @@ class ShogiGame {
   late final ShogiGameOutput _output;
 
   /// ゲームを初期化
-  void initGame() {}
+  void initGame() {
+    final senkoPieces = List.generate(
+      9,
+      (x) => Piece.huhyo(
+        Vector2(
+          x.toDouble(),
+          3,
+        ),
+      ),
+    );
+  }
 
   // ターンごとの判定
   void update() {
