@@ -12,39 +12,50 @@ class GamePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Column(
-        children: [
+        children: const [
           // 相手の持ち駒
           Flexible(
-            child: GridView.count(
-              crossAxisCount: 9,
-              children: tiles
-                  .map(
-                    (tile) => Material(
-                      color: Colors.yellow,
-                      child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                          ),
-                          child: Center(
-                            child: tile.piece != null
-                                ? Transform.rotate(
-                                    angle: pi,
-                                    child: Text(tile.piece!.name),
-                                  )
-                                : const SizedBox(),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                  .toList(),
-            ),
+            child: BoardView(),
           ),
           // 自分の持ち駒
         ],
       ),
+    );
+  }
+}
+
+class BoardView extends StatelessWidget {
+  const BoardView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      crossAxisCount: 9,
+      children: tiles
+          .map(
+            (tile) => Material(
+              color: Colors.yellow,
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                  ),
+                  child: Center(
+                    child: tile.piece != null
+                        ? Transform.rotate(
+                            angle: pi,
+                            child: Text(tile.piece!.name),
+                          )
+                        : const SizedBox(),
+                  ),
+                ),
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 }
