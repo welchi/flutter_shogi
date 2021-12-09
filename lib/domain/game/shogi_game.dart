@@ -109,6 +109,30 @@ List<Piece> _getInitialPieces({
         oushoRowY,
       ),
     ),
+    Piece.kinsho(
+      Vector2(
+        isSenko ? 5 : 3,
+        oushoRowY,
+      ),
+    ),
+    Piece.ginsho(
+      Vector2(
+        isSenko ? 6 : 2,
+        oushoRowY,
+      ),
+    ),
+    Piece.keima(
+      Vector2(
+        isSenko ? 7 : 1,
+        oushoRowY,
+      ),
+    ),
+    Piece.kyosha(
+      Vector2(
+        isSenko ? 8 : 0,
+        oushoRowY,
+      ),
+    ),
   ];
   return [...huhyoRow, ...hisyakakuRow, ...oushoRow];
 }
