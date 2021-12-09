@@ -44,7 +44,7 @@ class Piece with _$Piece {
         //   downLeft: 1,
         // ),
       );
-  factory Piece.hisya() => Piece(name: '飛車', movableDirections: [_up]
+  factory Piece.hisya() => Piece(name: '飛', movableDirections: [_up]
       // movableDirection: Direction(
       //   up: 99,
       //   down: 99,

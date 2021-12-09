@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/board.dart';
@@ -27,7 +29,10 @@ class GamePage extends ConsumerWidget {
                           ),
                           child: Center(
                             child: tile.piece != null
-                                ? Text(tile.piece!.name)
+                                ? Transform.rotate(
+                                    angle: pi,
+                                    child: Text(tile.piece!.name),
+                                  )
                                 : const SizedBox(),
                           ),
                         ),
@@ -47,6 +52,6 @@ class GamePage extends ConsumerWidget {
 final tiles = List.generate(
   81,
   (index) => Tile(
-    piece: Piece.ou(),
+    piece: Piece.hisya(),
   ),
 );
