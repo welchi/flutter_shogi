@@ -6,4 +6,6 @@ abstract class ShogiGameOutput {
 
   /// 成り
   void promotePiece(Piece piece);
+
+  ///
 }
