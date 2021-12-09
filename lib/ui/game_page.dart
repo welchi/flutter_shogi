@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/board.dart';
+import 'package:flutter_shogi/domain/entity/piece.dart';
 
 class GamePage extends ConsumerWidget {
   const GamePage({Key? key}) : super(key: key);
@@ -16,7 +17,11 @@ class GamePage extends ConsumerWidget {
               crossAxisCount: 9,
               children: tiles
                   .map(
-                    (tile) => const Text('a'),
+                    (tile) => Center(
+                      child: tile.piece != null
+                          ? Text(tile.piece!.name)
+                          : const SizedBox(),
+                    ),
                   )
                   .toList(),
             ),
@@ -30,5 +35,7 @@ class GamePage extends ConsumerWidget {
 
 final tiles = List.generate(
   81,
-  (index) => const Tile(),
+  (index) => Tile(
+    piece: Piece.ou(),
+  ),
 );
