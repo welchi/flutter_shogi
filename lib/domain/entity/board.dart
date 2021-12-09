@@ -13,6 +13,7 @@ class Board with _$Board {
 @freezed
 class Tile with _$Tile {
   const factory Tile({
+    // required List<Piece> pieces,
     Piece? piece,
   }) = _Tile;
 }

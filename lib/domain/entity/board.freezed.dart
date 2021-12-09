@@ -150,6 +150,7 @@ const $Tile = _$TileTearOff();
 
 /// @nodoc
 mixin _$Tile {
+// required List<Piece> pieces,
   Piece? get piece => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -235,7 +236,7 @@ class __$TileCopyWithImpl<$Res> extends _$TileCopyWithImpl<$Res>
 class _$_Tile implements _Tile {
   const _$_Tile({this.piece});
 
-  @override
+  @override // required List<Piece> pieces,
   final Piece? piece;
 
   @override
@@ -264,7 +265,7 @@ class _$_Tile implements _Tile {
 abstract class _Tile implements Tile {
   const factory _Tile({Piece? piece}) = _$_Tile;
 
-  @override
+  @override // required List<Piece> pieces,
   Piece? get piece;
   @override
   @JsonKey(ignore: true)

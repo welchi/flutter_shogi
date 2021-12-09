@@ -37,7 +37,6 @@ class Piece with _$Piece {
   const factory Piece.kinsho() = Kinsho;
   const factory Piece.ousho() = Ousho;
   const factory Piece.gyokusho() = Gyokusho;
-  //
   // Piece(
   //   name: '王',
   //   movableDirections: [
@@ -80,7 +79,7 @@ class Piece with _$Piece {
         keima: () => '桂',
         narikei: () => '圭',
         ginsho: () => '銀',
-        narigin: () => '',
+        narigin: () => '全',
         hisha: () => '飛',
         ryuo: () => '龍',
         kakugyo: () => '角',
