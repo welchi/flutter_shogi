@@ -26,11 +26,6 @@ class Piece with _$Piece {
         downRight: 1,
         downLeft: 1,
       );
-  factory Piece.hisya() => const Piece(
-        name: '飛車',
-        up: 99,
-        down: 99,
-        left: 99,
-        right: 99,
-      );
+  factory Piece.hisya() =>
+      const Piece(name: '飛車', up: 99, down: 99, left: 99, right: 99);
 }
