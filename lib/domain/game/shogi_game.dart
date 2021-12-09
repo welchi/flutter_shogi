@@ -11,41 +11,9 @@ class ShogiGame {
   /// ゲームを初期化
   void initGame() {
     // 先攻で歩兵を並べる
-  }
-
-  List<Piece> getInitialPieces({
-    bool isSenko = true,
-  }) {
-    final huhyoRowY = isSenko ? 2 : Board.colSize - 1 - 2;
-    final hisyakakuRowY = isSenko ? 1 : Board.colSize - 1 - 1;
-    final oushoRowY = isSenko ? 0 : Board.colSize - 1 - 0;
-
-    final huhyoRow = List.generate(
-      Board.rowSize,
-      (x) => Piece.huhyo(
-        Vector2(
-          x.toDouble(),
-          huhyoRowY.toDouble(),
-        ),
-      ),
-    ).toList();
-
-    // final kakuX = isSenko ? 1 : 7;
-    // final hisyaX = isSenko ? 7 : 1;
-    final hisyakakuRow = [
-      Piece.kakugyo(
-        Vector2(
-          isSenko ? 1 : 7,
-          hisyakakuRowY.toDouble(),
-        ),
-      ),
-      Piece.hisha(
-        Vector2(
-          isSenko ? 7 : 1,
-          hisyakakuRowY.toDouble(),
-        ),
-      ),
-    ];
+    final senkoPieces = _getInitialPieces();
+    final kokoPieces = _getInitialPieces(isSenko: false);
+    final senkoPlayer = Player();
   }
 
   // ターンごとの判定
@@ -75,4 +43,72 @@ class ShogiGame {
     * 
     * */
   }
+}
+
+/// 駒の初期配置を取得
+List<Piece> _getInitialPieces({
+  bool isSenko = true,
+}) {
+  final huhyoRowY = (isSenko ? 2 : Board.colSize - 1 - 2).toDouble();
+  final hisyakakuRowY = (isSenko ? 1 : Board.colSize - 1 - 1).toDouble();
+  final oushoRowY = (isSenko ? 0 : Board.colSize - 1 - 0).toDouble();
+
+  final huhyoRow = List.generate(
+    Board.rowSize,
+    (x) => Piece.huhyo(
+      Vector2(
+        x.toDouble(),
+        huhyoRowY.toDouble(),
+      ),
+    ),
+  ).toList();
+
+  final hisyakakuRow = [
+    Piece.kakugyo(
+      Vector2(
+        isSenko ? 1 : 7,
+        hisyakakuRowY,
+      ),
+    ),
+    Piece.hisha(
+      Vector2(
+        isSenko ? 7 : 1,
+        hisyakakuRowY,
+      ),
+    ),
+  ];
+
+  final oushoRow = [
+    Piece.kyosha(
+      Vector2(
+        isSenko ? 0 : 8,
+        oushoRowY,
+      ),
+    ),
+    Piece.keima(
+      Vector2(
+        isSenko ? 1 : 7,
+        oushoRowY,
+      ),
+    ),
+    Piece.ginsho(
+      Vector2(
+        isSenko ? 2 : 6,
+        oushoRowY,
+      ),
+    ),
+    Piece.kinsho(
+      Vector2(
+        isSenko ? 3 : 5,
+        oushoRowY,
+      ),
+    ),
+    Piece.ousho(
+      Vector2(
+        isSenko ? 4 : 4,
+        oushoRowY,
+      ),
+    ),
+  ];
+  return [...huhyoRow, ...hisyakakuRow, ...oushoRow];
 }
