@@ -37,7 +37,7 @@ class MovePiece {
     // pieceのmovableが距離を移動可能か計算
     //
     //
-    final movableDirection = piece.movableDirection;
+    // final movableDirection = piece.movableDirection;
     return false;
     // final zippedDirection =
     //     zip<List<Direction>>([piece.movableDirection, movingDirection])
