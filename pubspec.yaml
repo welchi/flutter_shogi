@@ -11,6 +11,7 @@ dependencies:
   cupertino_icons: ^1.0.4
   flutter:
     sdk: flutter
+  flutter_riverpod: ^1.0.2
   freezed_annotation: ^1.0.0
 
 dev_dependencies:
