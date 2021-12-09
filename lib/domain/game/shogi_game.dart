@@ -11,8 +11,8 @@ class ShogiGame {
   /// ゲームを初期化
   void initGame() {
     // 先攻で歩兵を並べる
-    final senkoPieces = _getInitialPieces();
-    final kokoPieces = _getInitialPieces(isSenko: false);
+    final senkoPieces = getInitialPieces();
+    final kokoPieces = getInitialPieces(isSenko: false);
     final senkoPlayer = Player.human(
       pieces: senkoPieces,
       capturedPieces: [],
@@ -53,7 +53,7 @@ class ShogiGame {
 }
 
 /// 駒の初期配置を取得
-List<Piece> _getInitialPieces({
+List<Piece> getInitialPieces({
   bool isSenko = true,
 }) {
   final huhyoRowY = (isSenko ? 2 : Board.colSize - 1 - 2).toDouble();
