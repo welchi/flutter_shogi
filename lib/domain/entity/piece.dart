@@ -1,4 +1,5 @@
 import 'package:flutter_shogi/domain/entity/direction.dart';
+import 'package:flutter_shogi/domain/entity/player.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'piece.freezed.dart';
