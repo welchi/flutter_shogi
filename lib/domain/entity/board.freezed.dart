@@ -138,7 +138,7 @@ abstract class _Board implements Board {
 class _$TileTearOff {
   const _$TileTearOff();
 
-  _Tile call({required Piece? piece}) {
+  _Tile call({Piece? piece}) {
     return _Tile(
       piece: piece,
     );
@@ -233,7 +233,7 @@ class __$TileCopyWithImpl<$Res> extends _$TileCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Tile implements _Tile {
-  const _$_Tile({required this.piece});
+  const _$_Tile({this.piece});
 
   @override
   final Piece? piece;
@@ -262,7 +262,7 @@ class _$_Tile implements _Tile {
 }
 
 abstract class _Tile implements Tile {
-  const factory _Tile({required Piece? piece}) = _$_Tile;
+  const factory _Tile({Piece? piece}) = _$_Tile;
 
   @override
   Piece? get piece;
