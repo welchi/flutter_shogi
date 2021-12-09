@@ -13,7 +13,14 @@ class ShogiGame {
     // 先攻で歩兵を並べる
     final senkoPieces = _getInitialPieces();
     final kokoPieces = _getInitialPieces(isSenko: false);
-    final senkoPlayer = Player();
+    final senkoPlayer = Player.human(
+      pieces: senkoPieces,
+      capturedPieces: [],
+    );
+    final kokoPlayer = Player.ai(
+      pieces: kokoPieces,
+      capturedPieces: [],
+    );
   }
 
   // ターンごとの判定
