@@ -6,13 +6,13 @@ part 'board.freezed.dart';
 @freezed
 class Board with _$Board {
   const factory Board({
-    required List<List<Cell>> cells,
+    required List<List<Tile>> tiles,
   }) = _Board;
 }
 
 @freezed
-class Cell with _$Cell {
-  const factory Cell({
+class Tile with _$Tile {
+  const factory Tile({
     required Piece? piece,
-  }) = _Cell;
+  }) = _Tile;
 }

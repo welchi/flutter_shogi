@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/direction.dart';
 import 'package:flutter_shogi/domain/entity/piece.dart';
+import 'package:vector_math/vector_math.dart';
 
 class MovePiece {
   const MovePiece(this._read);
@@ -26,7 +27,7 @@ class MovePiece {
 
   bool _canMove({
     required Piece piece,
-    required Vector vector,
+    required Vector2 vector,
   }) {
     // pieceのセルを取得
     // 移動先のセルとの、
@@ -35,6 +36,7 @@ class MovePiece {
     //
     //
     final movableDirection = piece.movableDirection;
+    return false;
     // final zippedDirection =
     //     zip<List<Direction>>([piece.movableDirection, movingDirection])
     //         .toList();

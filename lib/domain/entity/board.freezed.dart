@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$BoardTearOff {
   const _$BoardTearOff();
 
-  _Board call({required List<List<Cell>> cells}) {
+  _Board call({required List<List<Tile>> tiles}) {
     return _Board(
-      cells: cells,
+      tiles: tiles,
     );
   }
 }
@@ -29,7 +29,7 @@ const $Board = _$BoardTearOff();
 
 /// @nodoc
 mixin _$Board {
-  List<List<Cell>> get cells => throw _privateConstructorUsedError;
+  List<List<Tile>> get tiles => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BoardCopyWith<Board> get copyWith => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ mixin _$Board {
 abstract class $BoardCopyWith<$Res> {
   factory $BoardCopyWith(Board value, $Res Function(Board) then) =
       _$BoardCopyWithImpl<$Res>;
-  $Res call({List<List<Cell>> cells});
+  $Res call({List<List<Tile>> tiles});
 }
 
 /// @nodoc
@@ -52,13 +52,13 @@ class _$BoardCopyWithImpl<$Res> implements $BoardCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? cells = freezed,
+    Object? tiles = freezed,
   }) {
     return _then(_value.copyWith(
-      cells: cells == freezed
-          ? _value.cells
-          : cells // ignore: cast_nullable_to_non_nullable
-              as List<List<Cell>>,
+      tiles: tiles == freezed
+          ? _value.tiles
+          : tiles // ignore: cast_nullable_to_non_nullable
+              as List<List<Tile>>,
     ));
   }
 }
@@ -68,7 +68,7 @@ abstract class _$BoardCopyWith<$Res> implements $BoardCopyWith<$Res> {
   factory _$BoardCopyWith(_Board value, $Res Function(_Board) then) =
       __$BoardCopyWithImpl<$Res>;
   @override
-  $Res call({List<List<Cell>> cells});
+  $Res call({List<List<Tile>> tiles});
 }
 
 /// @nodoc
@@ -82,13 +82,13 @@ class __$BoardCopyWithImpl<$Res> extends _$BoardCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? cells = freezed,
+    Object? tiles = freezed,
   }) {
     return _then(_Board(
-      cells: cells == freezed
-          ? _value.cells
-          : cells // ignore: cast_nullable_to_non_nullable
-              as List<List<Cell>>,
+      tiles: tiles == freezed
+          ? _value.tiles
+          : tiles // ignore: cast_nullable_to_non_nullable
+              as List<List<Tile>>,
     ));
   }
 }
@@ -96,14 +96,14 @@ class __$BoardCopyWithImpl<$Res> extends _$BoardCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Board implements _Board {
-  const _$_Board({required this.cells});
+  const _$_Board({required this.tiles});
 
   @override
-  final List<List<Cell>> cells;
+  final List<List<Tile>> tiles;
 
   @override
   String toString() {
-    return 'Board(cells: $cells)';
+    return 'Board(tiles: $tiles)';
   }
 
   @override
@@ -111,12 +111,12 @@ class _$_Board implements _Board {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Board &&
-            const DeepCollectionEquality().equals(other.cells, cells));
+            const DeepCollectionEquality().equals(other.tiles, tiles));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(cells));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(tiles));
 
   @JsonKey(ignore: true)
   @override
@@ -125,53 +125,53 @@ class _$_Board implements _Board {
 }
 
 abstract class _Board implements Board {
-  const factory _Board({required List<List<Cell>> cells}) = _$_Board;
+  const factory _Board({required List<List<Tile>> tiles}) = _$_Board;
 
   @override
-  List<List<Cell>> get cells;
+  List<List<Tile>> get tiles;
   @override
   @JsonKey(ignore: true)
   _$BoardCopyWith<_Board> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-class _$CellTearOff {
-  const _$CellTearOff();
+class _$TileTearOff {
+  const _$TileTearOff();
 
-  _Cell call({required Piece? piece}) {
-    return _Cell(
+  _Tile call({required Piece? piece}) {
+    return _Tile(
       piece: piece,
     );
   }
 }
 
 /// @nodoc
-const $Cell = _$CellTearOff();
+const $Tile = _$TileTearOff();
 
 /// @nodoc
-mixin _$Cell {
+mixin _$Tile {
   Piece? get piece => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CellCopyWith<Cell> get copyWith => throw _privateConstructorUsedError;
+  $TileCopyWith<Tile> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CellCopyWith<$Res> {
-  factory $CellCopyWith(Cell value, $Res Function(Cell) then) =
-      _$CellCopyWithImpl<$Res>;
+abstract class $TileCopyWith<$Res> {
+  factory $TileCopyWith(Tile value, $Res Function(Tile) then) =
+      _$TileCopyWithImpl<$Res>;
   $Res call({Piece? piece});
 
   $PieceCopyWith<$Res>? get piece;
 }
 
 /// @nodoc
-class _$CellCopyWithImpl<$Res> implements $CellCopyWith<$Res> {
-  _$CellCopyWithImpl(this._value, this._then);
+class _$TileCopyWithImpl<$Res> implements $TileCopyWith<$Res> {
+  _$TileCopyWithImpl(this._value, this._then);
 
-  final Cell _value;
+  final Tile _value;
   // ignore: unused_field
-  final $Res Function(Cell) _then;
+  final $Res Function(Tile) _then;
 
   @override
   $Res call({
@@ -198,9 +198,9 @@ class _$CellCopyWithImpl<$Res> implements $CellCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$CellCopyWith<$Res> implements $CellCopyWith<$Res> {
-  factory _$CellCopyWith(_Cell value, $Res Function(_Cell) then) =
-      __$CellCopyWithImpl<$Res>;
+abstract class _$TileCopyWith<$Res> implements $TileCopyWith<$Res> {
+  factory _$TileCopyWith(_Tile value, $Res Function(_Tile) then) =
+      __$TileCopyWithImpl<$Res>;
   @override
   $Res call({Piece? piece});
 
@@ -209,19 +209,19 @@ abstract class _$CellCopyWith<$Res> implements $CellCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$CellCopyWithImpl<$Res> extends _$CellCopyWithImpl<$Res>
-    implements _$CellCopyWith<$Res> {
-  __$CellCopyWithImpl(_Cell _value, $Res Function(_Cell) _then)
-      : super(_value, (v) => _then(v as _Cell));
+class __$TileCopyWithImpl<$Res> extends _$TileCopyWithImpl<$Res>
+    implements _$TileCopyWith<$Res> {
+  __$TileCopyWithImpl(_Tile _value, $Res Function(_Tile) _then)
+      : super(_value, (v) => _then(v as _Tile));
 
   @override
-  _Cell get _value => super._value as _Cell;
+  _Tile get _value => super._value as _Tile;
 
   @override
   $Res call({
     Object? piece = freezed,
   }) {
-    return _then(_Cell(
+    return _then(_Tile(
       piece: piece == freezed
           ? _value.piece
           : piece // ignore: cast_nullable_to_non_nullable
@@ -232,22 +232,22 @@ class __$CellCopyWithImpl<$Res> extends _$CellCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Cell implements _Cell {
-  const _$_Cell({required this.piece});
+class _$_Tile implements _Tile {
+  const _$_Tile({required this.piece});
 
   @override
   final Piece? piece;
 
   @override
   String toString() {
-    return 'Cell(piece: $piece)';
+    return 'Tile(piece: $piece)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Cell &&
+            other is _Tile &&
             const DeepCollectionEquality().equals(other.piece, piece));
   }
 
@@ -257,16 +257,16 @@ class _$_Cell implements _Cell {
 
   @JsonKey(ignore: true)
   @override
-  _$CellCopyWith<_Cell> get copyWith =>
-      __$CellCopyWithImpl<_Cell>(this, _$identity);
+  _$TileCopyWith<_Tile> get copyWith =>
+      __$TileCopyWithImpl<_Tile>(this, _$identity);
 }
 
-abstract class _Cell implements Cell {
-  const factory _Cell({required Piece? piece}) = _$_Cell;
+abstract class _Tile implements Tile {
+  const factory _Tile({required Piece? piece}) = _$_Tile;
 
   @override
   Piece? get piece;
   @override
   @JsonKey(ignore: true)
-  _$CellCopyWith<_Cell> get copyWith => throw _privateConstructorUsedError;
+  _$TileCopyWith<_Tile> get copyWith => throw _privateConstructorUsedError;
 }
