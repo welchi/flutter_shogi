@@ -40,7 +40,7 @@ final _keimaUpLeft = Vector3(-1, 2, 1);
 
 // 駒の動きを定義
 // 王将
-final oushoMovableDirections = [
+final _oushoMovableDirections = [
   _upOne,
   _upRightOne,
   _rightOne,
@@ -51,28 +51,28 @@ final oushoMovableDirections = [
   _upLeftOne,
 ];
 // 飛車、龍王
-final hishaMovableDirections = [
+final _hishaMovableDirections = [
   _upToEnd,
   _rightToEnd,
   _downToEnd,
   _leftToEnd,
 ];
-final ryuouMovableDirections = [
-  ...hishaMovableDirections,
+final _ryuouMovableDirections = [
+  ..._hishaMovableDirections,
   _upRightOne,
   _downRightOne,
   _downLeftOne,
   _upLeftOne,
 ];
 // 角行、竜目
-final kakuMovableDirections = [
+final _kakuMovableDirections = [
   _upRightToEnd,
   _downRightToEnd,
   _downLeftToEnd,
   _upLeftToEnd,
 ];
-final ryumeMovableDirections = [
-  ...kakuMovableDirections,
+final _ryumeMovableDirections = [
+  ..._kakuMovableDirections,
   _upOne,
   _rightOne,
   _downOne,
@@ -80,7 +80,7 @@ final ryumeMovableDirections = [
 ];
 
 // 金将
-final kinshoMovableDirections = [
+final _kinshoMovableDirections = [
   _upOne,
   _upRightOne,
   _rightOne,
@@ -90,7 +90,7 @@ final kinshoMovableDirections = [
 ];
 
 // 銀将
-final ginshoMovableDirections = [
+final _ginshoMovableDirections = [
   _upOne,
   _upRightOne,
   _downRightOne,
@@ -99,18 +99,18 @@ final ginshoMovableDirections = [
 ];
 
 // 桂馬
-final keimaMovableDirections = [
+final _keimaMovableDirections = [
   _keimaUpRight,
   _keimaUpLeft,
 ];
 
 // 香車
-final kyoshaMovableDirections = [
+final _kyoshaMovableDirections = [
   _upToEnd,
 ];
 
 // 歩兵
-final huhyoMovableDirections = [
+final _huhyoMovableDirections = [
   _upOne,
 ];
 
@@ -129,7 +129,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '歩',
-        movableDirections: [],
+        movableDirections: _huhyoMovableDirections,
         position: position,
       );
   factory Piece.tokin(
@@ -137,7 +137,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: 'と',
-        movableDirections: [],
+        movableDirections: _kinshoMovableDirections,
         position: position,
       );
   factory Piece.kyosha(
@@ -145,7 +145,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '香',
-        movableDirections: [],
+        movableDirections: _kyoshaMovableDirections,
         position: position,
       );
   factory Piece.narikyo(
@@ -153,7 +153,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '杏',
-        movableDirections: [],
+        movableDirections: _kinshoMovableDirections,
         position: position,
       );
   factory Piece.keima(
@@ -161,7 +161,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '桂',
-        movableDirections: [],
+        movableDirections: _keimaMovableDirections,
         position: position,
       );
   factory Piece.narikei(
@@ -169,7 +169,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '圭',
-        movableDirections: [],
+        movableDirections: _kinshoMovableDirections,
         position: position,
       );
   factory Piece.ginsho(
@@ -177,7 +177,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '銀',
-        movableDirections: [],
+        movableDirections: _ginshoMovableDirections,
         position: position,
       );
   factory Piece.narigin(
@@ -185,7 +185,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '全',
-        movableDirections: [],
+        movableDirections: _kinshoMovableDirections,
         position: position,
       );
   factory Piece.hisha(
@@ -193,7 +193,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '飛',
-        movableDirections: [],
+        movableDirections: _hishaMovableDirections,
         position: position,
       );
   factory Piece.ryuo(
@@ -201,7 +201,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '龍',
-        movableDirections: [],
+        movableDirections: _ryuouMovableDirections,
         position: position,
       );
   factory Piece.kakugyo(
@@ -209,7 +209,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '角',
-        movableDirections: [],
+        movableDirections: _kakuMovableDirections,
         position: position,
       );
   factory Piece.ryuma(
@@ -217,7 +217,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '馬',
-        movableDirections: [],
+        movableDirections: _ryumeMovableDirections,
         position: position,
       );
   factory Piece.kinsho(
@@ -225,7 +225,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '金',
-        movableDirections: [],
+        movableDirections: _kinshoMovableDirections,
         position: position,
       );
   factory Piece.ousho(
@@ -233,7 +233,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '王',
-        movableDirections: [],
+        movableDirections: _oushoMovableDirections,
         position: position,
       );
   factory Piece.gyokusho(
@@ -241,7 +241,7 @@ class Piece with _$Piece {
   ) =>
       Piece(
         name: '玉',
-        movableDirections: [],
+        movableDirections: _oushoMovableDirections,
         position: position,
       );
   // const factory Piece.huhyo() = Huhyo;
