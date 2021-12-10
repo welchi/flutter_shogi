@@ -17,13 +17,17 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
   final Reader _read;
   @override
   void deselectedPiece() {
-    _read(movablePositionsProvider.notifier).state = null;
+    _read(
+      movablePositionsProvider.notifier,
+    ).state = null;
   }
 
   @override
   void selectedPieceToMove(
     List<Vector2> movablePositions,
   ) {
-    _read(movablePositionsProvider.notifier).state = movablePositions;
+    _read(
+      movablePositionsProvider.notifier,
+    ).state = movablePositions;
   }
 }
