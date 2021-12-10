@@ -3,7 +3,8 @@ import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/game/shogi_game.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
 
-final senteRepositoryProvider = StateNotifierProvider(
+final senteRepositoryProvider =
+    StateNotifierProvider<PlayerRepositoryImpl, Player>(
   (ref) => PlayerRepositoryImpl(
     Player.human(
       pieces: getInitialPieces(),
@@ -12,7 +13,8 @@ final senteRepositoryProvider = StateNotifierProvider(
   ),
 );
 
-final goteRepositoryProvider = StateNotifierProvider(
+final goteRepositoryProvider =
+    StateNotifierProvider<PlayerRepositoryImpl, Player>(
   (ref) => PlayerRepositoryImpl(
     Player.ai(
       pieces: getInitialPieces(isSenko: false),
@@ -21,8 +23,7 @@ final goteRepositoryProvider = StateNotifierProvider(
   ),
 );
 
-class PlayerRepositoryImpl extends StateNotifier<Player>
-    implements IPlayerRepository {
+class PlayerRepositoryImpl extends StateNotifier<Player> with PlayerRepository {
   PlayerRepositoryImpl(Player state) : super(state);
 
   @override
