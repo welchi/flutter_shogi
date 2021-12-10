@@ -19,7 +19,7 @@ class _$PieceTearOff {
 
   _Piece call(
       {required String name,
-      required List<Vector2> movableDirections,
+      required List<Vector3> movableDirections,
       Vector2? position}) {
     return _Piece(
       name: name,
@@ -35,7 +35,7 @@ const $Piece = _$PieceTearOff();
 /// @nodoc
 mixin _$Piece {
   String get name => throw _privateConstructorUsedError;
-  List<Vector2> get movableDirections => throw _privateConstructorUsedError;
+  List<Vector3> get movableDirections => throw _privateConstructorUsedError;
   Vector2? get position => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -46,7 +46,7 @@ mixin _$Piece {
 abstract class $PieceCopyWith<$Res> {
   factory $PieceCopyWith(Piece value, $Res Function(Piece) then) =
       _$PieceCopyWithImpl<$Res>;
-  $Res call({String name, List<Vector2> movableDirections, Vector2? position});
+  $Res call({String name, List<Vector3> movableDirections, Vector2? position});
 }
 
 /// @nodoc
@@ -71,7 +71,7 @@ class _$PieceCopyWithImpl<$Res> implements $PieceCopyWith<$Res> {
       movableDirections: movableDirections == freezed
           ? _value.movableDirections
           : movableDirections // ignore: cast_nullable_to_non_nullable
-              as List<Vector2>,
+              as List<Vector3>,
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -85,7 +85,7 @@ abstract class _$PieceCopyWith<$Res> implements $PieceCopyWith<$Res> {
   factory _$PieceCopyWith(_Piece value, $Res Function(_Piece) then) =
       __$PieceCopyWithImpl<$Res>;
   @override
-  $Res call({String name, List<Vector2> movableDirections, Vector2? position});
+  $Res call({String name, List<Vector3> movableDirections, Vector2? position});
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class __$PieceCopyWithImpl<$Res> extends _$PieceCopyWithImpl<$Res>
       movableDirections: movableDirections == freezed
           ? _value.movableDirections
           : movableDirections // ignore: cast_nullable_to_non_nullable
-              as List<Vector2>,
+              as List<Vector3>,
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -130,7 +130,7 @@ class _$_Piece extends _Piece {
   @override
   final String name;
   @override
-  final List<Vector2> movableDirections;
+  final List<Vector3> movableDirections;
   @override
   final Vector2? position;
 
@@ -166,14 +166,14 @@ class _$_Piece extends _Piece {
 abstract class _Piece extends Piece {
   const factory _Piece(
       {required String name,
-      required List<Vector2> movableDirections,
+      required List<Vector3> movableDirections,
       Vector2? position}) = _$_Piece;
   const _Piece._() : super._();
 
   @override
   String get name;
   @override
-  List<Vector2> get movableDirections;
+  List<Vector3> get movableDirections;
   @override
   Vector2? get position;
   @override

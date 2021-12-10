@@ -3,7 +3,7 @@ import 'package:vector_math/vector_math.dart';
 
 part 'piece.freezed.dart';
 
-// x,y,移動できる回数
+// x,y
 final _up = Vector2(0, 1);
 final _down = Vector2(0, -1);
 final _right = Vector2(1, 0);
@@ -13,12 +13,22 @@ final _upLeft = Vector2(-1, 1);
 final _downRight = Vector2(1, -1);
 final _downLeft = Vector2(-1, -1);
 
+// x,y,移動できる回数
+final _upOne = Vector3(_up.x, _up.y, 1);
+final _upRightOne = Vector3(_upRight.x, _upRight.y, 1);
+final _rightOne = Vector3(_right.x, _right.y, 1);
+final _downRightOne = Vector3(_downRight.x, _downRight.y, 1);
+final _downOne = Vector3(_down.x, _down.y, 1);
+final _downLeftOne = Vector3(_downLeft.x, _downLeft.y, 1);
+final _leftOne = Vector3(_left.x, _left.y, 1);
+final _upLeftOne = Vector3(_upLeft.x, _upLeft.y, 1);
+
 // キー割り当ても必要
 @freezed
 class Piece with _$Piece {
   const factory Piece({
     required String name,
-    required List<Vector2> movableDirections,
+    required List<Vector3> movableDirections,
     Vector2? position,
     // required Direction movableDirection,
   }) = _Piece;
