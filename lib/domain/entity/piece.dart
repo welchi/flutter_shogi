@@ -1,3 +1,4 @@
+import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:vector_math/vector_math.dart';
 
@@ -22,6 +23,20 @@ final _downOne = Vector3(_down.x, _down.y, 1);
 final _downLeftOne = Vector3(_downLeft.x, _downLeft.y, 1);
 final _leftOne = Vector3(_left.x, _left.y, 1);
 final _upLeftOne = Vector3(_upLeft.x, _upLeft.y, 1);
+
+final _upToEnd = Vector3(_up.x, _up.y, Board.rowSize.toDouble());
+final _upRightToEnd = Vector3(_upRight.x, _upRight.y, Board.rowSize.toDouble());
+final _rightToEnd = Vector3(_right.x, _right.y, Board.rowSize.toDouble());
+final _downRightToEnd =
+    Vector3(_downRight.x, _downRight.y, Board.rowSize.toDouble());
+final _downToEnd = Vector3(_down.x, _down.y, Board.rowSize.toDouble());
+final _downLeftToEnd =
+    Vector3(_downLeft.x, _downLeft.y, Board.rowSize.toDouble());
+final _leftToEnd = Vector3(_left.x, _left.y, Board.rowSize.toDouble());
+final _upLeftToEnd = Vector3(_upLeft.x, _upLeft.y, Board.rowSize.toDouble());
+
+final _keimaUpRight = Vector3(1, 2, 1);
+final _keimaUpLeft = Vector3(-1, 2, 1);
 
 // キー割り当ても必要
 @freezed
