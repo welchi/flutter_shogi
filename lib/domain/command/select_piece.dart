@@ -1,15 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
+import 'package:flutter_shogi/domain/presenter/shogi_game_presenter.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
+import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
 
 class SelectPiece {
   SelectPiece(this._read);
 
   final Reader _read;
-  late final PlayerRepository humanPlayerRepository;
-  late final PlayerRepository aiPlayerRepository;
+  late final PlayerRepository humanPlayerRepository = _read(
+    humanPlayerRepositoryProvider.notifier,
+  );
+  late final PlayerRepository aiPlayerRepository = _read(
+    aiPlayerRepositoryProvider.notifier,
+  );
+  late final ShogiGamePresenter shogiGamePresenter;
 
   void call({
     required Piece piece,
@@ -40,6 +47,7 @@ class SelectPiece {
       [...humanPieces, ...aiPieces],
     );
     // 移動可能な駒をハイライト
+    shogiGamePresenter.selectedPieceToMove(movablePositions);
   }
 }
 
