@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/ui/game_page.dart';
 
 void main() {
-  runApp(const ShogiApp());
+  runApp(
+    ProviderScope(
+      child: const ShogiApp(),
+    ),
+  );
 }
 
 class ShogiApp extends StatelessWidget {

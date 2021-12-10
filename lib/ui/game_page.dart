@@ -2,9 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_shogi/domain/entity/board.dart';
-import 'package:flutter_shogi/domain/entity/piece.dart';
-import 'package:vector_math/vector_math.dart' as vm;
+import 'package:flutter_shogi/ui/game_view_model.dart';
 
 class GamePage extends ConsumerWidget {
   const GamePage({Key? key}) : super(key: key);
@@ -25,13 +23,14 @@ class GamePage extends ConsumerWidget {
   }
 }
 
-class BoardView extends StatelessWidget {
+class BoardView extends ConsumerWidget {
   const BoardView({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final tiles = ref.watch(flattenTilesProvider);
     return GridView.count(
       crossAxisCount: 9,
       children: tiles
@@ -48,7 +47,7 @@ class BoardView extends StatelessWidget {
                     child: tile.piece != null
                         ? Transform.rotate(
                             angle: pi,
-                            child: Text(tile.piece!.name),
+                            child: Text(tile.piece?.piece.name ?? 'Null'),
                           )
                         : const SizedBox(),
                   ),
@@ -60,12 +59,3 @@ class BoardView extends StatelessWidget {
     );
   }
 }
-
-final tiles = List.generate(
-  81,
-  (index) => Tile(
-    piece: Piece.kakugyo(
-      vm.Vector2(0, 0),
-    ),
-  ),
-);
