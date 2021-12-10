@@ -30,6 +30,38 @@ final humanPiecesProvider = Provider((ref) {
       .toList();
 });
 
+final tileGridsProvider = Provider((ref) {
+  final humanPieces = ref.watch(humanPiecesProvider);
+  final aiPieces = ref.watch(aiPiecesProvider);
+  final tileGrids = List.generate(
+    Board.rowSize,
+    (i) => List.generate(
+      Board.colSize,
+      (j) => const BoardTile(),
+    ),
+  );
+  for (final piece in humanPieces) {
+    tileGrids[piece.piece.position?.x.toInt() ?? 0]
+        [piece.piece.position?.y.toInt() ?? 0] = BoardTile(
+      piece: piece,
+    );
+  }
+  for (final piece in aiPieces) {
+    tileGrids[piece.piece.position?.x.toInt() ?? 0]
+        [piece.piece.position?.y.toInt() ?? 0] = BoardTile(
+      piece: piece,
+    );
+  }
+  return tileGrids;
+});
+
+@freezed
+class BoardTile with _$BoardTile {
+  const factory BoardTile({
+    PieceWithOwner? piece,
+  }) = _BoardTile;
+}
+
 @freezed
 class GameViewModel with _$GameViewModel {
   const factory GameViewModel({
