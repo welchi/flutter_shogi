@@ -39,6 +39,7 @@ final _keimaUpRight = Vector3(1, 2, 1);
 final _keimaUpLeft = Vector3(-1, 2, 1);
 
 // 駒の動きを定義
+// 王将
 final oushoMovableDirections = [
   _upOne,
   _upRightOne,
@@ -49,11 +50,68 @@ final oushoMovableDirections = [
   _leftOne,
   _upLeftOne,
 ];
+// 飛車、龍王
 final hishaMovableDirections = [
   _upToEnd,
   _rightToEnd,
   _downToEnd,
   _leftToEnd,
+];
+final ryuouMovableDirections = [
+  ...hishaMovableDirections,
+  _upRightOne,
+  _downRightOne,
+  _downLeftOne,
+  _upLeftOne,
+];
+// 角行、竜目
+final kakuMovableDirections = [
+  _upRightToEnd,
+  _downRightToEnd,
+  _downLeftToEnd,
+  _upLeftToEnd,
+];
+final ryumeMovableDirections = [
+  ...kakuMovableDirections,
+  _upOne,
+  _rightOne,
+  _downOne,
+  _leftOne,
+];
+
+// 金将
+final kinshoMovableDirections = [
+  _upOne,
+  _upRightOne,
+  _rightOne,
+  _downOne,
+  _leftOne,
+  _upLeftOne,
+];
+
+// 銀将
+final ginshoMovableDirections = [
+  _upOne,
+  _upRightOne,
+  _downRightOne,
+  _downLeftOne,
+  _upLeftOne,
+];
+
+// 桂馬
+final keimaMovableDirections = [
+  _keimaUpRight,
+  _keimaUpLeft,
+];
+
+// 香車
+final kyoshaMovableDirections = [
+  _upToEnd,
+];
+
+// 歩兵
+final huhyoMovableDirections = [
+  _upOne,
 ];
 
 // キー割り当ても必要
