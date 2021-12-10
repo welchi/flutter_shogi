@@ -4,7 +4,7 @@ import 'package:vector_math/vector_math.dart';
 
 part 'piece.freezed.dart';
 
-// x,y
+// 移動方向(x,y)
 final _up = Vector2(0, 1);
 final _down = Vector2(0, -1);
 final _right = Vector2(1, 0);
@@ -14,7 +14,7 @@ final _upLeft = Vector2(-1, 1);
 final _downRight = Vector2(1, -1);
 final _downLeft = Vector2(-1, -1);
 
-// x,y,移動できる回数
+// 移動可能な量(x,y,移動できる回数)
 final _upOne = Vector3(_up.x, _up.y, 1);
 final _upRightOne = Vector3(_upRight.x, _upRight.y, 1);
 final _rightOne = Vector3(_right.x, _right.y, 1);
@@ -37,6 +37,24 @@ final _upLeftToEnd = Vector3(_upLeft.x, _upLeft.y, Board.rowSize.toDouble());
 
 final _keimaUpRight = Vector3(1, 2, 1);
 final _keimaUpLeft = Vector3(-1, 2, 1);
+
+// 駒の動きを定義
+final oushoMovableDirections = [
+  _upOne,
+  _upRightOne,
+  _rightOne,
+  _downRightOne,
+  _downOne,
+  _downLeftOne,
+  _leftOne,
+  _upLeftOne,
+];
+final hishaMovableDirections = [
+  _upToEnd,
+  _rightToEnd,
+  _downToEnd,
+  _leftToEnd,
+];
 
 // キー割り当ても必要
 @freezed
