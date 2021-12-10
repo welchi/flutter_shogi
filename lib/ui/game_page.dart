@@ -32,7 +32,6 @@ class BoardView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tiles = ref.watch(flattenTilesProvider);
-    // print(tiles);
     return GridView.count(
       crossAxisCount: 9,
       children: tiles
@@ -95,10 +94,16 @@ class TileText extends StatelessWidget {
             angle: pi,
             child: Text(
               tile.piece?.piece.name ?? 'Null',
+              // style: Theme.of(context).textTheme.bodyText2?.copyWith(
+              //       fontWeight: FontWeight.bold,
+              //     ),
             ),
           )
         : Text(
             tile.piece?.piece.name ?? 'Null',
+            // style: Theme.of(context).textTheme.bodyText2?.copyWith(
+            //       fontWeight: FontWeight.bold,
+            //     ),
           );
   }
 }
