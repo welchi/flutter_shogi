@@ -32,6 +32,7 @@ class BoardView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tiles = ref.watch(flattenTilesProvider);
+    // print(tiles);
     return GridView.count(
       crossAxisCount: 9,
       children: tiles

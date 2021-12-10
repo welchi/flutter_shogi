@@ -41,18 +41,19 @@ final tileMatrixProvider = Provider((ref) {
     ),
   );
   for (final piece in humanPieces) {
-    tileMatrix[piece.piece.position?.x.toInt() ?? 0]
-        [piece.piece.position?.y.toInt() ?? 0] = BoardTile(
+    tileMatrix[piece.piece.position?.y.toInt() ?? 0]
+        [piece.piece.position?.x.toInt() ?? 0] = BoardTile(
       piece: piece,
     );
   }
   for (final piece in aiPieces) {
-    tileMatrix[piece.piece.position?.x.toInt() ?? 0]
-        [piece.piece.position?.y.toInt() ?? 0] = BoardTile(
+    tileMatrix[piece.piece.position?.y.toInt() ?? 0]
+        [piece.piece.position?.x.toInt() ?? 0] = BoardTile(
       piece: piece,
     );
   }
-  return tileMatrix;
+  // return tileMatrix;
+  return tileMatrix.reversed.toList();
 });
 
 final flattenTilesProvider = Provider(
