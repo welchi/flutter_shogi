@@ -3,6 +3,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'player.freezed.dart';
 
+enum PlayerType {
+  human,
+  ai,
+}
+
 @freezed
 class Player with _$Player {
   // const factory Player() = _Player;
