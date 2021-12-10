@@ -60,6 +60,7 @@ List<Tile> getMovableTiles(
     // final maxRight = boardSizeX - piece.position!.x;
     // final maxDown = piece.position!.y;
     // final maxLeft = piece.position!.x;
+    final board = getPieceMatrix(pieces);
     final directions = movableDirections.expand((movement) {
       // final indexes = List.generate(movement.count, (index) => index).toList();
       // for (final i in indexes) {}
@@ -73,11 +74,39 @@ List<Tile> getMovableTiles(
         if (nextPosition.x > boardSizeX || nextPosition.y > boardSizeY) {
           break;
         }
+        final nextTile = board[nextPosition.y.toInt()][nextPosition.x.toInt()];
+
+        // 移動先に駒がないなら進んで良し
+        if (nextTile == null) {
+          movablePositions.add(nextPosition);
+          continue;
+        }
+        // 移動先に自分の駒が存在する
+        if (nextTile.owner == PlayerType.human) {
+          break;
+        }
+        // 移動先に相手の駒が存在する
+        movablePositions.add(nextPosition);
+        break;
       }
-      // piece.position.
       return movablePositions;
     }).toList();
   }
+}
+
+List<List<PieceWithOwner?>> getPieceMatrix(List<PieceWithOwner> pieces) {
+  final pieceMatrix = List.generate(
+    Board.rowSize,
+    (i) => List<PieceWithOwner?>.generate(
+      Board.colSize,
+      (j) => null,
+    ),
+  );
+  for (final piece in pieces) {
+    pieceMatrix[piece.piece.position?.y.toInt() ?? 0]
+        [piece.piece.position?.x.toInt() ?? 0] = piece;
+  }
+  return pieceMatrix;
 }
 
 @immutable
