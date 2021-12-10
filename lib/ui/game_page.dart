@@ -54,7 +54,7 @@ class TileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.yellow,
+      color: Colors.yellow[300],
       child: InkWell(
         onTap: () {},
         child: Container(
