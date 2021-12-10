@@ -4,8 +4,8 @@ import 'package:flutter_shogi/ui/game_page.dart';
 
 void main() {
   runApp(
-    ProviderScope(
-      child: const ShogiApp(),
+    const ProviderScope(
+      child: ShogiApp(),
     ),
   );
 }
