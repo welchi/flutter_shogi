@@ -7,6 +7,6 @@ final gameViewModelProvider = Provider(
 
 final boardProvider = Provider(
   (ref) {
-    final senteState = ref.watch(senteRepositoryProvider);
+    final senteState = ref.watch(humanPlayerRepositoryProvider);
   },
 );

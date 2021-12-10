@@ -3,7 +3,7 @@ import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/game/shogi_game.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
 
-final senteRepositoryProvider =
+final humanPlayerRepositoryProvider =
     StateNotifierProvider<PlayerRepositoryImpl, Player>(
   (ref) => PlayerRepositoryImpl(
     Player.human(
@@ -13,7 +13,7 @@ final senteRepositoryProvider =
   ),
 );
 
-final goteRepositoryProvider =
+final aiPlayerRepositoryProvider =
     StateNotifierProvider<PlayerRepositoryImpl, Player>(
   (ref) => PlayerRepositoryImpl(
     Player.ai(

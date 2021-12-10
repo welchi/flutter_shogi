@@ -10,7 +10,7 @@ class ShogiGame {
   final Reader _read;
   late final ShogiGameOutput _output;
   late final PlayerRepository senteRepository =
-      _read(senteRepositoryProvider.notifier);
+      _read(humanPlayerRepositoryProvider.notifier);
 
   /// ゲームを初期化
   void initGame() {
