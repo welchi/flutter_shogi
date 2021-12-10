@@ -1,6 +1,9 @@
-import 'package:flutter_shogi/domain/entity/entity.dart';
+import 'package:vector_math/vector_math.dart';
 
 abstract class ShogiGamePresenter {
-  /// 駒を初期化
-  void initialize(List<Piece> pieces);
+  /// 移動する駒を選択した
+  void selectedPiece(List<Vector2> movablePositions);
+
+  /// 移動する駒を選択解除した
+  void unselectedPiece();
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
-import 'package:flutter_shogi/domain/repository/board_repository.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
 import 'package:vector_math/vector_math.dart';
 
@@ -9,7 +8,6 @@ class SelectPiece {
   SelectPiece(this._read);
 
   final Reader _read;
-  late final BoardRepository boardRepository;
   late final PlayerRepository humanPlayerRepository;
   late final PlayerRepository aiPlayerRepository;
 
@@ -36,8 +34,7 @@ class SelectPiece {
         .toList();
 
     // 駒が動けるエリアを捜査
-
-    final movableTiles = getMovableTiles(
+    final movablePositions = getMovablePositions(
       // todo: 後で人間、AI交互に
       PieceWithOwner(PlayerType.human, piece),
       [...humanPieces, ...aiPieces],
@@ -46,27 +43,18 @@ class SelectPiece {
   }
 }
 
-List<Tile> getMovableTiles(
+List<Vector2> getMovablePositions(
   PieceWithOwner rawPiece,
   List<PieceWithOwner> pieces,
 ) {
-  final boardSizeX = Board.colSize - 1;
-  final boardSizeY = Board.rowSize - 1;
+  const boardSizeX = Board.colSize - 1;
+  const boardSizeY = Board.rowSize - 1;
   final owner = rawPiece.owner;
   final piece = rawPiece.piece;
   final movableDirections = piece.movableDirections;
   if (owner == PlayerType.human) {
-    // final maxUp = boardSizeY - piece.position!.y;
-    // final maxRight = boardSizeX - piece.position!.x;
-    // final maxDown = piece.position!.y;
-    // final maxLeft = piece.position!.x;
     final board = getPieceMatrix(pieces);
     final directions = movableDirections.expand((movement) {
-      // final indexes = List.generate(movement.count, (index) => index).toList();
-      // for (final i in indexes) {}
-      // int x=piece.position!.x.toInt();
-      // int y=piece.position!.y.toInt();
-      // final position = piece.position!;
       final movablePositions = <Vector2>[];
       for (var i = 0; i < movement.count; i++) {
         final nextPosition =
@@ -75,7 +63,6 @@ List<Tile> getMovableTiles(
           break;
         }
         final nextTile = board[nextPosition.y.toInt()][nextPosition.x.toInt()];
-
         // 移動先に駒がないなら進んで良し
         if (nextTile == null) {
           movablePositions.add(nextPosition);
@@ -91,7 +78,10 @@ List<Tile> getMovableTiles(
       }
       return movablePositions;
     }).toList();
+    return directions;
   }
+  // todo: AIの場合
+  return [];
 }
 
 List<List<PieceWithOwner?>> getPieceMatrix(List<PieceWithOwner> pieces) {
