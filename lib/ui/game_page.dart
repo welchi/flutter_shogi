@@ -88,28 +88,15 @@ class TileText extends StatelessWidget {
     }
     final isAi = tile.piece?.owner == PlayerType.ai;
 
-    return Material(
-      color: Colors.yellow,
-      child: InkWell(
-        onTap: () {},
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(),
-          ),
-          child: Center(
-            child: isAi
-                ? Transform.rotate(
-                    angle: pi,
-                    child: Text(
-                      tile.piece?.piece.name ?? 'Null',
-                    ),
-                  )
-                : Text(
-                    tile.piece?.piece.name ?? 'Null',
-                  ),
-          ),
-        ),
-      ),
-    );
+    return isAi
+        ? Transform.rotate(
+            angle: pi,
+            child: Text(
+              tile.piece?.piece.name ?? 'Null',
+            ),
+          )
+        : Text(
+            tile.piece?.piece.name ?? 'Null',
+          );
   }
 }
