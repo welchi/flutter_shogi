@@ -15,28 +15,32 @@ final _downRight = Vector2(1, -1);
 final _downLeft = Vector2(-1, -1);
 
 // 移動可能な量(x,y,移動できる回数)
-final _upOne = Vector3(_up.x, _up.y, 1);
-final _upRightOne = Vector3(_upRight.x, _upRight.y, 1);
-final _rightOne = Vector3(_right.x, _right.y, 1);
-final _downRightOne = Vector3(_downRight.x, _downRight.y, 1);
-final _downOne = Vector3(_down.x, _down.y, 1);
-final _downLeftOne = Vector3(_downLeft.x, _downLeft.y, 1);
-final _leftOne = Vector3(_left.x, _left.y, 1);
-final _upLeftOne = Vector3(_upLeft.x, _upLeft.y, 1);
+final _upOne = Movement(direction: _up);
+final _upRightOne = Movement(direction: _upRight);
+final _rightOne = Movement(direction: _right);
+final _downRightOne = Movement(direction: _downRight);
+final _downOne = Movement(direction: _down);
+final _downLeftOne = Movement(direction: _downLeft);
+final _leftOne = Movement(direction: _left);
+final _upLeftOne = Movement(direction: _upLeft);
 
-final _upToEnd = Vector3(_up.x, _up.y, Board.rowSize.toDouble());
-final _upRightToEnd = Vector3(_upRight.x, _upRight.y, Board.rowSize.toDouble());
-final _rightToEnd = Vector3(_right.x, _right.y, Board.rowSize.toDouble());
-final _downRightToEnd =
-    Vector3(_downRight.x, _downRight.y, Board.rowSize.toDouble());
-final _downToEnd = Vector3(_down.x, _down.y, Board.rowSize.toDouble());
-final _downLeftToEnd =
-    Vector3(_downLeft.x, _downLeft.y, Board.rowSize.toDouble());
-final _leftToEnd = Vector3(_left.x, _left.y, Board.rowSize.toDouble());
-final _upLeftToEnd = Vector3(_upLeft.x, _upLeft.y, Board.rowSize.toDouble());
+final _upToEnd = Movement(direction: _up, count: Board.rowSize);
+final _upRightToEnd = Movement(direction: _upRight, count: Board.rowSize);
+final _rightToEnd = Movement(direction: _right, count: Board.rowSize);
+final _downRightToEnd = Movement(direction: _downRight, count: Board.rowSize);
+final _downToEnd = Movement(direction: _down, count: Board.rowSize);
+final _downLeftToEnd = Movement(direction: _downLeft, count: Board.rowSize);
+final _leftToEnd = Movement(direction: _left, count: Board.rowSize);
+final _upLeftToEnd = Movement(direction: _upLeft, count: Board.rowSize);
 
-final _keimaUpRight = Vector3(1, 2, 1);
-final _keimaUpLeft = Vector3(-1, 2, 1);
+final _keimaUpRight = Movement(
+  direction: Vector2(1, 2),
+  count: 1,
+);
+final _keimaUpLeft = Movement(
+  direction: Vector2(-1, 2),
+  count: 1,
+);
 
 // 駒の動きを定義
 // 王将
@@ -114,12 +118,23 @@ final _huhyoMovableDirections = [
   _upOne,
 ];
 
+// 駒の移動
+@freezed
+class Movement with _$Movement {
+  const factory Movement({
+    required Vector2 direction,
+    @Default(1) int count,
+    // required Direction movableDirection,
+  }) = _Movement;
+  const Movement._();
+}
+
 // キー割り当ても必要
 @freezed
 class Piece with _$Piece {
   const factory Piece({
     required String name,
-    required List<Vector3> movableDirections,
+    required List<Movement> movableDirections,
     Vector2? position,
     // required Direction movableDirection,
   }) = _Piece;

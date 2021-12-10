@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/repository/board_repository.dart';
@@ -14,18 +15,57 @@ class SelectPiece {
   void call({
     required Piece piece,
   }) {
-    final humanPieces = humanPlayerRepository.getPieces();
-    final aiPieces = aiPlayerRepository.getPieces();
+    final humanPieces = humanPlayerRepository
+        .getPieces()
+        .map(
+          (piece) => PieceWithOwner(
+            PlayerType.human,
+            piece,
+          ),
+        )
+        .toList();
+    final aiPieces = aiPlayerRepository
+        .getPieces()
+        .map(
+          (piece) => PieceWithOwner(
+            PlayerType.human,
+            piece,
+          ),
+        )
+        .toList();
 
     // 駒が動けるエリアを捜査
-    final movableTiles = getMovableTiles(piece, [...humanPieces, ...aiPieces]);
+
+    final movableTiles = getMovableTiles(
+      // todo: 後で人間、AI交互に
+      PieceWithOwner(PlayerType.human, piece),
+      [...humanPieces, ...aiPieces],
+    );
     // 移動可能な駒をハイライト
   }
 }
 
 List<Tile> getMovableTiles(
-  Piece piece,
-  List<Piece> pieces,
+  PieceWithOwner piece,
+  List<PieceWithOwner> pieces,
 ) {
-  final movableDirections = piece.movableDirections;
+  final boardMaxY = Board.rowSize-1;
+  final boardMaxX = Board.colSize-1;
+
+  final movableDirections = piece.piece.movableDirections;
+  if (piece.owner == PlayerType.human) {
+    final maxUp = min(boardMaxY,)
+  }
+}
+
+List<>
+
+@immutable
+class PieceWithOwner {
+  const PieceWithOwner(
+    this.owner,
+    this.piece,
+  );
+  final PlayerType owner;
+  final Piece piece;
 }
