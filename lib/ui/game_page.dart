@@ -60,7 +60,9 @@ class TileView extends StatelessWidget {
         onTap: () {},
         child: Container(
           decoration: BoxDecoration(
-            border: Border.all(),
+            border: Border.all(
+              width: 0.3,
+            ),
           ),
           child: Center(
             child: TileText(
