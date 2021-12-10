@@ -14,6 +14,146 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+class _$BoardTileTearOff {
+  const _$BoardTileTearOff();
+
+  _BoardTile call({PieceWithOwner? piece}) {
+    return _BoardTile(
+      piece: piece,
+    );
+  }
+}
+
+/// @nodoc
+const $BoardTile = _$BoardTileTearOff();
+
+/// @nodoc
+mixin _$BoardTile {
+  PieceWithOwner? get piece => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $BoardTileCopyWith<BoardTile> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BoardTileCopyWith<$Res> {
+  factory $BoardTileCopyWith(BoardTile value, $Res Function(BoardTile) then) =
+      _$BoardTileCopyWithImpl<$Res>;
+  $Res call({PieceWithOwner? piece});
+
+  $PieceWithOwnerCopyWith<$Res>? get piece;
+}
+
+/// @nodoc
+class _$BoardTileCopyWithImpl<$Res> implements $BoardTileCopyWith<$Res> {
+  _$BoardTileCopyWithImpl(this._value, this._then);
+
+  final BoardTile _value;
+  // ignore: unused_field
+  final $Res Function(BoardTile) _then;
+
+  @override
+  $Res call({
+    Object? piece = freezed,
+  }) {
+    return _then(_value.copyWith(
+      piece: piece == freezed
+          ? _value.piece
+          : piece // ignore: cast_nullable_to_non_nullable
+              as PieceWithOwner?,
+    ));
+  }
+
+  @override
+  $PieceWithOwnerCopyWith<$Res>? get piece {
+    if (_value.piece == null) {
+      return null;
+    }
+
+    return $PieceWithOwnerCopyWith<$Res>(_value.piece!, (value) {
+      return _then(_value.copyWith(piece: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$BoardTileCopyWith<$Res> implements $BoardTileCopyWith<$Res> {
+  factory _$BoardTileCopyWith(
+          _BoardTile value, $Res Function(_BoardTile) then) =
+      __$BoardTileCopyWithImpl<$Res>;
+  @override
+  $Res call({PieceWithOwner? piece});
+
+  @override
+  $PieceWithOwnerCopyWith<$Res>? get piece;
+}
+
+/// @nodoc
+class __$BoardTileCopyWithImpl<$Res> extends _$BoardTileCopyWithImpl<$Res>
+    implements _$BoardTileCopyWith<$Res> {
+  __$BoardTileCopyWithImpl(_BoardTile _value, $Res Function(_BoardTile) _then)
+      : super(_value, (v) => _then(v as _BoardTile));
+
+  @override
+  _BoardTile get _value => super._value as _BoardTile;
+
+  @override
+  $Res call({
+    Object? piece = freezed,
+  }) {
+    return _then(_BoardTile(
+      piece: piece == freezed
+          ? _value.piece
+          : piece // ignore: cast_nullable_to_non_nullable
+              as PieceWithOwner?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_BoardTile implements _BoardTile {
+  const _$_BoardTile({this.piece});
+
+  @override
+  final PieceWithOwner? piece;
+
+  @override
+  String toString() {
+    return 'BoardTile(piece: $piece)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _BoardTile &&
+            const DeepCollectionEquality().equals(other.piece, piece));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(piece));
+
+  @JsonKey(ignore: true)
+  @override
+  _$BoardTileCopyWith<_BoardTile> get copyWith =>
+      __$BoardTileCopyWithImpl<_BoardTile>(this, _$identity);
+}
+
+abstract class _BoardTile implements BoardTile {
+  const factory _BoardTile({PieceWithOwner? piece}) = _$_BoardTile;
+
+  @override
+  PieceWithOwner? get piece;
+  @override
+  @JsonKey(ignore: true)
+  _$BoardTileCopyWith<_BoardTile> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 class _$GameViewModelTearOff {
   const _$GameViewModelTearOff();
 

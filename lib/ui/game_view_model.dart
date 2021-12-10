@@ -30,10 +30,10 @@ final humanPiecesProvider = Provider((ref) {
       .toList();
 });
 
-final tileGridsProvider = Provider((ref) {
+final tileMatrixProvider = Provider((ref) {
   final humanPieces = ref.watch(humanPiecesProvider);
   final aiPieces = ref.watch(aiPiecesProvider);
-  final tileGrids = List.generate(
+  final tileMatrix = List.generate(
     Board.rowSize,
     (i) => List.generate(
       Board.colSize,
@@ -41,19 +41,26 @@ final tileGridsProvider = Provider((ref) {
     ),
   );
   for (final piece in humanPieces) {
-    tileGrids[piece.piece.position?.x.toInt() ?? 0]
+    tileMatrix[piece.piece.position?.x.toInt() ?? 0]
         [piece.piece.position?.y.toInt() ?? 0] = BoardTile(
       piece: piece,
     );
   }
   for (final piece in aiPieces) {
-    tileGrids[piece.piece.position?.x.toInt() ?? 0]
+    tileMatrix[piece.piece.position?.x.toInt() ?? 0]
         [piece.piece.position?.y.toInt() ?? 0] = BoardTile(
       piece: piece,
     );
   }
-  return tileGrids;
+  return tileMatrix;
 });
+
+final flattenTilesProvider = Provider(
+  (ref) {
+    final tileMatrix = ref.watch(tileMatrixProvider);
+    return tileMatrix.expand((tile) => tile).toList();
+  },
+);
 
 @freezed
 class BoardTile with _$BoardTile {
