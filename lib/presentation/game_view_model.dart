@@ -4,6 +4,9 @@ import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/entity/player.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:vector_math/vector_math.dart';
+
+import 'game_presenter.dart';
 
 part 'game_view_model.freezed.dart';
 
@@ -61,8 +64,11 @@ final highlightableTileMatrixProvider = Provider(
   (ref) {
     final humanPieces = ref.watch(humanPiecesProvider);
     final aiPieces = ref.watch(aiPiecesProvider);
-    final tileMatrix = getPieceMatrix(
-      [...humanPieces, ...aiPieces],
+    final movalPositions = ref.watch(movablePositionsProvider);
+    final highlightableMatrix = getHighlightableTileMatrix(
+      humanPieces: humanPieces,
+      aiPieces: aiPieces,
+      movalPositions: movalPositions,
     );
   },
 );
@@ -73,6 +79,38 @@ final flattenTilesProvider = Provider(
     return tileMatrix.expand((tile) => tile).toList();
   },
 );
+
+List<List<HighlightableBoardTile>> getHighlightableTileMatrix({
+  required List<PieceWithOwner> humanPieces,
+  required List<PieceWithOwner> aiPieces,
+  required List<Vector2>? movalPositions,
+}) {
+  final tileMatrix = getPieceMatrix(
+    [...humanPieces, ...aiPieces],
+  );
+  final highlightableTileMatrix = tileMatrix
+      .map(
+        (row) => row
+            .map(
+              (piece) => HighlightableBoardTile(
+                piece: piece,
+              ),
+            )
+            .toList(),
+      )
+      .toList();
+  if (movalPositions == null) {
+    return highlightableTileMatrix;
+  }
+  for (final position in movalPositions) {
+    final tile = highlightableTileMatrix[position.y.toInt()][position.x.toInt()]
+        .copyWith(
+      isMovable: true,
+    );
+    highlightableTileMatrix[position.y.toInt()][position.x.toInt()] = tile;
+  }
+  return highlightableTileMatrix;
+}
 
 @freezed
 class HighlightableBoardTile with _$HighlightableBoardTile {
