@@ -1,11 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/presenter/shogi_game_presenter.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
 import 'package:flutter_shogi/presentation/game_presenter.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
+
+import 'piece_with_owner.dart';
 
 final selectPieceProvider = Provider(
   (ref) => SelectPiece(
@@ -118,3 +119,14 @@ List<List<PieceWithOwner?>> getPieceMatrix(List<PieceWithOwner> pieces) {
   }
   return pieceMatrix;
 }
+
+//
+// @immutable
+// class PieceWithOwner {
+//   PieceWithOwner({
+//     required this.owner,
+//     required this.piece,
+//   });
+//   final PlayerType owner;
+//   final Piece piece;
+// }
