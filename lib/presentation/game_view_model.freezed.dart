@@ -18,10 +18,13 @@ class _$HighlightableBoardTileTearOff {
   const _$HighlightableBoardTileTearOff();
 
   _HighlightableBoardTile call(
-      {bool isMovable = false, PieceWithOwner? piece}) {
+      {bool isMovable = false,
+      PieceWithOwner? piece,
+      required Vector2 position}) {
     return _HighlightableBoardTile(
       isMovable: isMovable,
       piece: piece,
+      position: position,
     );
   }
 }
@@ -33,6 +36,7 @@ const $HighlightableBoardTile = _$HighlightableBoardTileTearOff();
 mixin _$HighlightableBoardTile {
   bool get isMovable => throw _privateConstructorUsedError;
   PieceWithOwner? get piece => throw _privateConstructorUsedError;
+  Vector2 get position => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HighlightableBoardTileCopyWith<HighlightableBoardTile> get copyWith =>
@@ -44,7 +48,7 @@ abstract class $HighlightableBoardTileCopyWith<$Res> {
   factory $HighlightableBoardTileCopyWith(HighlightableBoardTile value,
           $Res Function(HighlightableBoardTile) then) =
       _$HighlightableBoardTileCopyWithImpl<$Res>;
-  $Res call({bool isMovable, PieceWithOwner? piece});
+  $Res call({bool isMovable, PieceWithOwner? piece, Vector2 position});
 
   $PieceWithOwnerCopyWith<$Res>? get piece;
 }
@@ -62,6 +66,7 @@ class _$HighlightableBoardTileCopyWithImpl<$Res>
   $Res call({
     Object? isMovable = freezed,
     Object? piece = freezed,
+    Object? position = freezed,
   }) {
     return _then(_value.copyWith(
       isMovable: isMovable == freezed
@@ -72,6 +77,10 @@ class _$HighlightableBoardTileCopyWithImpl<$Res>
           ? _value.piece
           : piece // ignore: cast_nullable_to_non_nullable
               as PieceWithOwner?,
+      position: position == freezed
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as Vector2,
     ));
   }
 
@@ -94,7 +103,7 @@ abstract class _$HighlightableBoardTileCopyWith<$Res>
           $Res Function(_HighlightableBoardTile) then) =
       __$HighlightableBoardTileCopyWithImpl<$Res>;
   @override
-  $Res call({bool isMovable, PieceWithOwner? piece});
+  $Res call({bool isMovable, PieceWithOwner? piece, Vector2 position});
 
   @override
   $PieceWithOwnerCopyWith<$Res>? get piece;
@@ -115,6 +124,7 @@ class __$HighlightableBoardTileCopyWithImpl<$Res>
   $Res call({
     Object? isMovable = freezed,
     Object? piece = freezed,
+    Object? position = freezed,
   }) {
     return _then(_HighlightableBoardTile(
       isMovable: isMovable == freezed
@@ -125,6 +135,10 @@ class __$HighlightableBoardTileCopyWithImpl<$Res>
           ? _value.piece
           : piece // ignore: cast_nullable_to_non_nullable
               as PieceWithOwner?,
+      position: position == freezed
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as Vector2,
     ));
   }
 }
@@ -132,17 +146,20 @@ class __$HighlightableBoardTileCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HighlightableBoardTile implements _HighlightableBoardTile {
-  const _$_HighlightableBoardTile({this.isMovable = false, this.piece});
+  const _$_HighlightableBoardTile(
+      {this.isMovable = false, this.piece, required this.position});
 
   @JsonKey(defaultValue: false)
   @override
   final bool isMovable;
   @override
   final PieceWithOwner? piece;
+  @override
+  final Vector2 position;
 
   @override
   String toString() {
-    return 'HighlightableBoardTile(isMovable: $isMovable, piece: $piece)';
+    return 'HighlightableBoardTile(isMovable: $isMovable, piece: $piece, position: $position)';
   }
 
   @override
@@ -151,14 +168,16 @@ class _$_HighlightableBoardTile implements _HighlightableBoardTile {
         (other.runtimeType == runtimeType &&
             other is _HighlightableBoardTile &&
             const DeepCollectionEquality().equals(other.isMovable, isMovable) &&
-            const DeepCollectionEquality().equals(other.piece, piece));
+            const DeepCollectionEquality().equals(other.piece, piece) &&
+            const DeepCollectionEquality().equals(other.position, position));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(isMovable),
-      const DeepCollectionEquality().hash(piece));
+      const DeepCollectionEquality().hash(piece),
+      const DeepCollectionEquality().hash(position));
 
   @JsonKey(ignore: true)
   @override
@@ -169,12 +188,16 @@ class _$_HighlightableBoardTile implements _HighlightableBoardTile {
 
 abstract class _HighlightableBoardTile implements HighlightableBoardTile {
   const factory _HighlightableBoardTile(
-      {bool isMovable, PieceWithOwner? piece}) = _$_HighlightableBoardTile;
+      {bool isMovable,
+      PieceWithOwner? piece,
+      required Vector2 position}) = _$_HighlightableBoardTile;
 
   @override
   bool get isMovable;
   @override
   PieceWithOwner? get piece;
+  @override
+  Vector2 get position;
   @override
   @JsonKey(ignore: true)
   _$HighlightableBoardTileCopyWith<_HighlightableBoardTile> get copyWith =>

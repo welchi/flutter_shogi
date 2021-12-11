@@ -65,11 +65,19 @@ List<List<HighlightableBoardTile>> getHighlightableTileMatrix({
     [...humanPieces, ...aiPieces],
   );
   final highlightableTileMatrix = tileMatrix
+      .asMap()
+      .entries
       .map(
-        (row) => row
+        (rowEntry) => rowEntry.value
+            .asMap()
+            .entries
             .map(
-              (piece) => HighlightableBoardTile(
-                piece: piece,
+              (pieceEntry) => HighlightableBoardTile(
+                position: Vector2(
+                  pieceEntry.key.toDouble(),
+                  rowEntry.key.toDouble(),
+                ),
+                piece: pieceEntry.value,
               ),
             )
             .toList(),
@@ -93,6 +101,7 @@ class HighlightableBoardTile with _$HighlightableBoardTile {
   const factory HighlightableBoardTile({
     @Default(false) bool isMovable,
     PieceWithOwner? piece,
+    required Vector2 position,
   }) = _HighlightableBoardTile;
 }
 

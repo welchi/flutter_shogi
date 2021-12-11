@@ -69,6 +69,7 @@ class TileView extends ConsumerWidget {
                 final selectedPiece = ref.read(selectedPieceProvider);
                 ref.read(movePieceProvider).call(
                       piece: selectedPiece!,
+                      dest: tile.position,
                     );
               }
             : piece != null
