@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/game/shogi_game.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
+import 'package:vector_math/vector_math.dart';
 
 final humanPlayerRepositoryProvider =
     StateNotifierProvider<PlayerRepositoryImpl, Player>(
@@ -42,5 +43,21 @@ class PlayerRepositoryImpl extends StateNotifier<Player> with PlayerRepository {
       pieces: pieces,
       capturedPieces: [],
     );
+  }
+
+  @override
+  void movePiece({
+    required Piece piece,
+    required Vector2 dest,
+  }) {
+    final newPiece = piece.copyWith(
+      position: dest,
+    );
+    final newPieces = List<Piece>.from(state.pieces)
+      ..removeWhere(
+        (_piece) => _piece == piece,
+      )
+      ..add(newPiece);
+    state = state.copyWith(pieces: newPieces);
   }
 }

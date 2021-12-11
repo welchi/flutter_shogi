@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/command/command.dart';
+import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/entity/piece.dart';
 import 'package:flutter_shogi/domain/repository/repository.dart';
 import 'package:flutter_shogi/state/player_state.dart';
@@ -18,9 +19,16 @@ class MovePiece {
   );
   void call({
     required PieceWithOwner piece,
-    required Vector2 destPosition,
+    required Vector2 dest,
   }) {
-    // final nextPiece = piece.
+    final newPiece = piece.copyWith(
+      piece: piece.piece.copyWith(
+        position: dest,
+      ),
+    );
+    if (piece.owner == PlayerType.human) {
+      humanPlayerRepository.movePiece(piece: piece.piece, dest: dest);
+    }
     // pieceをmoveDirectionだけ動かす？(いや違うくないか？)
     // セルを渡すか
 
