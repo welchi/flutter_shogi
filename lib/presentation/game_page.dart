@@ -58,16 +58,19 @@ class TileView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final piece = tile.piece?.piece;
+    final isHighlight = tile.isMovable;
     return Material(
-      color: Colors.yellow[300],
+      color: isHighlight ? Colors.red[300] : Colors.yellow[300],
       child: InkWell(
-        onTap: piece != null
-            ? () {
-                ref.read(selectPieceProvider).call(
-                      piece: piece,
-                    );
-              }
-            : null,
+        onTap: isHighlight
+            ? () {}
+            : piece != null
+                ? () {
+                    ref.read(selectPieceProvider).call(
+                          piece: piece,
+                        );
+                  }
+                : null,
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(

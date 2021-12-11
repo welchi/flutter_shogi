@@ -1,16 +1,24 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_shogi/domain/entity/direction.dart';
+import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/entity/piece.dart';
+import 'package:flutter_shogi/domain/repository/repository.dart';
+import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
 
 // この前に、移動可能なタイルをハイライト？
 // 斜め、横と、
 class MovePiece {
-  const MovePiece(this._read);
+  MovePiece(this._read);
   final Reader _read;
+  late final PlayerRepository humanPlayerRepository = _read(
+    humanPlayerRepositoryProvider.notifier,
+  );
+  late final PlayerRepository aiPlayerRepository = _read(
+    aiPlayerRepositoryProvider.notifier,
+  );
   void call({
-    required Piece piece,
-    required Direction movingDirection,
+    required PieceWithOwner piece,
+    required Vector2 destPosition,
   }) {
     // pieceをmoveDirectionだけ動かす？(いや違うくないか？)
     // セルを渡すか
