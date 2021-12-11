@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/presenter/shogi_game_presenter.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
+import 'package:flutter_shogi/presentation/game_presenter.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
 
@@ -22,7 +23,9 @@ class SelectPiece {
   late final PlayerRepository aiPlayerRepository = _read(
     aiPlayerRepositoryProvider.notifier,
   );
-  late final ShogiGamePresenter shogiGamePresenter;
+  late final ShogiGamePresenter shogiGamePresenter = _read(
+    shogiGamePresenterProvider,
+  );
 
   void call({
     required Piece piece,
