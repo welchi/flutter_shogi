@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/presenter/shogi_game_presenter.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
@@ -117,14 +117,4 @@ List<List<PieceWithOwner?>> getPieceMatrix(List<PieceWithOwner> pieces) {
         [piece.piece.position?.x.toInt() ?? 0] = piece;
   }
   return pieceMatrix;
-}
-
-@immutable
-class PieceWithOwner {
-  const PieceWithOwner({
-    required this.owner,
-    required this.piece,
-  });
-  final PlayerType owner;
-  final Piece piece;
 }

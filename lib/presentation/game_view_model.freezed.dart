@@ -45,6 +45,8 @@ abstract class $HighlightableBoardTileCopyWith<$Res> {
           $Res Function(HighlightableBoardTile) then) =
       _$HighlightableBoardTileCopyWithImpl<$Res>;
   $Res call({bool isMovable, PieceWithOwner? piece});
+
+  $PieceWithOwnerCopyWith<$Res>? get piece;
 }
 
 /// @nodoc
@@ -72,6 +74,17 @@ class _$HighlightableBoardTileCopyWithImpl<$Res>
               as PieceWithOwner?,
     ));
   }
+
+  @override
+  $PieceWithOwnerCopyWith<$Res>? get piece {
+    if (_value.piece == null) {
+      return null;
+    }
+
+    return $PieceWithOwnerCopyWith<$Res>(_value.piece!, (value) {
+      return _then(_value.copyWith(piece: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -82,6 +95,9 @@ abstract class _$HighlightableBoardTileCopyWith<$Res>
       __$HighlightableBoardTileCopyWithImpl<$Res>;
   @override
   $Res call({bool isMovable, PieceWithOwner? piece});
+
+  @override
+  $PieceWithOwnerCopyWith<$Res>? get piece;
 }
 
 /// @nodoc
@@ -193,6 +209,8 @@ abstract class $BoardTileCopyWith<$Res> {
   factory $BoardTileCopyWith(BoardTile value, $Res Function(BoardTile) then) =
       _$BoardTileCopyWithImpl<$Res>;
   $Res call({PieceWithOwner? piece});
+
+  $PieceWithOwnerCopyWith<$Res>? get piece;
 }
 
 /// @nodoc
@@ -214,6 +232,17 @@ class _$BoardTileCopyWithImpl<$Res> implements $BoardTileCopyWith<$Res> {
               as PieceWithOwner?,
     ));
   }
+
+  @override
+  $PieceWithOwnerCopyWith<$Res>? get piece {
+    if (_value.piece == null) {
+      return null;
+    }
+
+    return $PieceWithOwnerCopyWith<$Res>(_value.piece!, (value) {
+      return _then(_value.copyWith(piece: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -223,6 +252,9 @@ abstract class _$BoardTileCopyWith<$Res> implements $BoardTileCopyWith<$Res> {
       __$BoardTileCopyWithImpl<$Res>;
   @override
   $Res call({PieceWithOwner? piece});
+
+  @override
+  $PieceWithOwnerCopyWith<$Res>? get piece;
 }
 
 /// @nodoc
