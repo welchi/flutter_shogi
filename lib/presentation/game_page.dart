@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/presentation/game_view_model.dart';
 
@@ -48,18 +49,25 @@ class BoardView extends ConsumerWidget {
   }
 }
 
-class TileView extends StatelessWidget {
+class TileView extends ConsumerWidget {
   const TileView({
     Key? key,
     required this.tile,
   }) : super(key: key);
   final BoardTile tile;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final piece = tile.piece?.piece;
     return Material(
       color: Colors.yellow[300],
       child: InkWell(
-        onTap: () {},
+        onTap: piece != null
+            ? () {
+                ref.read(selectPieceProvider).call(
+                      piece: piece,
+                    );
+              }
+            : null,
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(

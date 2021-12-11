@@ -6,6 +6,12 @@ import 'package:flutter_shogi/domain/repository/player_repository.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
 
+final selectPieceProvider = Provider(
+  (ref) => SelectPiece(
+    ref.read,
+  ),
+);
+
 class SelectPiece {
   SelectPiece(this._read);
 
@@ -68,6 +74,9 @@ List<Vector2> getMovablePositions(
         final nextPosition =
             piece.position! + (movement.direction.scaled(i + 1));
         if (nextPosition.x > boardSizeX || nextPosition.y > boardSizeY) {
+          break;
+        }
+        if (nextPosition.x < 0 || nextPosition.y < 0) {
           break;
         }
         final nextTile = board[nextPosition.y.toInt()][nextPosition.x.toInt()];
