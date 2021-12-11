@@ -1,9 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/game/shogi_game_output.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
+
+final shogiGameProvider = Provider(
+  (ref) => ShogiGame(
+    ref.read,
+  ),
+);
 
 class ShogiGame {
   ShogiGame(this._read);
@@ -27,8 +34,9 @@ class ShogiGame {
     );
   }
 
-  // ターンごとの判定
-  void update() {
+  /// ターンごとの判定
+  /// [newPiece]はこのターンで
+  void update(PieceWithOwner newPiece) {
     // 状況チェック
     /*
     * final sentePiecies=senteRepository.state.piecies

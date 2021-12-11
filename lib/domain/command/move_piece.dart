@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
+import 'package:flutter_shogi/domain/game/game.dart';
 import 'package:flutter_shogi/domain/presenter/presenter.dart';
 import 'package:flutter_shogi/domain/repository/repository.dart';
 import 'package:flutter_shogi/presentation/game_presenter.dart';
@@ -27,17 +28,27 @@ class MovePiece {
   late final ShogiGamePresenter shogiGamePresenter = _read(
     shogiGamePresenterProvider,
   );
+  late final ShogiGame game = _read(
+    shogiGameProvider,
+  );
   void call({
     required PieceWithOwner piece,
     required Vector2 dest,
   }) {
     if (piece.owner == PlayerType.human) {
-      humanPlayerRepository.movePiece(
+      final newPiece = humanPlayerRepository.movePiece(
         piece: piece.piece,
         dest: dest,
       );
+      shogiGamePresenter.deselectedPiece();
+      game.update(
+        PieceWithOwner(
+          owner: PlayerType.human,
+          piece: newPiece,
+        ),
+      );
     }
-    shogiGamePresenter.deselectedPiece();
+
     // pieceをmoveDirectionだけ動かす？(いや違うくないか？)
     // セルを渡すか
 

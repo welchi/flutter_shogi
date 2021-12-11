@@ -12,7 +12,7 @@ abstract class PlayerRepository {
   List<Piece> getCapturedPieces();
 
   /// 駒を移動
-  void movePiece({
+  Piece movePiece({
     required Piece piece,
     required Vector2 dest,
   });

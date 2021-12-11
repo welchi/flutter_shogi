@@ -98,7 +98,6 @@ List<Vector2> getMovablePositions(
         }
         // 移動先に相手の駒が存在する
         if (nextTile.owner == PlayerType.ai) {
-          print('相手のこま');
           movablePositions.add(nextPosition);
           break;
         }

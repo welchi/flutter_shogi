@@ -46,7 +46,7 @@ class PlayerRepositoryImpl extends StateNotifier<Player> with PlayerRepository {
   }
 
   @override
-  void movePiece({
+  Piece movePiece({
     required Piece piece,
     required Vector2 dest,
   }) {
@@ -59,5 +59,19 @@ class PlayerRepositoryImpl extends StateNotifier<Player> with PlayerRepository {
       )
       ..add(newPiece);
     state = state.copyWith(pieces: newPieces);
+    return newPiece;
   }
+  //
+  // @override
+  // void updatePiece({
+  //   required Piece olePiece,
+  //   required Piece newPiece,
+  // }) {
+  //   final newPieces = List<Piece>.from(state.pieces)
+  //     ..removeWhere(
+  //       (_piece) => _piece == olePiece,
+  //     )
+  //     ..add(newPiece);
+  //   state = state.copyWith(pieces: newPieces);
+  // }
 }
