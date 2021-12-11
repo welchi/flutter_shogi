@@ -35,32 +35,6 @@ final humanPiecesProvider = Provider((ref) {
       .toList();
 });
 
-// final tileMatrixProvider = Provider((ref) {
-//   final humanPieces = ref.watch(humanPiecesProvider);
-//   final aiPieces = ref.watch(aiPiecesProvider);
-//   final tileMatrix = List.generate(
-//     Board.rowSize,
-//     (i) => List.generate(
-//       Board.colSize,
-//       (j) => const BoardTile(),
-//     ),
-//   );
-//   for (final piece in humanPieces) {
-//     tileMatrix[piece.piece.position?.y.toInt() ?? 0]
-//         [piece.piece.position?.x.toInt() ?? 0] = BoardTile(
-//       piece: piece,
-//     );
-//   }
-//   for (final piece in aiPieces) {
-//     tileMatrix[piece.piece.position?.y.toInt() ?? 0]
-//         [piece.piece.position?.x.toInt() ?? 0] = BoardTile(
-//       piece: piece,
-//     );
-//   }
-//   // return tileMatrix;
-//   return tileMatrix.reversed.toList();
-// });
-
 final highlightableTileMatrixProvider = Provider(
   (ref) {
     final humanPieces = ref.watch(humanPiecesProvider);
@@ -74,13 +48,6 @@ final highlightableTileMatrixProvider = Provider(
     return highlightableMatrix.reversed.toList();
   },
 );
-//
-// final flattenTilesProvider = Provider(
-//   (ref) {
-//     final tileMatrix = ref.watch(tileMatrixProvider);
-//     return tileMatrix.expand((tile) => tile).toList();
-//   },
-// );
 
 final flattenTilesProvider = Provider(
   (ref) {
