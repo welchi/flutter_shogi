@@ -136,7 +136,7 @@ class Piece with _$Piece {
     required String name,
     required List<Movement> movableDirections,
     Vector2? position,
-    // required Direction movableDirection,
+    PlayerType? owner,
   }) = _Piece;
   const Piece._();
   factory Piece.huhyo(

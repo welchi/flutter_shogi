@@ -1,8 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/presenter/shogi_game_presenter.dart';
 import 'package:vector_math/vector_math.dart';
 
 final movablePositionsProvider = StateProvider<List<Vector2>?>(
+  (_) => null,
+);
+
+final selectedPieceProvider = StateProvider<PieceWithOwner?>(
   (_) => null,
 );
 
@@ -18,14 +23,21 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
   @override
   void deselectedPiece() {
     _read(
+      selectedPieceProvider.notifier,
+    ).state = null;
+    _read(
       movablePositionsProvider.notifier,
     ).state = null;
   }
 
   @override
   void selectedPieceToMove(
+    PieceWithOwner piece,
     List<Vector2> movablePositions,
   ) {
+    _read(
+      selectedPieceProvider.notifier,
+    ).state = piece;
     _read(
       movablePositionsProvider.notifier,
     ).state = movablePositions;

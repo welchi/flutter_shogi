@@ -6,6 +6,8 @@ import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/presentation/game_view_model.dart';
 
+import 'game_presenter.dart';
+
 class GamePage extends ConsumerWidget {
   const GamePage({Key? key}) : super(key: key);
 
@@ -57,13 +59,18 @@ class TileView extends ConsumerWidget {
   final HighlightableBoardTile tile;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final piece = tile.piece?.piece;
+    final piece = tile.piece;
     final isHighlight = tile.isMovable;
     return Material(
       color: isHighlight ? Colors.red[300] : Colors.yellow[300],
       child: InkWell(
         onTap: isHighlight
-            ? () {}
+            ? () {
+                final selectedPiece = ref.read(selectedPieceProvider);
+                ref.read(movePieceProvider).call(
+                      piece: selectedPiece!,
+                    );
+              }
             : piece != null
                 ? () {
                     ref.read(selectPieceProvider).call(

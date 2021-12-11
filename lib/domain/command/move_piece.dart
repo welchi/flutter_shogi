@@ -5,6 +5,12 @@ import 'package:flutter_shogi/domain/repository/repository.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
 
+final movePieceProvider = Provider(
+  (ref) => MovePiece(
+    ref.read,
+  ),
+);
+
 // この前に、移動可能なタイルをハイライト？
 // 斜め、横と、
 class MovePiece {

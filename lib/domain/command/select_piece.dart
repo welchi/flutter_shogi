@@ -29,7 +29,7 @@ class SelectPiece {
   );
 
   void call({
-    required Piece piece,
+    required PieceWithOwner piece,
   }) {
     final humanPieces = humanPlayerRepository
         .getPieces()
@@ -53,11 +53,12 @@ class SelectPiece {
     // 駒が動けるエリアを捜査
     final movablePositions = getMovablePositions(
       // todo: 後で人間、AI交互に
-      PieceWithOwner(owner: PlayerType.human, piece: piece),
+      piece,
+      // PieceWithOwner(owner: PlayerType.human, piece: piece),
       [...humanPieces, ...aiPieces],
     );
     // 移動可能な駒をハイライト
-    shogiGamePresenter.selectedPieceToMove(movablePositions);
+    shogiGamePresenter.selectedPieceToMove(piece, movablePositions);
   }
 }
 
