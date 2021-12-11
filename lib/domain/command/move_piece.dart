@@ -31,23 +31,26 @@ class MovePiece {
   late final ShogiGame game = _read(
     shogiGameProvider,
   );
+
   void call({
     required PieceWithOwner piece,
     required Vector2 dest,
   }) {
-    if (piece.owner == PlayerType.human) {
-      final newPiece = humanPlayerRepository.movePiece(
-        piece: piece.piece,
-        dest: dest,
-      );
-      shogiGamePresenter.deselectedPiece();
-      game.update(
-        PieceWithOwner(
-          owner: PlayerType.human,
-          piece: newPiece,
-        ),
-      );
-    }
+    final newPiece = piece.owner == PlayerType.human
+        ? humanPlayerRepository.movePiece(
+            piece: piece.piece,
+            dest: dest,
+          )
+        : aiPlayerRepository.movePiece(
+            piece: piece.piece,
+            dest: dest,
+          );
+    shogiGamePresenter.deselectedPiece();
+    game.update(
+      piece.copyWith(
+        piece: newPiece,
+      ),
+    );
 
     // pieceをmoveDirectionだけ動かす？(いや違うくないか？)
     // セルを渡すか
