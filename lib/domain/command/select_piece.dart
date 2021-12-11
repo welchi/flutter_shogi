@@ -25,8 +25,8 @@ class SelectPiece {
         .getPieces()
         .map(
           (piece) => PieceWithOwner(
-            PlayerType.human,
-            piece,
+            owner: PlayerType.human,
+            piece: piece,
           ),
         )
         .toList();
@@ -34,8 +34,8 @@ class SelectPiece {
         .getPieces()
         .map(
           (piece) => PieceWithOwner(
-            PlayerType.human,
-            piece,
+            owner: PlayerType.human,
+            piece: piece,
           ),
         )
         .toList();
@@ -43,7 +43,7 @@ class SelectPiece {
     // 駒が動けるエリアを捜査
     final movablePositions = getMovablePositions(
       // todo: 後で人間、AI交互に
-      PieceWithOwner(PlayerType.human, piece),
+      PieceWithOwner(owner: PlayerType.human, piece: piece),
       [...humanPieces, ...aiPieces],
     );
     // 移動可能な駒をハイライト
@@ -109,10 +109,10 @@ List<List<PieceWithOwner?>> getPieceMatrix(List<PieceWithOwner> pieces) {
 
 @immutable
 class PieceWithOwner {
-  const PieceWithOwner(
-    this.owner,
-    this.piece,
-  );
+  const PieceWithOwner({
+    required this.owner,
+    required this.piece,
+  });
   final PlayerType owner;
   final Piece piece;
 }

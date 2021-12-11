@@ -14,6 +14,158 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+class _$HighlightableBoardTileTearOff {
+  const _$HighlightableBoardTileTearOff();
+
+  _HighlightableBoardTile call(
+      {bool isMovable = false, PieceWithOwner? piece}) {
+    return _HighlightableBoardTile(
+      isMovable: isMovable,
+      piece: piece,
+    );
+  }
+}
+
+/// @nodoc
+const $HighlightableBoardTile = _$HighlightableBoardTileTearOff();
+
+/// @nodoc
+mixin _$HighlightableBoardTile {
+  bool get isMovable => throw _privateConstructorUsedError;
+  PieceWithOwner? get piece => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HighlightableBoardTileCopyWith<HighlightableBoardTile> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HighlightableBoardTileCopyWith<$Res> {
+  factory $HighlightableBoardTileCopyWith(HighlightableBoardTile value,
+          $Res Function(HighlightableBoardTile) then) =
+      _$HighlightableBoardTileCopyWithImpl<$Res>;
+  $Res call({bool isMovable, PieceWithOwner? piece});
+}
+
+/// @nodoc
+class _$HighlightableBoardTileCopyWithImpl<$Res>
+    implements $HighlightableBoardTileCopyWith<$Res> {
+  _$HighlightableBoardTileCopyWithImpl(this._value, this._then);
+
+  final HighlightableBoardTile _value;
+  // ignore: unused_field
+  final $Res Function(HighlightableBoardTile) _then;
+
+  @override
+  $Res call({
+    Object? isMovable = freezed,
+    Object? piece = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isMovable: isMovable == freezed
+          ? _value.isMovable
+          : isMovable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      piece: piece == freezed
+          ? _value.piece
+          : piece // ignore: cast_nullable_to_non_nullable
+              as PieceWithOwner?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$HighlightableBoardTileCopyWith<$Res>
+    implements $HighlightableBoardTileCopyWith<$Res> {
+  factory _$HighlightableBoardTileCopyWith(_HighlightableBoardTile value,
+          $Res Function(_HighlightableBoardTile) then) =
+      __$HighlightableBoardTileCopyWithImpl<$Res>;
+  @override
+  $Res call({bool isMovable, PieceWithOwner? piece});
+}
+
+/// @nodoc
+class __$HighlightableBoardTileCopyWithImpl<$Res>
+    extends _$HighlightableBoardTileCopyWithImpl<$Res>
+    implements _$HighlightableBoardTileCopyWith<$Res> {
+  __$HighlightableBoardTileCopyWithImpl(_HighlightableBoardTile _value,
+      $Res Function(_HighlightableBoardTile) _then)
+      : super(_value, (v) => _then(v as _HighlightableBoardTile));
+
+  @override
+  _HighlightableBoardTile get _value => super._value as _HighlightableBoardTile;
+
+  @override
+  $Res call({
+    Object? isMovable = freezed,
+    Object? piece = freezed,
+  }) {
+    return _then(_HighlightableBoardTile(
+      isMovable: isMovable == freezed
+          ? _value.isMovable
+          : isMovable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      piece: piece == freezed
+          ? _value.piece
+          : piece // ignore: cast_nullable_to_non_nullable
+              as PieceWithOwner?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_HighlightableBoardTile implements _HighlightableBoardTile {
+  const _$_HighlightableBoardTile({this.isMovable = false, this.piece});
+
+  @JsonKey(defaultValue: false)
+  @override
+  final bool isMovable;
+  @override
+  final PieceWithOwner? piece;
+
+  @override
+  String toString() {
+    return 'HighlightableBoardTile(isMovable: $isMovable, piece: $piece)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _HighlightableBoardTile &&
+            const DeepCollectionEquality().equals(other.isMovable, isMovable) &&
+            const DeepCollectionEquality().equals(other.piece, piece));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(isMovable),
+      const DeepCollectionEquality().hash(piece));
+
+  @JsonKey(ignore: true)
+  @override
+  _$HighlightableBoardTileCopyWith<_HighlightableBoardTile> get copyWith =>
+      __$HighlightableBoardTileCopyWithImpl<_HighlightableBoardTile>(
+          this, _$identity);
+}
+
+abstract class _HighlightableBoardTile implements HighlightableBoardTile {
+  const factory _HighlightableBoardTile(
+      {bool isMovable, PieceWithOwner? piece}) = _$_HighlightableBoardTile;
+
+  @override
+  bool get isMovable;
+  @override
+  PieceWithOwner? get piece;
+  @override
+  @JsonKey(ignore: true)
+  _$HighlightableBoardTileCopyWith<_HighlightableBoardTile> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 class _$BoardTileTearOff {
   const _$BoardTileTearOff();
 
@@ -41,8 +193,6 @@ abstract class $BoardTileCopyWith<$Res> {
   factory $BoardTileCopyWith(BoardTile value, $Res Function(BoardTile) then) =
       _$BoardTileCopyWithImpl<$Res>;
   $Res call({PieceWithOwner? piece});
-
-  $PieceWithOwnerCopyWith<$Res>? get piece;
 }
 
 /// @nodoc
@@ -64,17 +214,6 @@ class _$BoardTileCopyWithImpl<$Res> implements $BoardTileCopyWith<$Res> {
               as PieceWithOwner?,
     ));
   }
-
-  @override
-  $PieceWithOwnerCopyWith<$Res>? get piece {
-    if (_value.piece == null) {
-      return null;
-    }
-
-    return $PieceWithOwnerCopyWith<$Res>(_value.piece!, (value) {
-      return _then(_value.copyWith(piece: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -84,9 +223,6 @@ abstract class _$BoardTileCopyWith<$Res> implements $BoardTileCopyWith<$Res> {
       __$BoardTileCopyWithImpl<$Res>;
   @override
   $Res call({PieceWithOwner? piece});
-
-  @override
-  $PieceWithOwnerCopyWith<$Res>? get piece;
 }
 
 /// @nodoc
@@ -321,166 +457,5 @@ abstract class _GameViewModel implements GameViewModel {
   @override
   @JsonKey(ignore: true)
   _$GameViewModelCopyWith<_GameViewModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-class _$PieceWithOwnerTearOff {
-  const _$PieceWithOwnerTearOff();
-
-  _PieceWithOwner call({required PlayerType owner, required Piece piece}) {
-    return _PieceWithOwner(
-      owner: owner,
-      piece: piece,
-    );
-  }
-}
-
-/// @nodoc
-const $PieceWithOwner = _$PieceWithOwnerTearOff();
-
-/// @nodoc
-mixin _$PieceWithOwner {
-  PlayerType get owner => throw _privateConstructorUsedError;
-  Piece get piece => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $PieceWithOwnerCopyWith<PieceWithOwner> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PieceWithOwnerCopyWith<$Res> {
-  factory $PieceWithOwnerCopyWith(
-          PieceWithOwner value, $Res Function(PieceWithOwner) then) =
-      _$PieceWithOwnerCopyWithImpl<$Res>;
-  $Res call({PlayerType owner, Piece piece});
-
-  $PieceCopyWith<$Res> get piece;
-}
-
-/// @nodoc
-class _$PieceWithOwnerCopyWithImpl<$Res>
-    implements $PieceWithOwnerCopyWith<$Res> {
-  _$PieceWithOwnerCopyWithImpl(this._value, this._then);
-
-  final PieceWithOwner _value;
-  // ignore: unused_field
-  final $Res Function(PieceWithOwner) _then;
-
-  @override
-  $Res call({
-    Object? owner = freezed,
-    Object? piece = freezed,
-  }) {
-    return _then(_value.copyWith(
-      owner: owner == freezed
-          ? _value.owner
-          : owner // ignore: cast_nullable_to_non_nullable
-              as PlayerType,
-      piece: piece == freezed
-          ? _value.piece
-          : piece // ignore: cast_nullable_to_non_nullable
-              as Piece,
-    ));
-  }
-
-  @override
-  $PieceCopyWith<$Res> get piece {
-    return $PieceCopyWith<$Res>(_value.piece, (value) {
-      return _then(_value.copyWith(piece: value));
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$PieceWithOwnerCopyWith<$Res>
-    implements $PieceWithOwnerCopyWith<$Res> {
-  factory _$PieceWithOwnerCopyWith(
-          _PieceWithOwner value, $Res Function(_PieceWithOwner) then) =
-      __$PieceWithOwnerCopyWithImpl<$Res>;
-  @override
-  $Res call({PlayerType owner, Piece piece});
-
-  @override
-  $PieceCopyWith<$Res> get piece;
-}
-
-/// @nodoc
-class __$PieceWithOwnerCopyWithImpl<$Res>
-    extends _$PieceWithOwnerCopyWithImpl<$Res>
-    implements _$PieceWithOwnerCopyWith<$Res> {
-  __$PieceWithOwnerCopyWithImpl(
-      _PieceWithOwner _value, $Res Function(_PieceWithOwner) _then)
-      : super(_value, (v) => _then(v as _PieceWithOwner));
-
-  @override
-  _PieceWithOwner get _value => super._value as _PieceWithOwner;
-
-  @override
-  $Res call({
-    Object? owner = freezed,
-    Object? piece = freezed,
-  }) {
-    return _then(_PieceWithOwner(
-      owner: owner == freezed
-          ? _value.owner
-          : owner // ignore: cast_nullable_to_non_nullable
-              as PlayerType,
-      piece: piece == freezed
-          ? _value.piece
-          : piece // ignore: cast_nullable_to_non_nullable
-              as Piece,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_PieceWithOwner implements _PieceWithOwner {
-  const _$_PieceWithOwner({required this.owner, required this.piece});
-
-  @override
-  final PlayerType owner;
-  @override
-  final Piece piece;
-
-  @override
-  String toString() {
-    return 'PieceWithOwner(owner: $owner, piece: $piece)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _PieceWithOwner &&
-            const DeepCollectionEquality().equals(other.owner, owner) &&
-            const DeepCollectionEquality().equals(other.piece, piece));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(owner),
-      const DeepCollectionEquality().hash(piece));
-
-  @JsonKey(ignore: true)
-  @override
-  _$PieceWithOwnerCopyWith<_PieceWithOwner> get copyWith =>
-      __$PieceWithOwnerCopyWithImpl<_PieceWithOwner>(this, _$identity);
-}
-
-abstract class _PieceWithOwner implements PieceWithOwner {
-  const factory _PieceWithOwner(
-      {required PlayerType owner, required Piece piece}) = _$_PieceWithOwner;
-
-  @override
-  PlayerType get owner;
-  @override
-  Piece get piece;
-  @override
-  @JsonKey(ignore: true)
-  _$PieceWithOwnerCopyWith<_PieceWithOwner> get copyWith =>
       throw _privateConstructorUsedError;
 }

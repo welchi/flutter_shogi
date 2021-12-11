@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_shogi/domain/command/select_piece.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/entity/player.dart';
 import 'package:flutter_shogi/state/player_state.dart';
@@ -56,12 +57,30 @@ final tileMatrixProvider = Provider((ref) {
   return tileMatrix.reversed.toList();
 });
 
+final highlightableTileMatrixProvider = Provider(
+  (ref) {
+    final humanPieces = ref.watch(humanPiecesProvider);
+    final aiPieces = ref.watch(aiPiecesProvider);
+    final tileMatrix = getPieceMatrix(
+      [...humanPieces, ...aiPieces],
+    );
+  },
+);
+
 final flattenTilesProvider = Provider(
   (ref) {
     final tileMatrix = ref.watch(tileMatrixProvider);
     return tileMatrix.expand((tile) => tile).toList();
   },
 );
+
+@freezed
+class HighlightableBoardTile with _$HighlightableBoardTile {
+  const factory HighlightableBoardTile({
+    @Default(false) bool isMovable,
+    PieceWithOwner? piece,
+  }) = _HighlightableBoardTile;
+}
 
 @freezed
 class BoardTile with _$BoardTile {
@@ -76,12 +95,4 @@ class GameViewModel with _$GameViewModel {
     required Player me,
     required Player cpu,
   }) = _GameViewModel;
-}
-
-@freezed
-class PieceWithOwner with _$PieceWithOwner {
-  const factory PieceWithOwner({
-    required PlayerType owner,
-    required Piece piece,
-  }) = _PieceWithOwner;
 }
