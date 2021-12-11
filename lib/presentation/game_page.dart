@@ -54,7 +54,7 @@ class TileView extends ConsumerWidget {
     Key? key,
     required this.tile,
   }) : super(key: key);
-  final BoardTile tile;
+  final HighlightableBoardTile tile;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final piece = tile.piece?.piece;
@@ -90,7 +90,7 @@ class TileText extends StatelessWidget {
     Key? key,
     required this.tile,
   }) : super(key: key);
-  final BoardTile tile;
+  final HighlightableBoardTile tile;
   @override
   Widget build(BuildContext context) {
     final piece = tile.piece?.piece;
