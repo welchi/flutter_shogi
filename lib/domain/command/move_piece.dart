@@ -20,6 +20,7 @@ class MovePiece {
     required PieceWithOwner piece,
     required Vector2 destPosition,
   }) {
+    // final nextPiece = piece.
     // pieceをmoveDirectionだけ動かす？(いや違うくないか？)
     // セルを渡すか
 
