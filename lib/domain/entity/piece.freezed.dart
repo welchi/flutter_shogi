@@ -165,11 +165,13 @@ class _$PieceTearOff {
   _Piece call(
       {required String name,
       required List<Movement> movableDirections,
-      Vector2? position}) {
+      Vector2? position,
+      PlayerType? owner}) {
     return _Piece(
       name: name,
       movableDirections: movableDirections,
       position: position,
+      owner: owner,
     );
   }
 }
@@ -182,6 +184,7 @@ mixin _$Piece {
   String get name => throw _privateConstructorUsedError;
   List<Movement> get movableDirections => throw _privateConstructorUsedError;
   Vector2? get position => throw _privateConstructorUsedError;
+  PlayerType? get owner => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PieceCopyWith<Piece> get copyWith => throw _privateConstructorUsedError;
@@ -191,7 +194,11 @@ mixin _$Piece {
 abstract class $PieceCopyWith<$Res> {
   factory $PieceCopyWith(Piece value, $Res Function(Piece) then) =
       _$PieceCopyWithImpl<$Res>;
-  $Res call({String name, List<Movement> movableDirections, Vector2? position});
+  $Res call(
+      {String name,
+      List<Movement> movableDirections,
+      Vector2? position,
+      PlayerType? owner});
 }
 
 /// @nodoc
@@ -207,6 +214,7 @@ class _$PieceCopyWithImpl<$Res> implements $PieceCopyWith<$Res> {
     Object? name = freezed,
     Object? movableDirections = freezed,
     Object? position = freezed,
+    Object? owner = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -221,6 +229,10 @@ class _$PieceCopyWithImpl<$Res> implements $PieceCopyWith<$Res> {
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as Vector2?,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as PlayerType?,
     ));
   }
 }
@@ -230,7 +242,11 @@ abstract class _$PieceCopyWith<$Res> implements $PieceCopyWith<$Res> {
   factory _$PieceCopyWith(_Piece value, $Res Function(_Piece) then) =
       __$PieceCopyWithImpl<$Res>;
   @override
-  $Res call({String name, List<Movement> movableDirections, Vector2? position});
+  $Res call(
+      {String name,
+      List<Movement> movableDirections,
+      Vector2? position,
+      PlayerType? owner});
 }
 
 /// @nodoc
@@ -247,6 +263,7 @@ class __$PieceCopyWithImpl<$Res> extends _$PieceCopyWithImpl<$Res>
     Object? name = freezed,
     Object? movableDirections = freezed,
     Object? position = freezed,
+    Object? owner = freezed,
   }) {
     return _then(_Piece(
       name: name == freezed
@@ -261,6 +278,10 @@ class __$PieceCopyWithImpl<$Res> extends _$PieceCopyWithImpl<$Res>
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as Vector2?,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as PlayerType?,
     ));
   }
 }
@@ -269,7 +290,10 @@ class __$PieceCopyWithImpl<$Res> extends _$PieceCopyWithImpl<$Res>
 
 class _$_Piece extends _Piece {
   const _$_Piece(
-      {required this.name, required this.movableDirections, this.position})
+      {required this.name,
+      required this.movableDirections,
+      this.position,
+      this.owner})
       : super._();
 
   @override
@@ -278,10 +302,12 @@ class _$_Piece extends _Piece {
   final List<Movement> movableDirections;
   @override
   final Vector2? position;
+  @override
+  final PlayerType? owner;
 
   @override
   String toString() {
-    return 'Piece(name: $name, movableDirections: $movableDirections, position: $position)';
+    return 'Piece(name: $name, movableDirections: $movableDirections, position: $position, owner: $owner)';
   }
 
   @override
@@ -292,7 +318,8 @@ class _$_Piece extends _Piece {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.movableDirections, movableDirections) &&
-            const DeepCollectionEquality().equals(other.position, position));
+            const DeepCollectionEquality().equals(other.position, position) &&
+            const DeepCollectionEquality().equals(other.owner, owner));
   }
 
   @override
@@ -300,7 +327,8 @@ class _$_Piece extends _Piece {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(movableDirections),
-      const DeepCollectionEquality().hash(position));
+      const DeepCollectionEquality().hash(position),
+      const DeepCollectionEquality().hash(owner));
 
   @JsonKey(ignore: true)
   @override
@@ -312,7 +340,8 @@ abstract class _Piece extends Piece {
   const factory _Piece(
       {required String name,
       required List<Movement> movableDirections,
-      Vector2? position}) = _$_Piece;
+      Vector2? position,
+      PlayerType? owner}) = _$_Piece;
   const _Piece._() : super._();
 
   @override
@@ -321,6 +350,8 @@ abstract class _Piece extends Piece {
   List<Movement> get movableDirections;
   @override
   Vector2? get position;
+  @override
+  PlayerType? get owner;
   @override
   @JsonKey(ignore: true)
   _$PieceCopyWith<_Piece> get copyWith => throw _privateConstructorUsedError;
