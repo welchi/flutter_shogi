@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
-import 'package:flutter_shogi/ui/game_view_model.dart';
+import 'package:flutter_shogi/presentation/game_view_model.dart';
 
 class GamePage extends ConsumerWidget {
   const GamePage({Key? key}) : super(key: key);
