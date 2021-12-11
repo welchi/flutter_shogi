@@ -16,7 +16,6 @@ final selectPieceProvider = Provider(
 
 class SelectPiece {
   SelectPiece(this._read);
-
   final Reader _read;
   late final PlayerRepository humanPlayerRepository = _read(
     humanPlayerRepositoryProvider.notifier,
@@ -40,11 +39,12 @@ class SelectPiece {
           ),
         )
         .toList();
+
     final aiPieces = aiPlayerRepository
         .getPieces()
         .map(
           (piece) => PieceWithOwner(
-            owner: PlayerType.human,
+            owner: PlayerType.ai,
             piece: piece,
           ),
         )
@@ -54,11 +54,13 @@ class SelectPiece {
     final movablePositions = getMovablePositions(
       // todo: 後で人間、AI交互に
       piece,
-      // PieceWithOwner(owner: PlayerType.human, piece: piece),
       [...humanPieces, ...aiPieces],
     );
     // 移動可能な駒をハイライト
-    shogiGamePresenter.selectedPieceToMove(piece, movablePositions);
+    shogiGamePresenter.selectedPieceToMove(
+      piece,
+      movablePositions,
+    );
   }
 }
 
@@ -95,8 +97,11 @@ List<Vector2> getMovablePositions(
           break;
         }
         // 移動先に相手の駒が存在する
-        movablePositions.add(nextPosition);
-        break;
+        if (nextTile.owner == PlayerType.ai) {
+          print('相手のこま');
+          movablePositions.add(nextPosition);
+          break;
+        }
       }
       return movablePositions;
     }).toList();
@@ -121,7 +126,6 @@ List<List<PieceWithOwner?>> getPieceMatrix(List<PieceWithOwner> pieces) {
   return pieceMatrix;
 }
 
-//
 // @immutable
 // class PieceWithOwner {
 //   PieceWithOwner({

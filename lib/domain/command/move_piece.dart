@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
+import 'package:flutter_shogi/domain/presenter/presenter.dart';
 import 'package:flutter_shogi/domain/repository/repository.dart';
+import 'package:flutter_shogi/presentation/game_presenter.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
 
@@ -22,6 +24,9 @@ class MovePiece {
   late final PlayerRepository aiPlayerRepository = _read(
     aiPlayerRepositoryProvider.notifier,
   );
+  late final ShogiGamePresenter shogiGamePresenter = _read(
+    shogiGamePresenterProvider,
+  );
   void call({
     required PieceWithOwner piece,
     required Vector2 dest,
@@ -32,6 +37,7 @@ class MovePiece {
         dest: dest,
       );
     }
+    shogiGamePresenter.deselectedPiece();
     // pieceをmoveDirectionだけ動かす？(いや違うくないか？)
     // セルを渡すか
 
