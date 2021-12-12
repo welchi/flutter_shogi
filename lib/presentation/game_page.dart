@@ -127,6 +127,42 @@ class TileView extends ConsumerWidget {
     required this.tile,
   }) : super(key: key);
   final HighlightableBoardTile tile;
+
+  VoidCallback? _onTapAction(
+    Reader read,
+    Piece? piece,
+    bool isHighlight,
+  ) {
+    // 駒がこのマスへ移動できる時
+    if (isHighlight) {
+      return () {
+        final selectedPiece = read(selectedPieceProvider);
+        final selectedAction = read(selectedActionProvider);
+        if (selectedAction == MoveOrDrop.move) {
+          read(movePieceProvider).call(
+            piece: selectedPiece!,
+            dest: tile.position,
+          );
+          return;
+        }
+        read(dropPieceProvider).call(
+          piece: selectedPiece!,
+          dest: tile.position,
+        );
+      };
+    }
+    final turnOwner = read(turnOwnerProvider);
+    // マスに駒が存在する場合 & 今がその駒の持ち主のターン
+    if (piece != null && piece.ownerId == turnOwner) {
+      return () {
+        read(selectPieceProvider).call(
+          piece: piece,
+        );
+      };
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final piece = tile.piece;
@@ -134,29 +170,11 @@ class TileView extends ConsumerWidget {
     return Material(
       color: isHighlight ? Colors.blue[200] : Colors.yellow[300],
       child: InkWell(
-        onTap: isHighlight
-            ? () {
-                final selectedPiece = ref.read(selectedPieceProvider);
-                final selectedAction = ref.read(selectedActionProvider);
-                if (selectedAction == MoveOrDrop.move) {
-                  ref.read(movePieceProvider).call(
-                        piece: selectedPiece!,
-                        dest: tile.position,
-                      );
-                  return;
-                }
-                ref.read(dropPieceProvider).call(
-                      piece: selectedPiece!,
-                      dest: tile.position,
-                    );
-              }
-            : piece != null
-                ? () {
-                    ref.read(selectPieceProvider).call(
-                          piece: piece,
-                        );
-                  }
-                : null,
+        onTap: _onTapAction(
+          ref.read,
+          piece,
+          isHighlight,
+        ),
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
