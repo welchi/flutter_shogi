@@ -16,7 +16,7 @@ final playerRepositoryProvider =
       type: PlayerType.human,
       pieces: getInitialPieces(
         ownerId: playerId,
-        isOpponent: false,
+        isPlayer: true,
       ),
       capturedPieces: [],
     ),
@@ -31,7 +31,7 @@ final rivalRepositoryProvider =
       type: PlayerType.human,
       pieces: getInitialPieces(
         ownerId: rivalId,
-        isOpponent: true,
+        isPlayer: false,
       ),
       capturedPieces: [],
     ),

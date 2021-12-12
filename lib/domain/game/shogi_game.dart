@@ -143,11 +143,11 @@ class ShogiGame {
 /// 駒の初期配置を取得
 List<Piece> getInitialPieces({
   required String ownerId,
-  bool isOpponent = true,
+  required bool isPlayer,
 }) {
-  final huhyoRowY = (isOpponent ? 2 : Board.colSize - 1 - 2).toDouble();
-  final hisyakakuRowY = (isOpponent ? 1 : Board.colSize - 1 - 1).toDouble();
-  final oushoRowY = (isOpponent ? 0 : Board.colSize - 1 - 0).toDouble();
+  final huhyoRowY = (isPlayer ? 2 : Board.colSize - 1 - 2).toDouble();
+  final hisyakakuRowY = (isPlayer ? 1 : Board.colSize - 1 - 1).toDouble();
+  final oushoRowY = (isPlayer ? 0 : Board.colSize - 1 - 0).toDouble();
 
   final huhyoRow = List.generate(
     Board.rowSize,
@@ -163,14 +163,14 @@ List<Piece> getInitialPieces({
   final hisyakakuRow = [
     Piece.kakugyo(
       Vector2(
-        isOpponent ? 1 : 7,
+        isPlayer ? 1 : 7,
         hisyakakuRowY,
       ),
       ownerId,
     ),
     Piece.hisha(
       Vector2(
-        isOpponent ? 7 : 1,
+        isPlayer ? 7 : 1,
         hisyakakuRowY,
       ),
       ownerId,
@@ -180,63 +180,63 @@ List<Piece> getInitialPieces({
   final oushoRow = [
     Piece.kyosha(
       Vector2(
-        isOpponent ? 0 : 8,
+        isPlayer ? 0 : 8,
         oushoRowY,
       ),
       ownerId,
     ),
     Piece.keima(
       Vector2(
-        isOpponent ? 1 : 7,
+        isPlayer ? 1 : 7,
         oushoRowY,
       ),
       ownerId,
     ),
     Piece.ginsho(
       Vector2(
-        isOpponent ? 2 : 6,
+        isPlayer ? 2 : 6,
         oushoRowY,
       ),
       ownerId,
     ),
     Piece.kinsho(
       Vector2(
-        isOpponent ? 3 : 5,
+        isPlayer ? 3 : 5,
         oushoRowY,
       ),
       ownerId,
     ),
     Piece.ousho(
       Vector2(
-        isOpponent ? 4 : 4,
+        isPlayer ? 4 : 4,
         oushoRowY,
       ),
       ownerId,
     ),
     Piece.kinsho(
       Vector2(
-        isOpponent ? 5 : 3,
+        isPlayer ? 5 : 3,
         oushoRowY,
       ),
       ownerId,
     ),
     Piece.ginsho(
       Vector2(
-        isOpponent ? 6 : 2,
+        isPlayer ? 6 : 2,
         oushoRowY,
       ),
       ownerId,
     ),
     Piece.keima(
       Vector2(
-        isOpponent ? 7 : 1,
+        isPlayer ? 7 : 1,
         oushoRowY,
       ),
       ownerId,
     ),
     Piece.kyosha(
       Vector2(
-        isOpponent ? 8 : 0,
+        isPlayer ? 8 : 0,
         oushoRowY,
       ),
       ownerId,
