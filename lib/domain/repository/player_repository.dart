@@ -21,4 +21,9 @@ abstract class PlayerRepository {
   void removePiece({
     required Piece piece,
   });
+
+  /// 持ち駒を追加
+  void addCapturedPiece({
+    required Piece piece,
+  });
 }

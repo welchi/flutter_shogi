@@ -54,14 +54,14 @@ class ShogiGame {
     );
   }
 
-  void executeCaptureProcess({
-    required Vector2 position,
+  void callCaptureProcess({
+    required Piece newPiece,
     required List<Piece> pieces,
     required void Function(Piece piece) removePiece,
     required void Function(Piece piece) capturePiece,
   }) {
     final capturedPiece = searchPiece(
-      position: position,
+      position: newPiece.position!,
       pieces: pieces,
     );
     if (capturedPiece != null) {
@@ -76,18 +76,18 @@ class ShogiGame {
     final myPieces = meRepository.getPieces();
     final opponentPieces = opponentRepository.getPieces();
 
-    // 動かした先に駒があれば、取得
+    // 駒の取得処理を実行
     if (newPiece.owner == PlayerType.human) {
-      final capturedPiece = searchPiece(
-        position: newPiece.piece.position!,
-        pieces: opponentPieces,
+      callCaptureProcess(
+        newPiece: newPiece.piece,
+        pieces: opponentRepository.getPieces(),
+        removePiece: (Piece piece) => opponentRepository.removePiece(
+          piece: piece,
+        ),
+        capturePiece: (Piece piece) => opponentRepository.addCapturedPiece(
+          piece: piece,
+        ),
       );
-
-      if (capturedPiece != null) {
-        opponentRepository.removePiece(
-          piece: capturedPiece,
-        );
-      }
     }
 
     // 動かした先に駒があれば、取得
