@@ -160,7 +160,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '歩',
+        name: huhyo,
         movableDirections: _huhyoMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -170,7 +170,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: 'と',
+        name: narikin,
         movableDirections: _kinshoMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -180,7 +180,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '香',
+        name: kyosha,
         movableDirections: _kyoshaMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -190,7 +190,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '杏',
+        name: narikyo,
         movableDirections: _kinshoMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -200,7 +200,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '桂',
+        name: keima,
         movableDirections: _keimaMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -210,7 +210,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '圭',
+        name: narikei,
         movableDirections: _kinshoMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -220,7 +220,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '銀',
+        name: ginsho,
         movableDirections: _ginshoMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -230,7 +230,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '全',
+        name: narigin,
         movableDirections: _kinshoMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -240,7 +240,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '飛',
+        name: hisha,
         movableDirections: _hishaMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -250,7 +250,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '龍',
+        name: ryuou,
         movableDirections: _ryuouMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -260,7 +260,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '角',
+        name: kakugyo,
         movableDirections: _kakuMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -270,7 +270,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '馬',
+        name: ryume,
         movableDirections: _ryumeMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -280,7 +280,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '金',
+        name: kinsho,
         movableDirections: _kinshoMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -290,7 +290,7 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '王',
+        name: ousho,
         movableDirections: _oushoMovableDirections,
         position: position,
         ownerId: ownerId,
@@ -300,12 +300,13 @@ abstract class Piece implements _$Piece {
     String ownerId,
   ) =>
       Piece(
-        name: '玉',
+        name: gyokusho,
         movableDirections: _oushoMovableDirections,
         position: position,
         ownerId: ownerId,
       );
 
+  /// 成りで何に成るか
   Piece? promoted() {
     if (name == huhyo) {
       return Piece.tokin(position!, ownerId);
