@@ -127,7 +127,7 @@ class ShogiGame {
       );
     }
 
-    // 成れるなら成るか確認
+    // 成りに関する処理
     final isAbleToPromote = checkIsAbleToPromote(
       piece: newPiece,
       playerId: playerId,
@@ -147,6 +147,11 @@ class ShogiGame {
         }
       }
     }
+    // 次のターンへ
+    final nextPlayerId = newPiece.ownerId == playerId ? rivalId : playerId;
+    gamePresenter.turnEnd(
+      nextPlayerId,
+    );
   }
 }
 

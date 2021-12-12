@@ -28,6 +28,6 @@ abstract class ShogiGamePresenter {
 
   /// ターン終了
   void turnEnd(
-    Player nextPlayer,
+    String nextPlayerId,
   );
 }
