@@ -24,24 +24,24 @@ class ShogiGame {
   late final PlayerRepository playerRepository = _read(
     playerRepositoryProvider.notifier,
   );
-  late final PlayerRepository opponentRepository = _read(
+  late final PlayerRepository rivalRepository = _read(
     rivalRepositoryProvider.notifier,
   );
-
-  /// ゲームを初期化
-  void initGame() {
-    // 先攻で歩兵を並べる
-    final senkoPieces = getInitialPieces();
-    final kokoPieces = getInitialPieces(isOpponent: false);
-    // final senkoPlayer = Player(
-    //   pieces: senkoPieces,
-    //   capturedPieces: [],
-    // );
-    // final kokoPlayer = Player(
-    //   pieces: kokoPieces,
-    //   capturedPieces: [],
-    // );
-  }
+  //
+  // /// ゲームを初期化
+  // void initGame() {
+  //   // 先攻で歩兵を並べる
+  //   final senkoPieces = getInitialPieces();
+  //   final kokoPieces = getInitialPieces(isOpponent: false);
+  //   // final senkoPlayer = Player(
+  //   //   pieces: senkoPieces,
+  //   //   capturedPieces: [],
+  //   // );
+  //   // final kokoPlayer = Player(
+  //   //   pieces: kokoPieces,
+  //   //   capturedPieces: [],
+  //   // );
+  // }
 
   /// 駒を取得
   /// [pieces]に[position]に配置された駒があるならば取得
@@ -73,18 +73,18 @@ class ShogiGame {
   /// ターンごとの判定
   /// [newPiece]はこのターンで移動した駒
   void update(PieceWithOwner newPiece) {
-    final myPieces = meRepository.getPieces();
-    final opponentPieces = opponentRepository.getPieces();
+    final myPieces = playerRepository.getPieces();
+    final opponentPieces = rivalRepository.getPieces();
 
     // 駒の取得処理を実行
     if (newPiece.owner == PlayerType.human) {
       callCaptureProcess(
         newPiece: newPiece.piece,
-        pieces: opponentRepository.getPieces(),
-        removePiece: (Piece piece) => opponentRepository.removePiece(
+        pieces: rivalRepository.getPieces(),
+        removePiece: (Piece piece) => rivalRepository.removePiece(
           piece: piece,
         ),
-        capturePiece: (Piece piece) => opponentRepository.addCapturedPiece(
+        capturePiece: (Piece piece) => rivalRepository.addCapturedPiece(
           piece: piece,
         ),
       );
@@ -96,15 +96,15 @@ class ShogiGame {
         (piece) => piece.position == newPiece.piece.position,
       );
       if (capturedPiece != null) {
-        meRepository.removePiece(
+        playerRepository.removePiece(
           piece: capturedPiece,
         );
       }
     }
 
     // * どちらに王がなければ、勝ち負け決定
-    final newMyPieces = meRepository.getPieces();
-    final newOpponentPieces = opponentRepository.getPieces();
+    final newMyPieces = playerRepository.getPieces();
+    final newOpponentPieces = rivalRepository.getPieces();
     final meDefeat = checkIsDefeat(newMyPieces);
     final opponentDefeat = checkIsDefeat(newOpponentPieces);
 
