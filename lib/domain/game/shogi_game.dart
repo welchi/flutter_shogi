@@ -72,9 +72,6 @@ class ShogiGame {
   /// ターンごとの判定
   /// [newPiece]はこのターンで移動した駒
   void update(Piece newPiece) {
-    // final myPieces = playerRepository.getPieces();
-    // final opponentPieces = rivalRepository.getPieces();
-
     final playerId = playerRepository.getId();
     // 駒の取得処理を実行
     if (newPiece.ownerId == playerId) {
@@ -88,20 +85,18 @@ class ShogiGame {
           piece: piece,
         ),
       );
-    } else {}
-
-    // // 動かした先に駒があれば、取得
-    // if (newPiece.owner == PlayerType.ai) {
-    //   final capturedPiece = myPieces.firstWhereOrNull(
-    //     (piece) => piece.position == newPiece.piece.position,
-    //   );
-    //   if (capturedPiece != null) {
-    //     playerRepository.removePiece(
-    //       piece: capturedPiece,
-    //     );
-    //   }
-    // }
-
+    } else {
+      callCaptureProcess(
+        newPiece: newPiece,
+        pieces: playerRepository.getPieces(),
+        removePiece: (Piece piece) => playerRepository.removePiece(
+          piece: piece,
+        ),
+        capturePiece: (Piece piece) => rivalRepository.addCapturedPiece(
+          piece: piece,
+        ),
+      );
+    }
     // * どちらに王がなければ、勝ち負け決定
     final newMyPieces = playerRepository.getPieces();
     final newOpponentPieces = rivalRepository.getPieces();

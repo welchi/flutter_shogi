@@ -11,6 +11,10 @@ final selectedPieceProvider = StateProvider<Piece?>(
   (_) => null,
 );
 
+final turnOwnerProvider = StateProvider<Player?>(
+  (_) => null,
+);
+
 final shogiGamePresenterProvider = Provider(
   (ref) => ShogiGamePresenterImpl(
     ref.read,
@@ -41,5 +45,12 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
     _read(
       movablePositionsProvider.notifier,
     ).state = movablePositions;
+  }
+
+  @override
+  void turnEnd(Player nextPlayer) {
+    _read(
+      turnOwnerProvider.notifier,
+    ).state = nextPlayer;
   }
 }

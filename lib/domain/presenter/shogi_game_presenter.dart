@@ -10,4 +10,9 @@ abstract class ShogiGamePresenter {
 
   /// 移動する駒を選択解除した
   void deselectedPiece();
+
+  /// ターン終了
+  void turnEnd(
+    Player nextPlayer,
+  );
 }
