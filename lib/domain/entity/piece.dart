@@ -329,6 +329,30 @@ abstract class Piece implements _$Piece {
     return null;
   }
 
+  /// 成りを解除
+  Piece? demote() {
+    if (name == narikin) {
+      return Piece.huhyo(position!, ownerId);
+    }
+    if (name == narikyo) {
+      return Piece.kyosha(position!, ownerId);
+    }
+    if (name == narikei) {
+      return Piece.keima(position!, ownerId);
+    }
+    if (name == narigin) {
+      return Piece.ginsho(position!, ownerId);
+    }
+    if (name == ryuou) {
+      return Piece.hisha(position!, ownerId);
+    }
+    if (name == ryume) {
+      return Piece.kakugyo(position!, ownerId);
+    }
+    return null;
+  }
+
+  /// 成った駒か
   bool isPromoted() {
     switch (name) {
       case narikin:
