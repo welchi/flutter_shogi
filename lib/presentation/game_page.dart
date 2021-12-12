@@ -23,9 +23,10 @@ class GamePage extends ConsumerWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: const [
+          // 誰のターンか表示
           Padding(
             padding: EdgeInsets.all(8),
-            child: TurnDisplay(),
+            child: TurnOwnerDisplayArea(),
           ),
           // 相手の持ち駒
           SizedBox(
@@ -44,8 +45,8 @@ class GamePage extends ConsumerWidget {
   }
 }
 
-class TurnDisplay extends ConsumerWidget {
-  const TurnDisplay({
+class TurnOwnerDisplayArea extends ConsumerWidget {
+  const TurnOwnerDisplayArea({
     Key? key,
   }) : super(key: key);
 
