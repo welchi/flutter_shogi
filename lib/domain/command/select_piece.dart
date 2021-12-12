@@ -6,8 +6,6 @@ import 'package:flutter_shogi/presentation/game_presenter.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
 
-import 'piece_with_owner.dart';
-
 final selectPieceProvider = Provider(
   (ref) => SelectPiece(
     ref.read,
@@ -17,10 +15,10 @@ final selectPieceProvider = Provider(
 class SelectPiece {
   SelectPiece(this._read);
   final Reader _read;
-  late final PlayerRepository humanPlayerRepository = _read(
+  late final PlayerRepository playerRepository = _read(
     playerRepositoryProvider.notifier,
   );
-  late final PlayerRepository aiPlayerRepository = _read(
+  late final PlayerRepository rivalPlayerRepository = _read(
     rivalRepositoryProvider.notifier,
   );
   late final ShogiGamePresenter shogiGamePresenter = _read(
@@ -28,33 +26,33 @@ class SelectPiece {
   );
 
   void call({
-    required PieceWithOwner piece,
+    required Piece piece,
   }) {
-    final humanPieces = humanPlayerRepository
-        .getPieces()
-        .map(
-          (piece) => PieceWithOwner(
-            owner: PlayerType.human,
-            piece: piece,
-          ),
-        )
-        .toList();
+    final playerPieces = playerRepository.getPieces();
+    // .map(
+    //   (piece) => Piece(
+    //     owner: PlayerType.human,
+    //     piece: piece,
+    //   ),
+    // )
+    // .toList();
 
-    final aiPieces = aiPlayerRepository
-        .getPieces()
-        .map(
-          (piece) => PieceWithOwner(
-            owner: PlayerType.ai,
-            piece: piece,
-          ),
-        )
-        .toList();
+    final rivalPieces = rivalPlayerRepository.getPieces();
+    // .map(
+    //   (piece) => PieceWithOwner(
+    //     owner: PlayerType.ai,
+    //     piece: piece,
+    //   ),
+    // )
+    // .toList();
 
+    final playerId = playerRepository.getId();
     // 駒が動けるエリアを捜査
     final movablePositions = getMovablePositions(
       // todo: 後で人間、AI交互に
-      piece,
-      [...humanPieces, ...aiPieces],
+      piece: piece,
+      pieces: [...playerPieces, ...rivalPieces],
+      playerId: playerId,
     );
     // 移動可能な駒をハイライト
     shogiGamePresenter.selectedPieceToMove(
@@ -64,16 +62,17 @@ class SelectPiece {
   }
 }
 
-List<Vector2> getMovablePositions(
-  PieceWithOwner rawPiece,
-  List<PieceWithOwner> pieces,
-) {
+List<Vector2> getMovablePositions({
+  required Piece piece,
+  required List<Piece> pieces,
+  required String playerId,
+}) {
   const boardSizeX = Board.colSize - 1;
   const boardSizeY = Board.rowSize - 1;
-  final owner = rawPiece.owner;
-  final piece = rawPiece.piece;
+  final owner = piece.ownerId;
+  // final piece = rawPiece.piece;
   final movableDirections = piece.movableDirections;
-  if (owner == PlayerType.human) {
+  if (owner == playerId) {
     final board = getPieceMatrix(pieces);
     final directions = movableDirections.expand((movement) {
       final movablePositions = <Vector2>[];
@@ -93,11 +92,10 @@ List<Vector2> getMovablePositions(
           continue;
         }
         // 移動先に自分の駒が存在する
-        if (nextTile.owner == PlayerType.human) {
+        if (nextTile.ownerId == playerId) {
           break;
-        }
-        // 移動先に相手の駒が存在する
-        if (nextTile.owner == PlayerType.ai) {
+          // 移動先に相手の駒が存在する
+        } else {
           movablePositions.add(nextPosition);
           break;
         }
@@ -110,17 +108,17 @@ List<Vector2> getMovablePositions(
   return [];
 }
 
-List<List<PieceWithOwner?>> getPieceMatrix(List<PieceWithOwner> pieces) {
+List<List<Piece?>> getPieceMatrix(List<Piece> pieces) {
   final pieceMatrix = List.generate(
     Board.rowSize,
-    (i) => List<PieceWithOwner?>.generate(
+    (i) => List<Piece?>.generate(
       Board.colSize,
       (j) => null,
     ),
   );
   for (final piece in pieces) {
-    pieceMatrix[piece.piece.position?.y.toInt() ?? 0]
-        [piece.piece.position?.x.toInt() ?? 0] = piece;
+    pieceMatrix[piece.position?.y.toInt() ?? 0]
+        [piece.position?.x.toInt() ?? 0] = piece;
   }
   return pieceMatrix;
 }

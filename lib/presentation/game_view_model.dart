@@ -11,38 +11,39 @@ import 'game_presenter.dart';
 
 part 'game_view_model.freezed.dart';
 
-final aiPiecesProvider = Provider((ref) {
+final rivalPiecesProvider = Provider((ref) {
   final pieces = ref.watch(rivalRepositoryProvider).pieces;
-  return pieces
-      .map(
-        (piece) => PieceWithOwner(
-          owner: PlayerType.ai,
-          piece: piece,
-        ),
-      )
-      .toList();
+  return pieces;
+  // return pieces
+  //     .map(
+  //       (piece) => PieceWithOwner(
+  //         owner: PlayerType.ai,
+  //         piece: piece,
+  //       ),
+  //     )
+  //     .toList();
 });
 
-final humanPiecesProvider = Provider((ref) {
+final playerPiecesProvider = Provider((ref) {
   final pieces = ref.watch(playerRepositoryProvider).pieces;
-  return pieces
-      .map(
-        (piece) => PieceWithOwner(
-          owner: PlayerType.human,
-          piece: piece,
-        ),
-      )
-      .toList();
+  return pieces;
+  // .map(
+  //   (piece) => PieceWithOwner(
+  //     owner: PlayerType.human,
+  //     piece: piece,
+  //   ),
+  // )
+  // .toList();
 });
 
 final highlightableTileMatrixProvider = Provider(
   (ref) {
-    final humanPieces = ref.watch(humanPiecesProvider);
-    final aiPieces = ref.watch(aiPiecesProvider);
+    final humanPieces = ref.watch(playerPiecesProvider);
+    final aiPieces = ref.watch(rivalPiecesProvider);
     final movalPositions = ref.watch(movablePositionsProvider);
     final highlightableMatrix = getHighlightableTileMatrix(
-      humanPieces: humanPieces,
-      aiPieces: aiPieces,
+      playerPieces: humanPieces,
+      rivalPieces: aiPieces,
       movalPositions: movalPositions,
     );
     return highlightableMatrix.reversed.toList();
@@ -57,12 +58,12 @@ final flattenTilesProvider = Provider(
 );
 
 List<List<HighlightableBoardTile>> getHighlightableTileMatrix({
-  required List<PieceWithOwner> humanPieces,
-  required List<PieceWithOwner> aiPieces,
+  required List<Piece> playerPieces,
+  required List<Piece> rivalPieces,
   required List<Vector2>? movalPositions,
 }) {
   final tileMatrix = getPieceMatrix(
-    [...humanPieces, ...aiPieces],
+    [...playerPieces, ...rivalPieces],
   );
   final highlightableTileMatrix = tileMatrix
       .asMap()
@@ -100,7 +101,7 @@ List<List<HighlightableBoardTile>> getHighlightableTileMatrix({
 class HighlightableBoardTile with _$HighlightableBoardTile {
   const factory HighlightableBoardTile({
     @Default(false) bool isMovable,
-    PieceWithOwner? piece,
+    Piece? piece,
     required Vector2 position,
   }) = _HighlightableBoardTile;
 }
@@ -108,7 +109,7 @@ class HighlightableBoardTile with _$HighlightableBoardTile {
 @freezed
 class BoardTile with _$BoardTile {
   const factory BoardTile({
-    PieceWithOwner? piece,
+    Piece? piece,
   }) = _BoardTile;
 }
 

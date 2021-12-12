@@ -18,9 +18,7 @@ class _$HighlightableBoardTileTearOff {
   const _$HighlightableBoardTileTearOff();
 
   _HighlightableBoardTile call(
-      {bool isMovable = false,
-      PieceWithOwner? piece,
-      required Vector2 position}) {
+      {bool isMovable = false, Piece? piece, required Vector2 position}) {
     return _HighlightableBoardTile(
       isMovable: isMovable,
       piece: piece,
@@ -35,7 +33,7 @@ const $HighlightableBoardTile = _$HighlightableBoardTileTearOff();
 /// @nodoc
 mixin _$HighlightableBoardTile {
   bool get isMovable => throw _privateConstructorUsedError;
-  PieceWithOwner? get piece => throw _privateConstructorUsedError;
+  Piece? get piece => throw _privateConstructorUsedError;
   Vector2 get position => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -48,9 +46,9 @@ abstract class $HighlightableBoardTileCopyWith<$Res> {
   factory $HighlightableBoardTileCopyWith(HighlightableBoardTile value,
           $Res Function(HighlightableBoardTile) then) =
       _$HighlightableBoardTileCopyWithImpl<$Res>;
-  $Res call({bool isMovable, PieceWithOwner? piece, Vector2 position});
+  $Res call({bool isMovable, Piece? piece, Vector2 position});
 
-  $PieceWithOwnerCopyWith<$Res>? get piece;
+  $PieceCopyWith<$Res>? get piece;
 }
 
 /// @nodoc
@@ -76,7 +74,7 @@ class _$HighlightableBoardTileCopyWithImpl<$Res>
       piece: piece == freezed
           ? _value.piece
           : piece // ignore: cast_nullable_to_non_nullable
-              as PieceWithOwner?,
+              as Piece?,
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -85,12 +83,12 @@ class _$HighlightableBoardTileCopyWithImpl<$Res>
   }
 
   @override
-  $PieceWithOwnerCopyWith<$Res>? get piece {
+  $PieceCopyWith<$Res>? get piece {
     if (_value.piece == null) {
       return null;
     }
 
-    return $PieceWithOwnerCopyWith<$Res>(_value.piece!, (value) {
+    return $PieceCopyWith<$Res>(_value.piece!, (value) {
       return _then(_value.copyWith(piece: value));
     });
   }
@@ -103,10 +101,10 @@ abstract class _$HighlightableBoardTileCopyWith<$Res>
           $Res Function(_HighlightableBoardTile) then) =
       __$HighlightableBoardTileCopyWithImpl<$Res>;
   @override
-  $Res call({bool isMovable, PieceWithOwner? piece, Vector2 position});
+  $Res call({bool isMovable, Piece? piece, Vector2 position});
 
   @override
-  $PieceWithOwnerCopyWith<$Res>? get piece;
+  $PieceCopyWith<$Res>? get piece;
 }
 
 /// @nodoc
@@ -134,7 +132,7 @@ class __$HighlightableBoardTileCopyWithImpl<$Res>
       piece: piece == freezed
           ? _value.piece
           : piece // ignore: cast_nullable_to_non_nullable
-              as PieceWithOwner?,
+              as Piece?,
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -153,7 +151,7 @@ class _$_HighlightableBoardTile implements _HighlightableBoardTile {
   @override
   final bool isMovable;
   @override
-  final PieceWithOwner? piece;
+  final Piece? piece;
   @override
   final Vector2 position;
 
@@ -189,13 +187,13 @@ class _$_HighlightableBoardTile implements _HighlightableBoardTile {
 abstract class _HighlightableBoardTile implements HighlightableBoardTile {
   const factory _HighlightableBoardTile(
       {bool isMovable,
-      PieceWithOwner? piece,
+      Piece? piece,
       required Vector2 position}) = _$_HighlightableBoardTile;
 
   @override
   bool get isMovable;
   @override
-  PieceWithOwner? get piece;
+  Piece? get piece;
   @override
   Vector2 get position;
   @override
@@ -208,7 +206,7 @@ abstract class _HighlightableBoardTile implements HighlightableBoardTile {
 class _$BoardTileTearOff {
   const _$BoardTileTearOff();
 
-  _BoardTile call({PieceWithOwner? piece}) {
+  _BoardTile call({Piece? piece}) {
     return _BoardTile(
       piece: piece,
     );
@@ -220,7 +218,7 @@ const $BoardTile = _$BoardTileTearOff();
 
 /// @nodoc
 mixin _$BoardTile {
-  PieceWithOwner? get piece => throw _privateConstructorUsedError;
+  Piece? get piece => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BoardTileCopyWith<BoardTile> get copyWith =>
@@ -231,9 +229,9 @@ mixin _$BoardTile {
 abstract class $BoardTileCopyWith<$Res> {
   factory $BoardTileCopyWith(BoardTile value, $Res Function(BoardTile) then) =
       _$BoardTileCopyWithImpl<$Res>;
-  $Res call({PieceWithOwner? piece});
+  $Res call({Piece? piece});
 
-  $PieceWithOwnerCopyWith<$Res>? get piece;
+  $PieceCopyWith<$Res>? get piece;
 }
 
 /// @nodoc
@@ -252,17 +250,17 @@ class _$BoardTileCopyWithImpl<$Res> implements $BoardTileCopyWith<$Res> {
       piece: piece == freezed
           ? _value.piece
           : piece // ignore: cast_nullable_to_non_nullable
-              as PieceWithOwner?,
+              as Piece?,
     ));
   }
 
   @override
-  $PieceWithOwnerCopyWith<$Res>? get piece {
+  $PieceCopyWith<$Res>? get piece {
     if (_value.piece == null) {
       return null;
     }
 
-    return $PieceWithOwnerCopyWith<$Res>(_value.piece!, (value) {
+    return $PieceCopyWith<$Res>(_value.piece!, (value) {
       return _then(_value.copyWith(piece: value));
     });
   }
@@ -274,10 +272,10 @@ abstract class _$BoardTileCopyWith<$Res> implements $BoardTileCopyWith<$Res> {
           _BoardTile value, $Res Function(_BoardTile) then) =
       __$BoardTileCopyWithImpl<$Res>;
   @override
-  $Res call({PieceWithOwner? piece});
+  $Res call({Piece? piece});
 
   @override
-  $PieceWithOwnerCopyWith<$Res>? get piece;
+  $PieceCopyWith<$Res>? get piece;
 }
 
 /// @nodoc
@@ -297,7 +295,7 @@ class __$BoardTileCopyWithImpl<$Res> extends _$BoardTileCopyWithImpl<$Res>
       piece: piece == freezed
           ? _value.piece
           : piece // ignore: cast_nullable_to_non_nullable
-              as PieceWithOwner?,
+              as Piece?,
     ));
   }
 }
@@ -308,7 +306,7 @@ class _$_BoardTile implements _BoardTile {
   const _$_BoardTile({this.piece});
 
   @override
-  final PieceWithOwner? piece;
+  final Piece? piece;
 
   @override
   String toString() {
@@ -334,10 +332,10 @@ class _$_BoardTile implements _BoardTile {
 }
 
 abstract class _BoardTile implements BoardTile {
-  const factory _BoardTile({PieceWithOwner? piece}) = _$_BoardTile;
+  const factory _BoardTile({Piece? piece}) = _$_BoardTile;
 
   @override
-  PieceWithOwner? get piece;
+  Piece? get piece;
   @override
   @JsonKey(ignore: true)
   _$BoardTileCopyWith<_BoardTile> get copyWith =>

@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_shogi/domain/command/command.dart';
+import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/presenter/shogi_game_presenter.dart';
 import 'package:vector_math/vector_math.dart';
 
@@ -7,7 +7,7 @@ final movablePositionsProvider = StateProvider<List<Vector2>?>(
   (_) => null,
 );
 
-final selectedPieceProvider = StateProvider<PieceWithOwner?>(
+final selectedPieceProvider = StateProvider<Piece?>(
   (_) => null,
 );
 
@@ -32,7 +32,7 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
 
   @override
   void selectedPieceToMove(
-    PieceWithOwner piece,
+    Piece piece,
     List<Vector2> movablePositions,
   ) {
     _read(

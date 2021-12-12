@@ -47,9 +47,7 @@ class MovePiece {
           );
     shogiGamePresenter.deselectedPiece();
     game.update(
-      piece.copyWith(
-        piece: newPiece,
-      ),
+      newPiece,
     );
 
     // pieceをmoveDirectionだけ動かす？(いや違うくないか？)
