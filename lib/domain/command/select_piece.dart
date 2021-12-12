@@ -28,7 +28,6 @@ class SelectPiece {
   void call({
     required Piece piece,
   }) {
-    print(piece.ownerId);
     final playerPieces = playerRepository.getPieces();
     // .map(
     //   (piece) => Piece(

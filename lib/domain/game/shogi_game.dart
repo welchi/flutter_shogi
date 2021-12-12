@@ -206,13 +206,22 @@ List<Piece> getInitialPieces({
       ),
       ownerId,
     ),
-    Piece.ousho(
-      Vector2(
-        isPlayer ? 4 : 4,
-        oushoRowY,
+    if (isPlayer)
+      Piece.ousho(
+        Vector2(
+          isPlayer ? 4 : 4,
+          oushoRowY,
+        ),
+        ownerId,
       ),
-      ownerId,
-    ),
+    if (!isPlayer)
+      Piece.gyokusho(
+        Vector2(
+          isPlayer ? 4 : 4,
+          oushoRowY,
+        ),
+        ownerId,
+      ),
     Piece.kinsho(
       Vector2(
         isPlayer ? 5 : 3,
