@@ -1,4 +1,0 @@
-enum GameStatus {
-  myTurn,
-  cpuTurn,
-}
