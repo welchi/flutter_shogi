@@ -37,15 +37,15 @@ class DropPiece {
   }) {
     final playerId = playerRepository.getId();
     final newPiece = piece.ownerId == playerId
-        ? playerRepository.movePiece(
+        ? playerRepository.dropPiece(
             piece: piece,
             dest: dest,
           )
-        : rivalRepository.movePiece(
+        : rivalRepository.dropPiece(
             piece: piece,
             dest: dest,
           );
-    shogiGamePresenter.deselectedPieceToDrop();
+    shogiGamePresenter.deselectedPiece();
     game.update(
       newPiece,
     );

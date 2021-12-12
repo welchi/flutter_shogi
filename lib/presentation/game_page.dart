@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/command/command.dart';
+import 'package:flutter_shogi/domain/command/drop_piece.dart';
 import 'package:flutter_shogi/domain/command/select_captured_piece.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/presentation/game_view_model.dart';
@@ -135,8 +136,16 @@ class TileView extends ConsumerWidget {
       child: InkWell(
         onTap: isHighlight
             ? () {
-                final selectedPiece = ref.read(selectedPieceToMoveProvider);
-                ref.read(movePieceProvider).call(
+                final selectedPiece = ref.read(selectedPieceProvider);
+                final selectedAction = ref.read(selectedActionProvider);
+                if (selectedAction == MoveOrDrop.move) {
+                  ref.read(movePieceProvider).call(
+                        piece: selectedPiece!,
+                        dest: tile.position,
+                      );
+                  return;
+                }
+                ref.read(dropPieceProvider).call(
                       piece: selectedPiece!,
                       dest: tile.position,
                     );

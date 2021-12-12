@@ -3,16 +3,22 @@ import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/presenter/shogi_game_presenter.dart';
 import 'package:vector_math/vector_math.dart';
 
+enum MoveOrDrop {
+  move,
+  drop,
+}
 final movablePositionsProvider = StateProvider<List<Vector2>?>(
   (_) => null,
 );
 
-final selectedPieceToMoveProvider = StateProvider<Piece?>(
+final selectedActionProvider = StateProvider<MoveOrDrop?>(
   (_) => null,
 );
-final selectedPieceToDropProvider = StateProvider<Piece?>(
+
+final selectedPieceProvider = StateProvider<Piece?>(
   (_) => null,
 );
+
 final turnOwnerProvider = StateProvider<Player?>(
   (_) => null,
 );
@@ -27,9 +33,12 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
   ShogiGamePresenterImpl(this._read);
   final Reader _read;
   @override
-  void deselectedPieceToMove() {
+  void deselectedPiece() {
     _read(
-      selectedPieceToMoveProvider.notifier,
+      selectedPieceProvider.notifier,
+    ).state = null;
+    _read(
+      selectedActionProvider.notifier,
     ).state = null;
     _read(
       movablePositionsProvider.notifier,
@@ -41,10 +50,30 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
     Piece piece,
     List<Vector2> movablePositions,
   ) {
-    deselectedPieceToDrop();
+    deselectedPiece();
     _read(
-      selectedPieceToMoveProvider.notifier,
+      selectedPieceProvider.notifier,
     ).state = piece;
+    _read(
+      selectedActionProvider.notifier,
+    ).state = MoveOrDrop.move;
+    _read(
+      movablePositionsProvider.notifier,
+    ).state = movablePositions;
+  }
+
+  @override
+  void selectedPieceToDrop(
+    Piece piece,
+    List<Vector2> movablePositions,
+  ) {
+    deselectedPiece();
+    _read(
+      selectedPieceProvider.notifier,
+    ).state = piece;
+    _read(
+      selectedActionProvider.notifier,
+    ).state = MoveOrDrop.drop;
     _read(
       movablePositionsProvider.notifier,
     ).state = movablePositions;
@@ -55,29 +84,5 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
     _read(
       turnOwnerProvider.notifier,
     ).state = nextPlayer;
-  }
-
-  @override
-  void selectedPieceToDrop(
-    Piece piece,
-    List<Vector2> movablePositions,
-  ) {
-    deselectedPieceToMove();
-    _read(
-      selectedPieceToDropProvider.notifier,
-    ).state = piece;
-    _read(
-      movablePositionsProvider.notifier,
-    ).state = movablePositions;
-  }
-
-  @override
-  void deselectedPieceToDrop() {
-    _read(
-      selectedPieceToDropProvider.notifier,
-    ).state = null;
-    _read(
-      movablePositionsProvider.notifier,
-    ).state = null;
   }
 }

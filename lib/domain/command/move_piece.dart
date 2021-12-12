@@ -45,7 +45,7 @@ class MovePiece {
             piece: piece,
             dest: dest,
           );
-    shogiGamePresenter.deselectedPieceToMove();
+    shogiGamePresenter.deselectedPiece();
     game.update(
       newPiece,
     );

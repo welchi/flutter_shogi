@@ -8,8 +8,8 @@ abstract class ShogiGamePresenter {
     List<Vector2> movablePositions,
   );
 
-  /// 移動する駒を選択解除した
-  void deselectedPieceToMove();
+  /// 駒を選択解除した
+  void deselectedPiece();
 
   /// 指す駒を選択した
   void selectedPieceToDrop(
@@ -17,8 +17,8 @@ abstract class ShogiGamePresenter {
     List<Vector2> movablePositions,
   );
 
-  /// 指す駒を選択解除した
-  void deselectedPieceToDrop();
+  // /// 指す駒を選択解除した
+  // void deselectedPieceToDrop();
 
   /// ターン終了
   void turnEnd(
