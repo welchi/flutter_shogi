@@ -107,4 +107,27 @@ class PlayerRepositoryImpl extends StateNotifier<Player> with PlayerRepository {
   String getId() {
     return state.id;
   }
+
+  @override
+  Piece dropPiece({
+    required Piece piece,
+    required Vector2 dest,
+  }) {
+    final newPiece = piece.copyWith(
+      position: dest,
+    );
+    final newPieces = List<Piece>.from(
+      state.pieces,
+    )..add(newPiece);
+    final newCapturedPieces = List<Piece>.from(
+      state.capturedPieces,
+    )..removeWhere(
+        (_piece) => _piece == piece,
+      );
+    state = state.copyWith(
+      pieces: newPieces,
+      capturedPieces: newCapturedPieces,
+    );
+    return newPiece;
+  }
 }

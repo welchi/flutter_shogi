@@ -20,6 +20,12 @@ abstract class PlayerRepository {
     required Vector2 dest,
   });
 
+  /// 駒を指す
+  Piece dropPiece({
+    required Piece piece,
+    required Vector2 dest,
+  });
+
   /// 駒を削除
   void removePiece({
     required Piece piece,
