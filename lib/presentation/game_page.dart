@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/command/command.dart';
-import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/presentation/game_view_model.dart';
 
 import 'game_presenter.dart';
@@ -96,33 +95,35 @@ class TileView extends ConsumerWidget {
   }
 }
 
-class TileText extends StatelessWidget {
+class TileText extends ConsumerWidget {
   const TileText({
     Key? key,
     required this.tile,
   }) : super(key: key);
   final HighlightableBoardTile tile;
   @override
-  Widget build(BuildContext context) {
-    final piece = tile.piece?.piece;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final piece = tile.piece;
     // 駒を配置していないマスは何も表示しない
     if (piece == null) {
       return const SizedBox();
     }
-    final isAi = tile.piece?.owner == PlayerType.ai;
+    final playerId = ref.watch(playerIdProvider);
+
+    final isAi = tile.piece?.ownerId == playerId;
 
     return isAi
         ? Transform.rotate(
             angle: pi,
             child: Text(
-              tile.piece?.piece.name ?? 'Null',
+              tile.piece?.name ?? 'Null',
               // style: Theme.of(context).textTheme.bodyText2?.copyWith(
               //       fontWeight: FontWeight.bold,
               //     ),
             ),
           )
         : Text(
-            tile.piece?.piece.name ?? 'Null',
+            tile.piece?.name ?? 'Null',
             // style: Theme.of(context).textTheme.bodyText2?.copyWith(
             //       fontWeight: FontWeight.bold,
             //     ),

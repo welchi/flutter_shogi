@@ -14,28 +14,17 @@ part 'game_view_model.freezed.dart';
 final rivalPiecesProvider = Provider((ref) {
   final pieces = ref.watch(rivalRepositoryProvider).pieces;
   return pieces;
-  // return pieces
-  //     .map(
-  //       (piece) => PieceWithOwner(
-  //         owner: PlayerType.ai,
-  //         piece: piece,
-  //       ),
-  //     )
-  //     .toList();
 });
 
 final playerPiecesProvider = Provider((ref) {
   final pieces = ref.watch(playerRepositoryProvider).pieces;
   return pieces;
-  // .map(
-  //   (piece) => PieceWithOwner(
-  //     owner: PlayerType.human,
-  //     piece: piece,
-  //   ),
-  // )
-  // .toList();
 });
 
+final playerIdProvider = Provider((ref) {
+  final id = ref.watch(playerRepositoryProvider).id;
+  return id;
+});
 final highlightableTileMatrixProvider = Provider(
   (ref) {
     final humanPieces = ref.watch(playerPiecesProvider);
