@@ -44,6 +44,8 @@ final _keimaUpLeft = Movement(
 
 // 駒の動きを定義
 // 王将
+const ousho = '王';
+const gyokusho = '玉';
 final _oushoMovableDirections = [
   _upOne,
   _upRightOne,
@@ -55,12 +57,14 @@ final _oushoMovableDirections = [
   _upLeftOne,
 ];
 // 飛車、龍王
+const hisha = '飛';
 final _hishaMovableDirections = [
   _upToEnd,
   _rightToEnd,
   _downToEnd,
   _leftToEnd,
 ];
+const ryuou = '龍';
 final _ryuouMovableDirections = [
   ..._hishaMovableDirections,
   _upRightOne,
@@ -69,12 +73,14 @@ final _ryuouMovableDirections = [
   _upLeftOne,
 ];
 // 角行、竜目
+const kakugyo = '角';
 final _kakuMovableDirections = [
   _upRightToEnd,
   _downRightToEnd,
   _downLeftToEnd,
   _upLeftToEnd,
 ];
+const ryume = '馬';
 final _ryumeMovableDirections = [
   ..._kakuMovableDirections,
   _upOne,
@@ -84,6 +90,7 @@ final _ryumeMovableDirections = [
 ];
 
 // 金将
+const kinsho = '金';
 final _kinshoMovableDirections = [
   _upOne,
   _upRightOne,
@@ -94,6 +101,8 @@ final _kinshoMovableDirections = [
 ];
 
 // 銀将
+const ginsho = '銀';
+const narigin = '全';
 final _ginshoMovableDirections = [
   _upOne,
   _upRightOne,
@@ -103,17 +112,24 @@ final _ginshoMovableDirections = [
 ];
 
 // 桂馬
+const keima = '桂';
+const narikei = '圭';
 final _keimaMovableDirections = [
   _keimaUpRight,
   _keimaUpLeft,
 ];
 
 // 香車
+const kyosha = '香';
+const narikyo = '杏';
 final _kyoshaMovableDirections = [
   _upToEnd,
 ];
 
 // 歩兵
+const huhyo = '歩';
+const narikin = 'と';
+
 final _huhyoMovableDirections = [
   _upOne,
 ];
@@ -131,14 +147,14 @@ class Movement with _$Movement {
 
 // キー割り当ても必要
 @freezed
-class Piece with _$Piece {
-  const factory Piece({
+abstract class Piece implements _$Piece {
+  factory Piece({
     required String name,
     required List<Movement> movableDirections,
     required String ownerId,
     Vector2? position,
   }) = _Piece;
-  const Piece._();
+  Piece._();
   factory Piece.huhyo(
     Vector2 position,
     String ownerId,
@@ -289,4 +305,26 @@ class Piece with _$Piece {
         position: position,
         ownerId: ownerId,
       );
+
+  Piece? promoted() {
+    if (name == huhyo) {
+      return Piece.tokin(position!, ownerId);
+    }
+    if (name == kyosha) {
+      return Piece.narikyo(position!, ownerId);
+    }
+    if (name == keima) {
+      return Piece.narikei(position!, ownerId);
+    }
+    if (name == ginsho) {
+      return Piece.narigin(position!, ownerId);
+    }
+    if (name == hisha) {
+      return Piece.ryuo(position!, ownerId);
+    }
+    if (name == kakugyo) {
+      return Piece.ryuma(position!, ownerId);
+    }
+    return null;
+  }
 }

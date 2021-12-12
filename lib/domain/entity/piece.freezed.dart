@@ -289,7 +289,7 @@ class __$PieceCopyWithImpl<$Res> extends _$PieceCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Piece extends _Piece {
-  const _$_Piece(
+  _$_Piece(
       {required this.name,
       required this.movableDirections,
       required this.ownerId,
@@ -337,12 +337,12 @@ class _$_Piece extends _Piece {
 }
 
 abstract class _Piece extends Piece {
-  const factory _Piece(
+  factory _Piece(
       {required String name,
       required List<Movement> movableDirections,
       required String ownerId,
       Vector2? position}) = _$_Piece;
-  const _Piece._() : super._();
+  _Piece._() : super._();
 
   @override
   String get name;
