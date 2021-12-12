@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/game/game.dart';
 import 'package:flutter_shogi/domain/presenter/presenter.dart';
@@ -19,10 +18,10 @@ final movePieceProvider = Provider(
 class MovePiece {
   MovePiece(this._read);
   final Reader _read;
-  late final PlayerRepository humanPlayerRepository = _read(
+  late final PlayerRepository playerRepository = _read(
     playerRepositoryProvider.notifier,
   );
-  late final PlayerRepository aiPlayerRepository = _read(
+  late final PlayerRepository rivalRepository = _read(
     rivalRepositoryProvider.notifier,
   );
   late final ShogiGamePresenter shogiGamePresenter = _read(
@@ -33,16 +32,17 @@ class MovePiece {
   );
 
   void call({
-    required PieceWithOwner piece,
+    required Piece piece,
     required Vector2 dest,
   }) {
-    final newPiece = piece.owner == PlayerType.human
-        ? humanPlayerRepository.movePiece(
-            piece: piece.piece,
+    final playerId = playerRepository.getId();
+    final newPiece = piece.ownerId == playerId
+        ? playerRepository.movePiece(
+            piece: piece,
             dest: dest,
           )
-        : aiPlayerRepository.movePiece(
-            piece: piece.piece,
+        : rivalRepository.movePiece(
+            piece: piece,
             dest: dest,
           );
     shogiGamePresenter.deselectedPiece();

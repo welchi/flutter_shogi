@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/game/shogi_game_output.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
@@ -72,14 +71,15 @@ class ShogiGame {
 
   /// ターンごとの判定
   /// [newPiece]はこのターンで移動した駒
-  void update(PieceWithOwner newPiece) {
-    final myPieces = playerRepository.getPieces();
-    final opponentPieces = rivalRepository.getPieces();
+  void update(Piece newPiece) {
+    // final myPieces = playerRepository.getPieces();
+    // final opponentPieces = rivalRepository.getPieces();
 
+    final playerId = playerRepository.getId();
     // 駒の取得処理を実行
-    if (newPiece.owner == PlayerType.human) {
+    if (newPiece.ownerId == playerId) {
       callCaptureProcess(
-        newPiece: newPiece.piece,
+        newPiece: newPiece,
         pieces: rivalRepository.getPieces(),
         removePiece: (Piece piece) => rivalRepository.removePiece(
           piece: piece,
@@ -88,19 +88,19 @@ class ShogiGame {
           piece: piece,
         ),
       );
-    }
+    } else {}
 
-    // 動かした先に駒があれば、取得
-    if (newPiece.owner == PlayerType.ai) {
-      final capturedPiece = myPieces.firstWhereOrNull(
-        (piece) => piece.position == newPiece.piece.position,
-      );
-      if (capturedPiece != null) {
-        playerRepository.removePiece(
-          piece: capturedPiece,
-        );
-      }
-    }
+    // // 動かした先に駒があれば、取得
+    // if (newPiece.owner == PlayerType.ai) {
+    //   final capturedPiece = myPieces.firstWhereOrNull(
+    //     (piece) => piece.position == newPiece.piece.position,
+    //   );
+    //   if (capturedPiece != null) {
+    //     playerRepository.removePiece(
+    //       piece: capturedPiece,
+    //     );
+    //   }
+    // }
 
     // * どちらに王がなければ、勝ち負け決定
     final newMyPieces = playerRepository.getPieces();

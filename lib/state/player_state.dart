@@ -97,4 +97,9 @@ class PlayerRepositoryImpl extends StateNotifier<Player> with PlayerRepository {
       capturedPieces: newCapturedPieces,
     );
   }
+
+  @override
+  String getId() {
+    return state.id;
+  }
 }

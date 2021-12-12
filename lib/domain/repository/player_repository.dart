@@ -5,6 +5,9 @@ abstract class PlayerRepository {
   /// 駒を初期化
   void initialize(List<Piece> pieces);
 
+  /// プレイヤーのIDを取得
+  String getId();
+
   /// 盤面上に配置された駒を取得
   List<Piece> getPieces();
 
