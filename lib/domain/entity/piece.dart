@@ -328,4 +328,18 @@ abstract class Piece implements _$Piece {
     }
     return null;
   }
+
+  bool isPromoted() {
+    switch (name) {
+      case narikin:
+      case narikyo:
+      case narikei:
+      case narigin:
+      case ryuou:
+      case ryume:
+        return true;
+      default:
+        return false;
+    }
+  }
 }
