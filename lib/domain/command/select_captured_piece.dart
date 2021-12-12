@@ -55,7 +55,7 @@ class SelectCapturedPiece {
         )
         .toList();
     // 移動可能な駒をハイライト
-    shogiGamePresenter.selectedPieceToMove(
+    shogiGamePresenter.selectedPieceToDrop(
       piece,
       movablePositions,
     );

@@ -113,7 +113,6 @@ class PlayerRepositoryImpl extends StateNotifier<Player> with PlayerRepository {
     required Piece piece,
     required Vector2 dest,
   }) {
-    print('drop');
     final newPiece = piece.copyWith(
       position: dest,
     );
