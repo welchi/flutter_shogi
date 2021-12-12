@@ -42,12 +42,12 @@ final rivalIdProvider = Provider((ref) {
 final highlightableTileMatrixProvider = Provider(
   (ref) {
     final playerPieces = ref.watch(playerPiecesProvider);
-    final rivalPieces = ref.watch(rivalPiecesProvider);
+    final aiPieces = ref.watch(rivalPiecesProvider);
     final movalPositions = ref.watch(movablePositionsProvider);
     final highlightableMatrix = getHighlightableTileMatrix(
       playerPieces: playerPieces,
-      rivalPieces: rivalPieces,
-      movalPositions: movalPositions,
+      rivalPieces: aiPieces,
+      movablePositions: movalPositions,
     );
     return highlightableMatrix.reversed.toList();
   },
@@ -63,7 +63,7 @@ final flattenTilesProvider = Provider(
 List<List<HighlightableBoardTile>> getHighlightableTileMatrix({
   required List<Piece> playerPieces,
   required List<Piece> rivalPieces,
-  required List<Vector2>? movalPositions,
+  required List<Vector2>? movablePositions,
 }) {
   final tileMatrix = getPieceMatrix(
     [...playerPieces, ...rivalPieces],
@@ -87,10 +87,10 @@ List<List<HighlightableBoardTile>> getHighlightableTileMatrix({
             .toList(),
       )
       .toList();
-  if (movalPositions == null) {
+  if (movablePositions == null) {
     return highlightableTileMatrix;
   }
-  for (final position in movalPositions) {
+  for (final position in movablePositions) {
     final tile = highlightableTileMatrix[position.y.toInt()][position.x.toInt()]
         .copyWith(
       isMovable: true,
