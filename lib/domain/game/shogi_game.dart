@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/game/shogi_game_output.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
-import 'package:flutter_shogi/domain/rule/judgement.dart';
+import 'package:flutter_shogi/domain/rule/victory_or_defeat.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
 
@@ -98,10 +98,10 @@ class ShogiGame {
       );
     }
     // * どちらに王がなければ、勝ち負け決定
-    final newMyPieces = playerRepository.getPieces();
-    final newOpponentPieces = rivalRepository.getPieces();
-    final meDefeat = checkIsDefeat(newMyPieces);
-    final opponentDefeat = checkIsDefeat(newOpponentPieces);
+    final playerPieces = playerRepository.getPieces();
+    final rivalPieces = rivalRepository.getPieces();
+    final playerHasOusho = checkHasOusho(playerPieces);
+    final rivalHasOusho = checkHasOusho(rivalPieces);
 
     // 2歩をチェック
 
