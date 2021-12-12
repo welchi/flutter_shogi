@@ -111,7 +111,7 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
     final context = _read(
       navigatorKeyProvider,
     ).currentContext;
-    return showAlertDialog(
+    return showOkAlertDialog(
       context: context!,
       title: title,
       message: content,
