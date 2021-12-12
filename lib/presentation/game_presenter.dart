@@ -89,9 +89,18 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
   }
 
   @override
-  Future<bool> askPromoteOrNot() {
-    // TODO: implement askPromoteOrNot
-    throw UnimplementedError();
+  Future<bool> askPromoteOrNot() async {
+    final context = _read(
+      navigatorKeyProvider,
+    ).currentContext;
+    final result = await showOkCancelAlertDialog(
+      context: context!,
+      message: '成りますか？',
+    );
+    if (result == OkCancelResult.ok) {
+      return true;
+    }
+    return false;
   }
 
   @override
