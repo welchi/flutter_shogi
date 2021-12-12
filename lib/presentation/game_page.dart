@@ -19,6 +19,7 @@ class GamePage extends ConsumerWidget {
         title: const Text('Flutter Shogi'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: const [
           // 相手の持ち駒
           SizedBox(
@@ -111,6 +112,7 @@ class BoardView extends ConsumerWidget {
     final tiles = ref.watch(flattenTilesProvider);
     return GridView.count(
       physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
       crossAxisCount: 9,
       children: tiles
           .map(
