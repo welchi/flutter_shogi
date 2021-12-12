@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/command/command.dart';
+import 'package:flutter_shogi/domain/command/select_captured_piece.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/presentation/game_view_model.dart';
 
@@ -63,39 +64,36 @@ class RivalCapturedPiecesView extends ConsumerWidget {
   }
 }
 
-class CapturedPiecesView extends StatelessWidget {
+class CapturedPiecesView extends ConsumerWidget {
   const CapturedPiecesView({
     Key? key,
     required this.capturedPieces,
   }) : super(key: key);
   final List<Piece> capturedPieces;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GridView.count(
       physics: const NeverScrollableScrollPhysics(),
       crossAxisCount: 9,
       children: capturedPieces
           .map(
-            (piece) => Center(
-              child: TileText(
-                piece: piece,
+            (piece) => Material(
+              child: InkWell(
+                onTap: () {
+                  ref.read(selectCapturedPieceProvider).call(
+                        piece: piece,
+                      );
+                },
+                child: Center(
+                  child: TileText(
+                    piece: piece,
+                  ),
+                ),
               ),
             ),
           )
           .toList(),
     );
-    // return Wrap(
-    //   children: capturedPieces
-    //       .map(
-    //         (piece) => Padding(
-    //           padding: const EdgeInsets.all(8),
-    //           child: TileText(
-    //             piece: piece,
-    //           ),
-    //         ),
-    //       )
-    //       .toList(),
-    // );
   }
 }
 
