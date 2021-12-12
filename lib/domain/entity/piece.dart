@@ -307,7 +307,7 @@ abstract class Piece implements _$Piece {
       );
 
   /// 成りで何に成るか
-  Piece? promoted() {
+  Piece? promote() {
     if (name == huhyo) {
       return Piece.tokin(position!, ownerId);
     }

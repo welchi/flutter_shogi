@@ -7,7 +7,7 @@ bool checkIsAbleToPromote({
 }) {
   final isPlayer = piece.ownerId == playerId;
   if (isPlayer) {
-    return piece.position!.y >= 6;
+    return piece.position!.y >= 6 && piece.promote() != null;
   }
-  return piece.position!.y <= 2;
+  return piece.position!.y <= 2 && piece.promote() != null;
 }
