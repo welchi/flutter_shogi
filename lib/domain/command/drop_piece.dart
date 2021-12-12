@@ -13,8 +13,7 @@ final dropPieceProvider = Provider(
   ),
 );
 
-// この前に、移動可能なタイルをハイライト？
-// 斜め、横と、
+/// 駒を指す
 class DropPiece {
   DropPiece(this._read);
   final Reader _read;

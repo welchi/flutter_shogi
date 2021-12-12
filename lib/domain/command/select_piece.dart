@@ -12,6 +12,7 @@ final selectPieceProvider = Provider(
   ),
 );
 
+/// 移動する駒を選択
 class SelectPiece {
   SelectPiece(this._read);
   final Reader _read;

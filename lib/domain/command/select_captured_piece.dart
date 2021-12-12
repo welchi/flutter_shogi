@@ -13,6 +13,7 @@ final selectCapturedPieceProvider = Provider(
   ),
 );
 
+/// 指す駒を選択
 class SelectCapturedPiece {
   SelectCapturedPiece(this._read);
 
