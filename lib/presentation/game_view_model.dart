@@ -25,6 +25,12 @@ final playerIdProvider = Provider((ref) {
   final id = ref.watch(playerRepositoryProvider).id;
   return id;
 });
+
+final rivalIdProvider = Provider((ref) {
+  final id = ref.watch(rivalRepositoryProvider).id;
+  return id;
+});
+
 final highlightableTileMatrixProvider = Provider(
   (ref) {
     final humanPieces = ref.watch(playerPiecesProvider);

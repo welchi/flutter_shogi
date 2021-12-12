@@ -108,25 +108,19 @@ class TileText extends ConsumerWidget {
     if (piece == null) {
       return const SizedBox();
     }
-    final playerId = ref.watch(playerIdProvider);
+    final rivalId = ref.watch(rivalIdProvider);
 
-    final isAi = tile.piece?.ownerId == playerId;
+    final isRival = tile.piece?.ownerId == rivalId;
 
-    return isAi
+    return isRival
         ? Transform.rotate(
             angle: pi,
             child: Text(
               tile.piece?.name ?? 'Null',
-              // style: Theme.of(context).textTheme.bodyText2?.copyWith(
-              //       fontWeight: FontWeight.bold,
-              //     ),
             ),
           )
         : Text(
             tile.piece?.name ?? 'Null',
-            // style: Theme.of(context).textTheme.bodyText2?.copyWith(
-            //       fontWeight: FontWeight.bold,
-            //     ),
           );
   }
 }
