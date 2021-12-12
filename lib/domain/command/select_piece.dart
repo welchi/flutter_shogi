@@ -69,43 +69,42 @@ List<Vector2> getMovablePositions({
 }) {
   const boardSizeX = Board.colSize - 1;
   const boardSizeY = Board.rowSize - 1;
-  final owner = piece.ownerId;
+  final isPlayer = piece.ownerId == playerId;
   // final piece = rawPiece.piece;
   final movableDirections = piece.movableDirections;
-  if (owner == playerId) {
-    final board = getPieceMatrix(pieces);
-    final directions = movableDirections.expand((movement) {
-      final movablePositions = <Vector2>[];
-      for (var i = 0; i < movement.count; i++) {
-        final nextPosition =
-            piece.position! + (movement.direction.scaled(i + 1));
-        if (nextPosition.x > boardSizeX || nextPosition.y > boardSizeY) {
-          break;
-        }
-        if (nextPosition.x < 0 || nextPosition.y < 0) {
-          break;
-        }
-        final nextTile = board[nextPosition.y.toInt()][nextPosition.x.toInt()];
-        // 移動先に駒がないなら進んで良し
-        if (nextTile == null) {
-          movablePositions.add(nextPosition);
-          continue;
-        }
-        // 移動先に自分の駒が存在する
-        if (nextTile.ownerId == playerId) {
-          break;
-          // 移動先に相手の駒が存在する
-        } else {
-          movablePositions.add(nextPosition);
-          break;
-        }
+  // if (owner == playerId) {
+  final board = getPieceMatrix(pieces);
+  final directions = movableDirections.expand((movement) {
+    final movablePositions = <Vector2>[];
+    for (var i = 0; i < movement.count; i++) {
+      final nextPosition = piece.position! + (movement.direction.scaled(i + 1));
+      if (nextPosition.x > boardSizeX || nextPosition.y > boardSizeY) {
+        break;
       }
-      return movablePositions;
-    }).toList();
-    return directions;
-  }
-  // todo: AIの場合
-  return [];
+      if (nextPosition.x < 0 || nextPosition.y < 0) {
+        break;
+      }
+      final nextTile = board[nextPosition.y.toInt()][nextPosition.x.toInt()];
+      // 移動先に駒がないなら進んで良し
+      if (nextTile == null) {
+        movablePositions.add(nextPosition);
+        continue;
+      }
+      // 移動先に自分の駒が存在する
+      if (nextTile.ownerId == playerId) {
+        break;
+        // 移動先に相手の駒が存在する
+      } else {
+        movablePositions.add(nextPosition);
+        break;
+      }
+    }
+    return movablePositions;
+  }).toList();
+  return directions;
+  // }
+  // // todo: AIの場合
+  // return [];
 }
 
 List<List<Piece?>> getPieceMatrix(List<Piece> pieces) {
