@@ -130,4 +130,17 @@ class PlayerRepositoryImpl extends StateNotifier<Player> with PlayerRepository {
     );
     return newPiece;
   }
+
+  @override
+  void promote({
+    required Piece piece,
+  }) {
+    final promotedPiece = piece.promote()!;
+    final newPieces = List<Piece>.from(state.pieces)
+      ..removeWhere(
+        (_piece) => _piece == piece,
+      )
+      ..add(promotedPiece);
+    state = state.copyWith(pieces: newPieces);
+  }
 }

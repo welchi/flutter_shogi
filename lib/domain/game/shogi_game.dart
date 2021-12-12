@@ -132,6 +132,18 @@ class ShogiGame {
     );
     if (isAbleToPromote) {
       final isPromote = await gamePresenter.askPromoteOrNot();
+      if (isPromote) {
+        if (newPiece.ownerId == playerId) {
+          playerRepository.promote(
+            piece: newPiece,
+          );
+        }
+        if (newPiece.ownerId != playerId) {
+          rivalRepository.promote(
+            piece: newPiece,
+          );
+        }
+      }
     }
 
     // 状況チェック

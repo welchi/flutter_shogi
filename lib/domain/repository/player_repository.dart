@@ -35,4 +35,9 @@ abstract class PlayerRepository {
   void addCapturedPiece({
     required Piece piece,
   });
+
+  /// 成る
+  void promote({
+    required Piece piece,
+  });
 }
