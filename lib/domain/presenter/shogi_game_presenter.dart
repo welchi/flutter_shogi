@@ -17,8 +17,14 @@ abstract class ShogiGamePresenter {
     List<Vector2> movablePositions,
   );
 
-  // /// 指す駒を選択解除した
-  // void deselectedPieceToDrop();
+  /// 結果についてのダイアログを表示
+  Future<void> showResultDialog({
+    required String title,
+    required String content,
+  });
+
+  /// 成るかチェック
+  Future<bool> askPromoteOrNot();
 
   /// ターン終了
   void turnEnd(

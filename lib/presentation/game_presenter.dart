@@ -1,3 +1,4 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/presenter/shogi_game_presenter.dart';
@@ -84,5 +85,16 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
     _read(
       turnOwnerProvider.notifier,
     ).state = nextPlayer;
+  }
+
+  @override
+  Future<bool> askPromoteOrNot() {
+    // TODO: implement askPromoteOrNot
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> showResultDialog({required String title, required String content}) {
+    return showAlertDialog(context: context)
   }
 }

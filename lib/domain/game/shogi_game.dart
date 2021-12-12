@@ -4,6 +4,7 @@ import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/game/shogi_game_output.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
 import 'package:flutter_shogi/domain/rule/nifu.dart';
+import 'package:flutter_shogi/domain/rule/promote.dart';
 import 'package:flutter_shogi/domain/rule/victory_or_defeat.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
@@ -125,6 +126,10 @@ class ShogiGame {
     }
 
     // 成れるなら成るか確認
+    final isAbleToPromote = checkIsAbleToPromote(
+      piece: newPiece,
+      playerId: playerId,
+    );
 
     // 状況チェック
   }
