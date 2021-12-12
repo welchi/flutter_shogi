@@ -16,8 +16,15 @@ class ShogiGame {
   ShogiGame(this._read);
   final Reader _read;
   late final ShogiGameOutput _output;
-  late final PlayerRepository senteRepository =
-      _read(humanPlayerRepositoryProvider.notifier);
+  // late final PlayerRepository senteRepository =
+  //     _read(humanPlayerRepositoryProvider.notifier);
+
+  late final PlayerRepository meRepository = _read(
+    humanPlayerRepositoryProvider.notifier,
+  );
+  late final PlayerRepository opponentRepository = _read(
+    aiPlayerRepositoryProvider.notifier,
+  );
 
   /// ゲームを初期化
   void initGame() {
@@ -35,8 +42,10 @@ class ShogiGame {
   }
 
   /// ターンごとの判定
-  /// [newPiece]はこのターンで
+  /// [newPiece]はこのターンで移動した駒
   void update(PieceWithOwner newPiece) {
+    final myPieces = meRepository.getPieces();
+
     // 状況チェック
     /*
     * final sentePiecies=senteRepository.state.piecies
