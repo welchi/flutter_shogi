@@ -55,7 +55,9 @@ class ShogiGame {
     );
     if (capturedPiece != null) {
       removePiece(capturedPiece);
-      capturePiece(capturedPiece);
+      // 駒が成っているなら、成りを解除
+      final demotedPiece = capturedPiece.demote() ?? capturedPiece;
+      capturePiece(demotedPiece);
     }
   }
 
