@@ -7,10 +7,12 @@ final movablePositionsProvider = StateProvider<List<Vector2>?>(
   (_) => null,
 );
 
-final selectedPieceProvider = StateProvider<Piece?>(
+final selectedPieceToMoveProvider = StateProvider<Piece?>(
   (_) => null,
 );
-
+final selectedPieceToDropProvider = StateProvider<Piece?>(
+  (_) => null,
+);
 final turnOwnerProvider = StateProvider<Player?>(
   (_) => null,
 );
@@ -27,7 +29,7 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
   @override
   void deselectedPiece() {
     _read(
-      selectedPieceProvider.notifier,
+      selectedPieceToMoveProvider.notifier,
     ).state = null;
     _read(
       movablePositionsProvider.notifier,
@@ -40,7 +42,7 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
     List<Vector2> movablePositions,
   ) {
     _read(
-      selectedPieceProvider.notifier,
+      selectedPieceToMoveProvider.notifier,
     ).state = piece;
     _read(
       movablePositionsProvider.notifier,
@@ -52,5 +54,18 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
     _read(
       turnOwnerProvider.notifier,
     ).state = nextPlayer;
+  }
+
+  @override
+  void selectedPieceToDrop(
+    Piece piece,
+    List<Vector2> movablePositions,
+  ) {
+    // TODO: implement selectedPieceToDrop
+  }
+
+  @override
+  void deselectedPieceToDrop() {
+    // TODO: implement deselectedPieceToDrop
   }
 }

@@ -135,7 +135,7 @@ class TileView extends ConsumerWidget {
       child: InkWell(
         onTap: isHighlight
             ? () {
-                final selectedPiece = ref.read(selectedPieceProvider);
+                final selectedPiece = ref.read(selectedPieceToMoveProvider);
                 ref.read(movePieceProvider).call(
                       piece: selectedPiece!,
                       dest: tile.position,
