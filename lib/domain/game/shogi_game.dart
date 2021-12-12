@@ -4,6 +4,7 @@ import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/game/shogi_game_output.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
+import 'package:flutter_shogi/domain/rule/judgement.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
 
@@ -59,6 +60,28 @@ class ShogiGame {
         );
       }
     }
+
+    // 動かした先に駒があれば、取得
+    if (newPiece.owner == PlayerType.ai) {
+      final capturedPiece = myPieces.firstWhereOrNull(
+        (piece) => piece.position == newPiece.piece.position,
+      );
+      if (capturedPiece != null) {
+        meRepository.removePiece(
+          piece: capturedPiece,
+        );
+      }
+    }
+
+    // * どちらに王がなければ、勝ち負け決定
+    final newMyPieces = meRepository.getPieces();
+    final newOpponentPieces = opponentRepository.getPieces();
+    final meDefeat = checkIsDefeat(newMyPieces);
+    final opponentDefeat = checkIsDefeat(newOpponentPieces);
+
+    //  2歩をチェック
+
+    // 成れるなら成るか確認
 
     // 状況チェック
     /*
