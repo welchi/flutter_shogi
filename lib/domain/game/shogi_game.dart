@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/game/shogi_game_output.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
+import 'package:flutter_shogi/domain/rule/nifu.dart';
 import 'package:flutter_shogi/domain/rule/victory_or_defeat.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
@@ -97,41 +98,35 @@ class ShogiGame {
         ),
       );
     }
-    // * どちらに王がなければ、勝ち負け決定
+    // 勝敗判定
     final playerPieces = playerRepository.getPieces();
     final rivalPieces = rivalRepository.getPieces();
     final playerHasOusho = checkHasOusho(playerPieces);
     final rivalHasOusho = checkHasOusho(rivalPieces);
 
-    // 2歩をチェック
+    // プレイヤーの負け
+    if (!playerHasOusho) {
+      //
+    }
+    // 相手の負け
+    if (!rivalHasOusho) {
+      //
+    }
+    // 二歩をチェック
+    final playerGot2Fu = check2Fu(playerPieces);
+    final rivalGot2Fu = check2Fu(rivalPieces);
+    // プレイヤーの負け
+    if (playerGot2Fu) {
+      //
+    }
+    // 相手の負け
+    if (rivalGot2Fu) {
+      //
+    }
 
     // 成れるなら成るか確認
 
     // 状況チェック
-
-    /*
-    * final sentePiecies=senteRepository.state.piecies
-    * final gotePiecies = goteRepository.state.piecies
-    * final board = boardRepository.state
-    * 
-    * どちらに王がなければ、勝ち負け決定
-    * if(hasOu(sentePiecies))
-    * gameOutput.notifyEnd()
-    * if(hasOu(gotePiecies))
-    * gameOutput.notifyEnd()
-    * 
-    * 2歩をチェック
-    * if()
-    * gameOutput.notifyEnd()
-    * 
-    * 各タイルをチェックし、駒が重なっていたら、取った方の持ち駒にする
-    * 
-    * 成れるなら、成るか確認
-    * trueなら成る
-    * 
-    * 
-    * 
-    * */
   }
 }
 
