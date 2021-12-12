@@ -35,11 +35,18 @@ class SelectCapturedPiece {
     final board = getPieceMatrix(
       [...playerPieces, ...rivalPieces],
     );
+    // 空いているマス目ならどこでも置ける
     final movablePositions = board
         .asMap()
         .entries
         .expand(
-          (rowEntry) => rowEntry.value.asMap().entries.map<Vector2>(
+          (rowEntry) => rowEntry.value
+              .asMap()
+              .entries
+              .where(
+                (colEntry) => colEntry.value == null,
+              )
+              .map<Vector2>(
                 (colEntry) => Vector2(
                   colEntry.key.toDouble(),
                   rowEntry.key.toDouble(),
