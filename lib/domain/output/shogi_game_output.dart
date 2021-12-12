@@ -1,7 +1,7 @@
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:vector_math/vector_math.dart';
 
-abstract class ShogiGamePresenter {
+abstract class ShogiGameOutput {
   /// 移動する駒を選択した
   void selectedPieceToMove(
     Piece piece,
