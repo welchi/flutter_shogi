@@ -12,7 +12,7 @@ import 'game_presenter.dart';
 part 'game_view_model.freezed.dart';
 
 final aiPiecesProvider = Provider((ref) {
-  final pieces = ref.watch(aiPlayerRepositoryProvider).pieces;
+  final pieces = ref.watch(rivalRepositoryProvider).pieces;
   return pieces
       .map(
         (piece) => PieceWithOwner(
@@ -24,7 +24,7 @@ final aiPiecesProvider = Provider((ref) {
 });
 
 final humanPiecesProvider = Provider((ref) {
-  final pieces = ref.watch(humanPlayerRepositoryProvider).pieces;
+  final pieces = ref.watch(playerRepositoryProvider).pieces;
   return pieces
       .map(
         (piece) => PieceWithOwner(

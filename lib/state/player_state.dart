@@ -4,21 +4,34 @@ import 'package:flutter_shogi/domain/game/shogi_game.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
 import 'package:vector_math/vector_math.dart';
 
-final humanPlayerRepositoryProvider =
+// とりあえず、プレイヤーのIDは固定値で決める
+const playerId = 'you';
+const rivalId = 'rival';
+
+final playerRepositoryProvider =
     StateNotifierProvider<PlayerRepositoryImpl, Player>(
   (ref) => PlayerRepositoryImpl(
-    Player.human(
-      pieces: getInitialPieces(),
+    Player(
+      id: playerId,
+      type: PlayerType.human,
+      pieces: getInitialPieces(
+        ownerId: playerId,
+      ),
       capturedPieces: [],
     ),
   ),
 );
 
-final aiPlayerRepositoryProvider =
+final rivalRepositoryProvider =
     StateNotifierProvider<PlayerRepositoryImpl, Player>(
   (ref) => PlayerRepositoryImpl(
-    Player.ai(
-      pieces: getInitialPieces(isSenko: false),
+    Player(
+      id: rivalId,
+      type: PlayerType.human,
+      pieces: getInitialPieces(
+        ownerId: rivalId,
+        isOpponent: false,
+      ),
       capturedPieces: [],
     ),
   ),
@@ -84,17 +97,4 @@ class PlayerRepositoryImpl extends StateNotifier<Player> with PlayerRepository {
       capturedPieces: newCapturedPieces,
     );
   }
-  //
-  // @override
-  // void updatePiece({
-  //   required Piece olePiece,
-  //   required Piece newPiece,
-  // }) {
-  //   final newPieces = List<Piece>.from(state.pieces)
-  //     ..removeWhere(
-  //       (_piece) => _piece == olePiece,
-  //     )
-  //     ..add(newPiece);
-  //   state = state.copyWith(pieces: newPieces);
-  // }
 }

@@ -21,26 +21,26 @@ class ShogiGame {
   // late final PlayerRepository senteRepository =
   //     _read(humanPlayerRepositoryProvider.notifier);
 
-  late final PlayerRepository meRepository = _read(
-    humanPlayerRepositoryProvider.notifier,
+  late final PlayerRepository playerRepository = _read(
+    playerRepositoryProvider.notifier,
   );
   late final PlayerRepository opponentRepository = _read(
-    aiPlayerRepositoryProvider.notifier,
+    rivalRepositoryProvider.notifier,
   );
 
   /// ゲームを初期化
   void initGame() {
     // 先攻で歩兵を並べる
     final senkoPieces = getInitialPieces();
-    final kokoPieces = getInitialPieces(isSenko: false);
-    final senkoPlayer = Player.human(
-      pieces: senkoPieces,
-      capturedPieces: [],
-    );
-    final kokoPlayer = Player.ai(
-      pieces: kokoPieces,
-      capturedPieces: [],
-    );
+    final kokoPieces = getInitialPieces(isOpponent: false);
+    // final senkoPlayer = Player(
+    //   pieces: senkoPieces,
+    //   capturedPieces: [],
+    // );
+    // final kokoPlayer = Player(
+    //   pieces: kokoPieces,
+    //   capturedPieces: [],
+    // );
   }
 
   /// 駒を取得
@@ -142,11 +142,12 @@ class ShogiGame {
 
 /// 駒の初期配置を取得
 List<Piece> getInitialPieces({
-  bool isSenko = true,
+  required String ownerId,
+  bool isOpponent = true,
 }) {
-  final huhyoRowY = (isSenko ? 2 : Board.colSize - 1 - 2).toDouble();
-  final hisyakakuRowY = (isSenko ? 1 : Board.colSize - 1 - 1).toDouble();
-  final oushoRowY = (isSenko ? 0 : Board.colSize - 1 - 0).toDouble();
+  final huhyoRowY = (isOpponent ? 2 : Board.colSize - 1 - 2).toDouble();
+  final hisyakakuRowY = (isOpponent ? 1 : Board.colSize - 1 - 1).toDouble();
+  final oushoRowY = (isOpponent ? 0 : Board.colSize - 1 - 0).toDouble();
 
   final huhyoRow = List.generate(
     Board.rowSize,
@@ -155,78 +156,90 @@ List<Piece> getInitialPieces({
         x.toDouble(),
         huhyoRowY.toDouble(),
       ),
+      ownerId,
     ),
   ).toList();
 
   final hisyakakuRow = [
     Piece.kakugyo(
       Vector2(
-        isSenko ? 1 : 7,
+        isOpponent ? 1 : 7,
         hisyakakuRowY,
       ),
+      ownerId,
     ),
     Piece.hisha(
       Vector2(
-        isSenko ? 7 : 1,
+        isOpponent ? 7 : 1,
         hisyakakuRowY,
       ),
+      ownerId,
     ),
   ];
 
   final oushoRow = [
     Piece.kyosha(
       Vector2(
-        isSenko ? 0 : 8,
+        isOpponent ? 0 : 8,
         oushoRowY,
       ),
+      ownerId,
     ),
     Piece.keima(
       Vector2(
-        isSenko ? 1 : 7,
+        isOpponent ? 1 : 7,
         oushoRowY,
       ),
+      ownerId,
     ),
     Piece.ginsho(
       Vector2(
-        isSenko ? 2 : 6,
+        isOpponent ? 2 : 6,
         oushoRowY,
       ),
+      ownerId,
     ),
     Piece.kinsho(
       Vector2(
-        isSenko ? 3 : 5,
+        isOpponent ? 3 : 5,
         oushoRowY,
       ),
+      ownerId,
     ),
     Piece.ousho(
       Vector2(
-        isSenko ? 4 : 4,
+        isOpponent ? 4 : 4,
         oushoRowY,
       ),
+      ownerId,
     ),
     Piece.kinsho(
       Vector2(
-        isSenko ? 5 : 3,
+        isOpponent ? 5 : 3,
         oushoRowY,
       ),
+      ownerId,
     ),
     Piece.ginsho(
       Vector2(
-        isSenko ? 6 : 2,
+        isOpponent ? 6 : 2,
         oushoRowY,
       ),
+      ownerId,
     ),
     Piece.keima(
       Vector2(
-        isSenko ? 7 : 1,
+        isOpponent ? 7 : 1,
         oushoRowY,
       ),
+      ownerId,
     ),
     Piece.kyosha(
       Vector2(
-        isSenko ? 8 : 0,
+        isOpponent ? 8 : 0,
         oushoRowY,
       ),
+      ownerId,
     ),
   ];
   return [...huhyoRow, ...hisyakakuRow, ...oushoRow];

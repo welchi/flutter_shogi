@@ -165,13 +165,13 @@ class _$PieceTearOff {
   _Piece call(
       {required String name,
       required List<Movement> movableDirections,
-      Vector2? position,
-      PlayerType? owner}) {
+      required String ownerId,
+      Vector2? position}) {
     return _Piece(
       name: name,
       movableDirections: movableDirections,
+      ownerId: ownerId,
       position: position,
-      owner: owner,
     );
   }
 }
@@ -183,8 +183,8 @@ const $Piece = _$PieceTearOff();
 mixin _$Piece {
   String get name => throw _privateConstructorUsedError;
   List<Movement> get movableDirections => throw _privateConstructorUsedError;
+  String get ownerId => throw _privateConstructorUsedError;
   Vector2? get position => throw _privateConstructorUsedError;
-  PlayerType? get owner => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PieceCopyWith<Piece> get copyWith => throw _privateConstructorUsedError;
@@ -197,8 +197,8 @@ abstract class $PieceCopyWith<$Res> {
   $Res call(
       {String name,
       List<Movement> movableDirections,
-      Vector2? position,
-      PlayerType? owner});
+      String ownerId,
+      Vector2? position});
 }
 
 /// @nodoc
@@ -213,8 +213,8 @@ class _$PieceCopyWithImpl<$Res> implements $PieceCopyWith<$Res> {
   $Res call({
     Object? name = freezed,
     Object? movableDirections = freezed,
+    Object? ownerId = freezed,
     Object? position = freezed,
-    Object? owner = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -225,14 +225,14 @@ class _$PieceCopyWithImpl<$Res> implements $PieceCopyWith<$Res> {
           ? _value.movableDirections
           : movableDirections // ignore: cast_nullable_to_non_nullable
               as List<Movement>,
+      ownerId: ownerId == freezed
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
+              as String,
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as Vector2?,
-      owner: owner == freezed
-          ? _value.owner
-          : owner // ignore: cast_nullable_to_non_nullable
-              as PlayerType?,
     ));
   }
 }
@@ -245,8 +245,8 @@ abstract class _$PieceCopyWith<$Res> implements $PieceCopyWith<$Res> {
   $Res call(
       {String name,
       List<Movement> movableDirections,
-      Vector2? position,
-      PlayerType? owner});
+      String ownerId,
+      Vector2? position});
 }
 
 /// @nodoc
@@ -262,8 +262,8 @@ class __$PieceCopyWithImpl<$Res> extends _$PieceCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? movableDirections = freezed,
+    Object? ownerId = freezed,
     Object? position = freezed,
-    Object? owner = freezed,
   }) {
     return _then(_Piece(
       name: name == freezed
@@ -274,14 +274,14 @@ class __$PieceCopyWithImpl<$Res> extends _$PieceCopyWithImpl<$Res>
           ? _value.movableDirections
           : movableDirections // ignore: cast_nullable_to_non_nullable
               as List<Movement>,
+      ownerId: ownerId == freezed
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
+              as String,
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as Vector2?,
-      owner: owner == freezed
-          ? _value.owner
-          : owner // ignore: cast_nullable_to_non_nullable
-              as PlayerType?,
     ));
   }
 }
@@ -292,8 +292,8 @@ class _$_Piece extends _Piece {
   const _$_Piece(
       {required this.name,
       required this.movableDirections,
-      this.position,
-      this.owner})
+      required this.ownerId,
+      this.position})
       : super._();
 
   @override
@@ -301,13 +301,13 @@ class _$_Piece extends _Piece {
   @override
   final List<Movement> movableDirections;
   @override
-  final Vector2? position;
+  final String ownerId;
   @override
-  final PlayerType? owner;
+  final Vector2? position;
 
   @override
   String toString() {
-    return 'Piece(name: $name, movableDirections: $movableDirections, position: $position, owner: $owner)';
+    return 'Piece(name: $name, movableDirections: $movableDirections, ownerId: $ownerId, position: $position)';
   }
 
   @override
@@ -318,8 +318,8 @@ class _$_Piece extends _Piece {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.movableDirections, movableDirections) &&
-            const DeepCollectionEquality().equals(other.position, position) &&
-            const DeepCollectionEquality().equals(other.owner, owner));
+            const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
+            const DeepCollectionEquality().equals(other.position, position));
   }
 
   @override
@@ -327,8 +327,8 @@ class _$_Piece extends _Piece {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(movableDirections),
-      const DeepCollectionEquality().hash(position),
-      const DeepCollectionEquality().hash(owner));
+      const DeepCollectionEquality().hash(ownerId),
+      const DeepCollectionEquality().hash(position));
 
   @JsonKey(ignore: true)
   @override
@@ -340,8 +340,8 @@ abstract class _Piece extends Piece {
   const factory _Piece(
       {required String name,
       required List<Movement> movableDirections,
-      Vector2? position,
-      PlayerType? owner}) = _$_Piece;
+      required String ownerId,
+      Vector2? position}) = _$_Piece;
   const _Piece._() : super._();
 
   @override
@@ -349,9 +349,9 @@ abstract class _Piece extends Piece {
   @override
   List<Movement> get movableDirections;
   @override
-  Vector2? get position;
+  String get ownerId;
   @override
-  PlayerType? get owner;
+  Vector2? get position;
   @override
   @JsonKey(ignore: true)
   _$PieceCopyWith<_Piece> get copyWith => throw _privateConstructorUsedError;

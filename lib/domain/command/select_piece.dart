@@ -18,10 +18,10 @@ class SelectPiece {
   SelectPiece(this._read);
   final Reader _read;
   late final PlayerRepository humanPlayerRepository = _read(
-    humanPlayerRepositoryProvider.notifier,
+    playerRepositoryProvider.notifier,
   );
   late final PlayerRepository aiPlayerRepository = _read(
-    aiPlayerRepositoryProvider.notifier,
+    rivalRepositoryProvider.notifier,
   );
   late final ShogiGamePresenter shogiGamePresenter = _read(
     shogiGamePresenterProvider,
