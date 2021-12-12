@@ -21,7 +21,12 @@ class GamePage extends ConsumerWidget {
         title: const Text('Flutter Shogi'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: const [
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: TurnDisplay(),
+          ),
           // 相手の持ち駒
           SizedBox(
             height: 64,
@@ -35,6 +40,28 @@ class GamePage extends ConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class TurnDisplay extends ConsumerWidget {
+  const TurnDisplay({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final playerId = ref.watch(playerIdProvider);
+    final turnOwnerId = ref.watch(turnOwnerProvider);
+    if (playerId == turnOwnerId) {
+      return Text(
+        'あなたの番です',
+        style: Theme.of(context).textTheme.headline5,
+      );
+    }
+    return Text(
+      '相手の番です',
+      style: Theme.of(context).textTheme.headline5,
     );
   }
 }
