@@ -101,6 +101,7 @@ class CapturedPiecesView extends ConsumerWidget {
   final List<Piece> capturedPieces;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final turnOwnerId = ref.watch(turnOwnerProvider);
     return GridView.count(
       physics: const NeverScrollableScrollPhysics(),
       crossAxisCount: 9,
@@ -108,11 +109,13 @@ class CapturedPiecesView extends ConsumerWidget {
           .map(
             (piece) => Material(
               child: InkWell(
-                onTap: () {
-                  ref.read(selectCapturedPieceProvider).call(
-                        piece: piece,
-                      );
-                },
+                onTap: turnOwnerId == piece.ownerId
+                    ? () {
+                        ref.read(selectCapturedPieceProvider).call(
+                              piece: piece,
+                            );
+                      }
+                    : null,
                 child: Center(
                   child: TileText(
                     piece: piece,
