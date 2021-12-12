@@ -135,128 +135,158 @@ class Piece with _$Piece {
   const factory Piece({
     required String name,
     required List<Movement> movableDirections,
+    required String ownerId,
     Vector2? position,
-    PlayerType? owner,
   }) = _Piece;
   const Piece._();
   factory Piece.huhyo(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '歩',
         movableDirections: _huhyoMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.tokin(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: 'と',
         movableDirections: _kinshoMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.kyosha(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '香',
         movableDirections: _kyoshaMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.narikyo(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '杏',
         movableDirections: _kinshoMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.keima(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '桂',
         movableDirections: _keimaMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.narikei(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '圭',
         movableDirections: _kinshoMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.ginsho(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '銀',
         movableDirections: _ginshoMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.narigin(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '全',
         movableDirections: _kinshoMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.hisha(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '飛',
         movableDirections: _hishaMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.ryuo(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '龍',
         movableDirections: _ryuouMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.kakugyo(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '角',
         movableDirections: _kakuMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.ryuma(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '馬',
         movableDirections: _ryumeMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.kinsho(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '金',
         movableDirections: _kinshoMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.ousho(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '王',
         movableDirections: _oushoMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
   factory Piece.gyokusho(
     Vector2 position,
+    String ownerId,
   ) =>
       Piece(
         name: '玉',
         movableDirections: _oushoMovableDirections,
         position: position,
+        ownerId: ownerId,
       );
 }
