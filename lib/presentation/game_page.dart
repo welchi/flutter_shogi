@@ -23,7 +23,7 @@ class GamePage extends ConsumerWidget {
         children: const [
           // 相手の持ち駒
           SizedBox(
-            height: 50,
+            height: 64,
             child: RivalCapturedPiecesView(),
           ),
           Flexible(
@@ -31,7 +31,7 @@ class GamePage extends ConsumerWidget {
           ),
           // 自分の持ち駒
           SizedBox(
-            height: 50,
+            height: 64,
             child: PlayerCapturedPiecesView(),
           ),
         ],
