@@ -93,7 +93,11 @@ class PlayerRepositoryImpl extends StateNotifier<Player> with PlayerRepository {
   }) {
     final newCapturedPieces = List<Piece>.from(
       state.capturedPieces,
-    )..add(piece);
+    )..add(
+        piece.copyWith(
+          ownerId: state.id,
+        ),
+      );
     state = state.copyWith(
       capturedPieces: newCapturedPieces,
     );

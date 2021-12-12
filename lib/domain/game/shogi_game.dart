@@ -84,7 +84,7 @@ class ShogiGame {
         removePiece: (Piece piece) => rivalRepository.removePiece(
           piece: piece,
         ),
-        capturePiece: (Piece piece) => rivalRepository.addCapturedPiece(
+        capturePiece: (Piece piece) => playerRepository.addCapturedPiece(
           piece: piece,
         ),
       );
