@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/presentation/game_page.dart';
+import 'package:flutter_shogi/route.dart';
 
 void main() {
   runApp(
@@ -10,15 +11,18 @@ void main() {
   );
 }
 
-class ShogiApp extends StatelessWidget {
+class ShogiApp extends ConsumerWidget {
   const ShogiApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       title: 'Flutter Shogi',
       theme: ThemeData.from(
         colorScheme: const ColorScheme.light(),
+      ),
+      navigatorKey: ref.read(
+        navigatorKeyProvider,
       ),
       home: const GamePage(),
     );
