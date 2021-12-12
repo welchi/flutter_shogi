@@ -1,8 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/command/command.dart';
-import 'package:flutter_shogi/domain/command/select_piece.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
-import 'package:flutter_shogi/domain/entity/player.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:vector_math/vector_math.dart';
@@ -43,12 +41,12 @@ final rivalIdProvider = Provider((ref) {
 
 final highlightableTileMatrixProvider = Provider(
   (ref) {
-    final humanPieces = ref.watch(playerPiecesProvider);
-    final aiPieces = ref.watch(rivalPiecesProvider);
+    final playerPieces = ref.watch(playerPiecesProvider);
+    final rivalPieces = ref.watch(rivalPiecesProvider);
     final movalPositions = ref.watch(movablePositionsProvider);
     final highlightableMatrix = getHighlightableTileMatrix(
-      playerPieces: humanPieces,
-      rivalPieces: aiPieces,
+      playerPieces: playerPieces,
+      rivalPieces: rivalPieces,
       movalPositions: movalPositions,
     );
     return highlightableMatrix.reversed.toList();
@@ -109,19 +107,4 @@ class HighlightableBoardTile with _$HighlightableBoardTile {
     Piece? piece,
     required Vector2 position,
   }) = _HighlightableBoardTile;
-}
-
-@freezed
-class BoardTile with _$BoardTile {
-  const factory BoardTile({
-    Piece? piece,
-  }) = _BoardTile;
-}
-
-@freezed
-class GameViewModel with _$GameViewModel {
-  const factory GameViewModel({
-    required Player me,
-    required Player cpu,
-  }) = _GameViewModel;
 }
