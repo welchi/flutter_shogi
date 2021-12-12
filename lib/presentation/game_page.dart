@@ -132,7 +132,7 @@ class TileView extends ConsumerWidget {
     final piece = tile.piece;
     final isHighlight = tile.isMovable;
     return Material(
-      color: isHighlight ? Colors.red[300] : Colors.yellow[300],
+      color: isHighlight ? Colors.blue[200] : Colors.yellow[300],
       child: InkWell(
         onTap: isHighlight
             ? () {
