@@ -11,13 +11,23 @@ import 'game_presenter.dart';
 
 part 'game_view_model.freezed.dart';
 
+final playerPiecesProvider = Provider((ref) {
+  final pieces = ref.watch(playerRepositoryProvider).pieces;
+  return pieces;
+});
+
 final rivalPiecesProvider = Provider((ref) {
   final pieces = ref.watch(rivalRepositoryProvider).pieces;
   return pieces;
 });
 
-final playerPiecesProvider = Provider((ref) {
-  final pieces = ref.watch(playerRepositoryProvider).pieces;
+final playerCapturedPiecesProvider = Provider((ref) {
+  final pieces = ref.watch(playerRepositoryProvider).capturedPieces;
+  return pieces;
+});
+
+final rivalCapturedPiecesProvider = Provider((ref) {
+  final pieces = ref.watch(rivalRepositoryProvider).capturedPieces;
   return pieces;
 });
 

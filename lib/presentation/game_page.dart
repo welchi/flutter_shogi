@@ -13,9 +13,9 @@ class GamePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Flutter Shogi'),
-      // ),
+      appBar: AppBar(
+        title: const Text('Flutter Shogi'),
+      ),
       body: Column(
         children: const [
           // 相手の持ち駒
