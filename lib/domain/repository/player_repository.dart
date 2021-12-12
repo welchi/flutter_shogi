@@ -16,4 +16,9 @@ abstract class PlayerRepository {
     required Piece piece,
     required Vector2 dest,
   });
+
+  /// 駒を削除
+  void removePiece({
+    required Piece piece,
+  });
 }

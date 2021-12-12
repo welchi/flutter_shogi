@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
@@ -45,6 +46,19 @@ class ShogiGame {
   /// [newPiece]はこのターンで移動した駒
   void update(PieceWithOwner newPiece) {
     final myPieces = meRepository.getPieces();
+    final opponentPieces = opponentRepository.getPieces();
+
+    // 動かした先に駒があれば、取得
+    if (newPiece.owner == PlayerType.human) {
+      final capturedPiece = opponentPieces.firstWhereOrNull(
+        (piece) => piece.position == newPiece.piece.position,
+      );
+      if (capturedPiece != null) {
+        opponentRepository.removePiece(
+          piece: capturedPiece,
+        );
+      }
+    }
 
     // 状況チェック
     /*
