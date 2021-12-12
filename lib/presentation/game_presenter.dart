@@ -27,7 +27,7 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
   ShogiGamePresenterImpl(this._read);
   final Reader _read;
   @override
-  void deselectedPiece() {
+  void deselectedPieceToMove() {
     _read(
       selectedPieceToMoveProvider.notifier,
     ).state = null;
@@ -41,6 +41,7 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
     Piece piece,
     List<Vector2> movablePositions,
   ) {
+    deselectedPieceToDrop();
     _read(
       selectedPieceToMoveProvider.notifier,
     ).state = piece;
@@ -61,11 +62,22 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
     Piece piece,
     List<Vector2> movablePositions,
   ) {
-    // TODO: implement selectedPieceToDrop
+    deselectedPieceToMove();
+    _read(
+      selectedPieceToDropProvider.notifier,
+    ).state = piece;
+    _read(
+      movablePositionsProvider.notifier,
+    ).state = movablePositions;
   }
 
   @override
   void deselectedPieceToDrop() {
-    // TODO: implement deselectedPieceToDrop
+    _read(
+      selectedPieceToDropProvider.notifier,
+    ).state = null;
+    _read(
+      movablePositionsProvider.notifier,
+    ).state = null;
   }
 }

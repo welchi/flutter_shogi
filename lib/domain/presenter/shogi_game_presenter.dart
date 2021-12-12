@@ -9,7 +9,7 @@ abstract class ShogiGamePresenter {
   );
 
   /// 移動する駒を選択解除した
-  void deselectedPiece();
+  void deselectedPieceToMove();
 
   /// 指す駒を選択した
   void selectedPieceToDrop(
