@@ -2,6 +2,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/presenter/shogi_game_presenter.dart';
+import 'package:flutter_shogi/route.dart';
 import 'package:vector_math/vector_math.dart';
 
 enum MoveOrDrop {
@@ -94,7 +95,17 @@ class ShogiGamePresenterImpl extends ShogiGamePresenter {
   }
 
   @override
-  Future<void> showResultDialog({required String title, required String content}) {
-    return showAlertDialog(context: context)
+  Future<void> showResultDialog({
+    required String title,
+    required String content,
+  }) {
+    final context = _read(
+      navigatorKeyProvider,
+    ).currentContext;
+    return showAlertDialog(
+      context: context!,
+      title: title,
+      message: content,
+    );
   }
 }
