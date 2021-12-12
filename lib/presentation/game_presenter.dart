@@ -1,7 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
-import 'package:flutter_shogi/domain/output/shogi_game_output.dart';
+import 'package:flutter_shogi/domain/output/shogi_output.dart';
 import 'package:flutter_shogi/route.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
@@ -32,7 +32,7 @@ final shogiGamePresenterProvider = Provider(
   ),
 );
 
-class ShogiGamePresenterImpl extends ShogiGameOutput {
+class ShogiGamePresenterImpl extends ShogiOutput {
   ShogiGamePresenterImpl(this._read);
   final Reader _read;
   @override

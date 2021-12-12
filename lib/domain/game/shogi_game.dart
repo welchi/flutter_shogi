@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
-import 'package:flutter_shogi/domain/output/shogi_game_output.dart';
+import 'package:flutter_shogi/domain/output/shogi_output.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
 import 'package:flutter_shogi/domain/rule/nifu.dart';
 import 'package:flutter_shogi/domain/rule/promote.dart';
@@ -28,7 +28,7 @@ class ShogiGame {
     rivalRepositoryProvider.notifier,
   );
 
-  late final ShogiGameOutput gamePresenter = _read(
+  late final ShogiOutput gamePresenter = _read(
     shogiGamePresenterProvider,
   );
 

@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/command/select_piece.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
-import 'package:flutter_shogi/domain/output/shogi_game_output.dart';
+import 'package:flutter_shogi/domain/output/shogi_output.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
 import 'package:flutter_shogi/presentation/game_presenter.dart';
 import 'package:flutter_shogi/state/player_state.dart';
@@ -24,7 +24,7 @@ class SelectCapturedPiece {
   late final PlayerRepository rivalPlayerRepository = _read(
     rivalRepositoryProvider.notifier,
   );
-  late final ShogiGameOutput shogiGamePresenter = _read(
+  late final ShogiOutput shogiGamePresenter = _read(
     shogiGamePresenterProvider,
   );
 
