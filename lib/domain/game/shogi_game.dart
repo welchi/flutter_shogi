@@ -43,6 +43,33 @@ class ShogiGame {
     );
   }
 
+  /// 駒を取得
+  /// [pieces]に[position]に配置された駒があるならば取得
+  Piece? searchPiece({
+    required Vector2 position,
+    required List<Piece> pieces,
+  }) {
+    return pieces.firstWhereOrNull(
+      (piece) => piece.position == position,
+    );
+  }
+
+  void executeCaptureProcess({
+    required Vector2 position,
+    required List<Piece> pieces,
+    required void Function(Piece piece) removePiece,
+    required void Function(Piece piece) capturePiece,
+  }) {
+    final capturedPiece = searchPiece(
+      position: position,
+      pieces: pieces,
+    );
+    if (capturedPiece != null) {
+      removePiece(capturedPiece);
+      capturePiece(capturedPiece);
+    }
+  }
+
   /// ターンごとの判定
   /// [newPiece]はこのターンで移動した駒
   void update(PieceWithOwner newPiece) {
@@ -51,9 +78,11 @@ class ShogiGame {
 
     // 動かした先に駒があれば、取得
     if (newPiece.owner == PlayerType.human) {
-      final capturedPiece = opponentPieces.firstWhereOrNull(
-        (piece) => piece.position == newPiece.piece.position,
+      final capturedPiece = searchPiece(
+        position: newPiece.piece.position!,
+        pieces: opponentPieces,
       );
+
       if (capturedPiece != null) {
         opponentRepository.removePiece(
           piece: capturedPiece,
@@ -79,11 +108,12 @@ class ShogiGame {
     final meDefeat = checkIsDefeat(newMyPieces);
     final opponentDefeat = checkIsDefeat(newOpponentPieces);
 
-    //  2歩をチェック
+    // 2歩をチェック
 
     // 成れるなら成るか確認
 
     // 状況チェック
+
     /*
     * final sentePiecies=senteRepository.state.piecies
     * final gotePiecies = goteRepository.state.piecies
