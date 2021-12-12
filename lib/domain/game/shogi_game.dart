@@ -1,11 +1,12 @@
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/entity/entity.dart';
-import 'package:flutter_shogi/domain/game/shogi_game_output.dart';
+import 'package:flutter_shogi/domain/presenter/presenter.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
 import 'package:flutter_shogi/domain/rule/nifu.dart';
 import 'package:flutter_shogi/domain/rule/promote.dart';
 import 'package:flutter_shogi/domain/rule/victory_or_defeat.dart';
+import 'package:flutter_shogi/presentation/game_presenter.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:vector_math/vector_math.dart';
 
@@ -18,31 +19,18 @@ final shogiGameProvider = Provider(
 class ShogiGame {
   ShogiGame(this._read);
   final Reader _read;
-  late final ShogiGameOutput _output;
-  // late final PlayerRepository senteRepository =
-  //     _read(humanPlayerRepositoryProvider.notifier);
 
   late final PlayerRepository playerRepository = _read(
     playerRepositoryProvider.notifier,
   );
+
   late final PlayerRepository rivalRepository = _read(
     rivalRepositoryProvider.notifier,
   );
-  //
-  // /// ゲームを初期化
-  // void initGame() {
-  //   // 先攻で歩兵を並べる
-  //   final senkoPieces = getInitialPieces();
-  //   final kokoPieces = getInitialPieces(isOpponent: false);
-  //   // final senkoPlayer = Player(
-  //   //   pieces: senkoPieces,
-  //   //   capturedPieces: [],
-  //   // );
-  //   // final kokoPlayer = Player(
-  //   //   pieces: kokoPieces,
-  //   //   capturedPieces: [],
-  //   // );
-  // }
+
+  late final ShogiGamePresenter gamePresenter = _read(
+    shogiGamePresenterProvider,
+  );
 
   /// 駒を取得
   /// [pieces]に[position]に配置された駒があるならば取得
@@ -73,7 +61,7 @@ class ShogiGame {
 
   /// ターンごとの判定
   /// [newPiece]はこのターンで移動した駒
-  void update(Piece newPiece) {
+  Future<void> update(Piece newPiece) async {
     final playerId = playerRepository.getId();
     // 駒の取得処理を実行
     if (newPiece.ownerId == playerId) {
@@ -107,22 +95,34 @@ class ShogiGame {
 
     // プレイヤーの負け
     if (!playerHasOusho) {
-      //
+      await gamePresenter.showResultDialog(
+        title: 'あなたの負け',
+        content: '王を取られました',
+      );
     }
     // 相手の負け
     if (!rivalHasOusho) {
-      //
+      await gamePresenter.showResultDialog(
+        title: 'あなたの勝ち',
+        content: '王を取りました',
+      );
     }
     // 二歩をチェック
     final playerGot2Fu = check2Fu(playerPieces);
     final rivalGot2Fu = check2Fu(rivalPieces);
     // プレイヤーの負け
     if (playerGot2Fu) {
-      //
+      await gamePresenter.showResultDialog(
+        title: 'あなたの負け',
+        content: '二歩です',
+      );
     }
     // 相手の負け
     if (rivalGot2Fu) {
-      //
+      await gamePresenter.showResultDialog(
+        title: 'あなたの勝ち',
+        content: '相手が二歩でした',
+      );
     }
 
     // 成れるなら成るか確認
@@ -130,6 +130,9 @@ class ShogiGame {
       piece: newPiece,
       playerId: playerId,
     );
+    if (isAbleToPromote) {
+      final isPromote = await gamePresenter.askPromoteOrNot();
+    }
 
     // 状況チェック
   }
