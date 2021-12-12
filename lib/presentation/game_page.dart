@@ -19,16 +19,13 @@ class GamePage extends ConsumerWidget {
         title: const Text('Flutter Shogi'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: const [
           // 相手の持ち駒
           SizedBox(
             height: 64,
             child: RivalCapturedPiecesView(),
           ),
-          Flexible(
-            child: BoardView(),
-          ),
+          BoardView(),
           // 自分の持ち駒
           SizedBox(
             height: 64,
