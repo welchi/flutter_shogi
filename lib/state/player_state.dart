@@ -72,6 +72,18 @@ class PlayerRepositoryImpl extends StateNotifier<Player> with PlayerRepository {
       );
     state = state.copyWith(pieces: newPieces);
   }
+
+  @override
+  void addCapturedPiece({
+    required Piece piece,
+  }) {
+    final newCapturedPieces = List<Piece>.from(
+      state.capturedPieces,
+    )..add(piece);
+    state = state.copyWith(
+      capturedPieces: newCapturedPieces,
+    );
+  }
   //
   // @override
   // void updatePiece({
