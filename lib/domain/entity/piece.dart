@@ -338,8 +338,7 @@ abstract class Piece implements _$Piece {
       case ryuou:
       case ryume:
         return true;
-      default:
-        return false;
     }
+    return false;
   }
 }

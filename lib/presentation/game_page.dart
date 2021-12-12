@@ -189,17 +189,23 @@ class TileText extends ConsumerWidget {
     }
     final rivalId = ref.watch(rivalIdProvider);
 
-    final isRival = piece?.ownerId == rivalId;
-
+    final isRival = piece!.ownerId == rivalId;
+    final isPromoted = piece!.isPromoted();
     return isRival
         ? Transform.rotate(
             angle: pi,
             child: Text(
               piece?.name ?? 'Null',
+              style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    color: isPromoted ? Colors.red : null,
+                  ),
             ),
           )
         : Text(
             piece?.name ?? 'Null',
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                  color: isPromoted ? Colors.red : null,
+                ),
           );
   }
 }
