@@ -1,4 +1,4 @@
-import 'package:flutter_shogi/domain/entity/entity.dart';
+import 'package:flutter_shogi/entity/model/model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'player.freezed.dart';

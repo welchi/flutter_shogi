@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/command/command.dart';
-import 'package:flutter_shogi/domain/entity/entity.dart';
+import 'package:flutter_shogi/entity/model/model.dart';
 import 'package:flutter_shogi/state/player_state.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:vector_math/vector_math.dart';

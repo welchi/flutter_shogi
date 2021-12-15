@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shogi/domain/command/command.dart';
 import 'package:flutter_shogi/domain/command/drop_piece.dart';
 import 'package:flutter_shogi/domain/command/select_captured_piece.dart';
-import 'package:flutter_shogi/domain/entity/entity.dart';
+import 'package:flutter_shogi/entity/model/model.dart';
 import 'package:flutter_shogi/presentation/game_view_model.dart';
 
 import 'game_presenter.dart';

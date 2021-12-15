@@ -1,4 +1,4 @@
-import 'package:flutter_shogi/domain/entity/entity.dart';
+import 'package:flutter_shogi/entity/model/model.dart';
 
 /// 成れるかチェック
 bool checkIsAbleToPromote({

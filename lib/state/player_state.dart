@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_shogi/domain/entity/entity.dart';
 import 'package:flutter_shogi/domain/game/shogi_game.dart';
 import 'package:flutter_shogi/domain/repository/player_repository.dart';
+import 'package:flutter_shogi/entity/model/model.dart';
 import 'package:vector_math/vector_math.dart';
 
 // とりあえず、プレイヤーのIDは固定値で決める
