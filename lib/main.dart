@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_shogi/presentation/game_page.dart';
 import 'package:flutter_shogi/route.dart';
+import 'package:flutter_shogi/ui/game_page.dart';
 
 void main() {
   runApp(
