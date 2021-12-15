@@ -1,0 +1,78 @@
+@startuml
+
+title flutter shogi architectre
+
+
+package Entity{
+    rectangle Model
+    rectangle Rule
+}
+
+package Domain{
+    rectangle Command
+    rectangle Game
+    rectangle IGameOutput
+    rectangle IRepository
+}
+
+package UI{
+    rectangle View
+    rectangle ViewModel
+}
+
+package AppState{
+    rectangle State
+    rectangle Repository
+}
+
+package Presenters{
+    rectangle Presenter
+}
+
+
+View --> Command
+View --> ViewModel
+View --> Presenter
+Command --> Game
+Command -> IRepository
+Game -> IRepository
+
+Game -> IGameOutput
+ViewModel --> State
+
+Presenter -|> IGameOutput
+Repository --|> IRepository
+Repository - State
+
+Rule -> Model
+Game --> Model
+Game --> Rule
+'https://plantuml.com/deployment-diagram
+'
+'actor actor
+'actor/ "actor/"
+'agent agent
+'artifact artifact
+'boundary boundary
+'card card
+'circle circle
+'cloud cloud
+'collections collections
+'component component
+'control control
+'database database
+'entity entity
+'file file
+'folder folder
+'frame frame
+'interface interface
+'label label
+'node node
+'package package
+'queue queue
+'rectangle rectangle
+'stack stack
+'storage storage
+'usecase usecase
+'usecase/ "usecase/"
+@enduml
