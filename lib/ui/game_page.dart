@@ -9,7 +9,7 @@ import 'package:flutter_shogi/domain/command/select_captured_piece.dart';
 import 'package:flutter_shogi/entity/model/model.dart';
 import 'package:flutter_shogi/ui/game_view_model.dart';
 
-import 'game_presenter.dart';
+import '../presenter/game_presenter.dart';
 
 class GamePage extends ConsumerWidget {
   const GamePage({Key? key}) : super(key: key);

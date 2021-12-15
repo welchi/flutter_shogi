@@ -5,7 +5,7 @@ import 'package:flutter_shogi/state/player_state.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:vector_math/vector_math.dart';
 
-import 'game_presenter.dart';
+import '../presenter/game_presenter.dart';
 
 part 'game_view_model.freezed.dart';
 
