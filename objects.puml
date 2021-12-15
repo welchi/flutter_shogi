@@ -1,18 +1,26 @@
 @startuml
 
-class プレイヤー{}
+class プレイヤー{
+    String ID
+}
 class 駒{
-    String name
-    移動する()
+    String 名前
+    List<Vector2> 移動できる方向
+    指す()
     成る()
 }
 class 持ち駒{
-    String name
+    String 名前
+    List<Vector2> 移動できる方向
     打つ()
 }
 
 class 盤面{}
 class マス{}
+'class 移動{
+'    Vector2 移動方向
+'    int 移動できる回数
+'}
 
 プレイヤー "1"--"0..40" 駒
 プレイヤー "1"--"0..40" 持ち駒
